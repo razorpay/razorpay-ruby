@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/Razorpay/razorpay-ruby.svg?branch=master)](https://travis-ci.org/Razorpay/razorpay-ruby)
 
+[![Gem Version](https://badge.fury.io/rb/razorpay.svg)](http://badge.fury.io/rb/razorpay)
+
 This is the base ruby gem for interacting with the Razorpay API. This is primarily meant for merchants who wish to perform interactions with the Razorpay API programatically.
 
 ## Installation
