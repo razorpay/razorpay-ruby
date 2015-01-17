@@ -1,0 +1,13 @@
+Metrics/AbcSize:
+  Max: 18
+
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 110
+  AllowURI: true
+
+Style/ClassVars:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
