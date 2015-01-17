@@ -46,7 +46,7 @@ module Razorpay
       # This is either one of payment, refund, or collection at present
       class_name = response['entity'].capitalize
       begin
-        klass = Object.const_get "Razorpay::#{class_name}"
+        klass = Razorpay.const_get class_name
       rescue NameError
         # Use Entity class if we don't find any
         klass = Razorpay::Entity
