@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['nemo@razorpay.com']
   spec.summary       = "Razorpay's Ruby API"
   spec.description   = 'Official ruby bindings for the Razorpay API'
-  spec.homepage      = 'https://github.com/razorpay/razorpay-ruby'
+  spec.homepage      = 'https://razorpay.com/'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split("\n")
