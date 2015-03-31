@@ -57,12 +57,12 @@ module Razorpay
     def raise_error(error, status)
       # Get the error class name, require it and instantiate an error
       require "razorpay/errors/#{error['code'].downcase}"
-      class_name = 'Razorpay::' + error['code'].split('_').map(&:capitalize).join('')
+      class_name = error['code'].split('_').map(&:capitalize).join('')
       args = [error['code'], status]
       args.push error['field'] if error.key?('field')
       klass =
         begin
-          Object.const_get(class_name)
+          Razorpay.const_get(class_name)
         # We got an unknown error, cast it to Error for now
         rescue NameError
           Razorpay::Error
