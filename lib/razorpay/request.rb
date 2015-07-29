@@ -37,7 +37,8 @@ module Razorpay
     # Recursively builds entity instances
     # out of all hashes in the response object
     def create_instance(res)
-      response = res.parsed_response
+      response = JSON.parse(res.parsed_response) if res.parsed_response.kind_of?(String)
+      response = res.parsed_response if res.parsed_response.kind_of?(Hash)
 
       # if there was an error, throw it
       raise_error(response['error'], res.code) if response.key?('error')
