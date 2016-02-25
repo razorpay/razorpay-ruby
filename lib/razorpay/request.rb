@@ -8,7 +8,11 @@ module Razorpay
   class Request
     include HTTParty
 
+
+    ssl_ca_file File.dirname(__FILE__) + '/../ca-bundle.crt'
+
     def initialize(entity_name)
+
       self.class.base_uri(Razorpay::BASE_URI)
       @entity_name = entity_name
     end
@@ -32,6 +36,12 @@ module Razorpay
       when :post
         create_instance self.class.send(method, url, body:  data, basic_auth: Razorpay.auth, timeout: 30)
       end
+    end
+
+    # Since we need to change the base route
+    def make_test_request
+      res = self.class.get Razorpay::TEST_URL
+      res.parsed_response
     end
 
     # Recursively builds entity instances
