@@ -1,0 +1,25 @@
+# Change Log
+
+Changelog for Razorpay-Ruby SDK.
+
+## [1.1.0] - 2016-02-25
+### Added
+- Add support for Orders API
+- Bundles the CA Certificate with the gem. See #6
+
+## [1.0.3] - 2015-03-31
+### Changed
+- Handles error requests properly
+
+## [1.0.1] - 2015-02-23
+### Added
+- Added support for ruby versions below 2.0
+
+## [1.0.0] - 2015-01-17
+### Added
+- Initial Release
+
+[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/razorpay/razorpay-ruby/compare/1.0.3...1.1.0
+[1.0.3]: https://github.com/razorpay/razorpay-ruby/compare/1.0.1...1.0.3
+[1.0.1]: https://github.com/razorpay/razorpay-ruby/compare/1.0.0...1.0.1
