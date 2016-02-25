@@ -15,6 +15,13 @@ module Razorpay
 
       self.class.base_uri(Razorpay::BASE_URI)
       @entity_name = entity_name
+      @options = {
+        :basic_auth => Razorpay.auth,
+        :timeout => 30,
+        :headers => {
+          "User-Agent" => "Razorpay-Ruby/#{Razorpay::VERSION}"
+        }
+      }
     end
 
     def fetch(id)
@@ -32,16 +39,16 @@ module Razorpay
     def request(method, url, data = {})
       case method
       when :get
-        create_instance self.class.send(method, url, query: data, basic_auth: Razorpay.auth, timeout: 30)
+        @options[:query] = data
       when :post
-        create_instance self.class.send(method, url, body:  data, basic_auth: Razorpay.auth, timeout: 30)
+        @options[:body] = data
       end
+      create_instance self.class.send(method, url, @options)
     end
 
     # Since we need to change the base route
     def make_test_request
-      res = self.class.get Razorpay::TEST_URL
-      res.parsed_response
+      self.class.get Razorpay::TEST_URL, @options
     end
 
     # Recursively builds entity instances
