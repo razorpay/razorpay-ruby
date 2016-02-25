@@ -28,9 +28,9 @@ module Razorpay
     def request(method, url, data = {})
       case method
       when :get
-        create_instance self.class.send(method, url, query: data, basic_auth: Razorpay.auth)
+        create_instance self.class.send(method, url, query: data, basic_auth: Razorpay.auth, timeout: 30)
       when :post
-        create_instance self.class.send(method, url, body:  data, basic_auth: Razorpay.auth)
+        create_instance self.class.send(method, url, body:  data, basic_auth: Razorpay.auth, timeout: 30)
       end
     end
 
