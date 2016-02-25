@@ -7,7 +7,7 @@ module Razorpay
   class RazorpayRefundTest < Minitest::Test
     def setup
       @payment_id = 'fake_payment_id'
-      stub_get(/payments\/#{Regexp.quote(@payment_id)}$/, 'fake_payment')
+      stub_get(%r{payments\/#{Regexp.quote(@payment_id)}$}, 'fake_payment')
     end
 
     def test_refund_should_be_defined
@@ -15,7 +15,7 @@ module Razorpay
     end
 
     def test_fetch_all_refunds
-      stub_get(%r{/payments/#{@payment_id}/refunds$}, 'refund_collection')
+      stub_get(%r{payments/#{@payment_id}/refunds$}, 'refund_collection')
       refunds = Razorpay::Payment.fetch(@payment_id).refunds.all
       assert_instance_of Razorpay::Collection, refunds
     end

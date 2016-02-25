@@ -14,11 +14,8 @@ module Razorpay
     # instance variables
     def method_missing(name)
       name = name.to_s
-      if @attributes.key?(name)
-        @attributes[name]
-      else
-        fail NameError, "No such data member: #{name}"
-      end
+      raise NameError, "No such data member: #{name}" unless @attributes.key? name
+      @attributes[name]
     end
 
     # Public: Convert the Entity object to JSON

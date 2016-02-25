@@ -9,7 +9,7 @@ module Razorpay
       @payment_id = 'fake_payment_id'
 
       # Any request that ends with payments/payment_id
-      stub_get(/payments\/#{Regexp.quote(@payment_id)}$/, 'fake_payment')
+      stub_get(%r{payments\/#{Regexp.quote(@payment_id)}$}, 'fake_payment')
       stub_get(/payments$/, 'payment_collection')
     end
 
@@ -26,7 +26,7 @@ module Razorpay
     def test_all_payments
       payments = Razorpay::Payment.all
       assert_instance_of Razorpay::Collection, payments, 'Payments should be an array'
-      assert payments.items.size > 0, 'Payments should be more than one'
+      assert !payments.items.empty?, 'Payments should be more than one'
     end
 
     def test_all_payments_with_options

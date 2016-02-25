@@ -8,18 +8,16 @@ module Razorpay
   class Request
     include HTTParty
 
-
     ssl_ca_file File.dirname(__FILE__) + '/../ca-bundle.crt'
 
     def initialize(entity_name)
-
       self.class.base_uri(Razorpay::BASE_URI)
       @entity_name = entity_name
       @options = {
-        :basic_auth => Razorpay.auth,
-        :timeout => 30,
-        :headers => {
-          "User-Agent" => "Razorpay-Ruby/#{Razorpay::VERSION}"
+        basic_auth: Razorpay.auth,
+        timeout: 30,
+        headers: {
+          'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}"
         }
       }
     end
@@ -84,7 +82,7 @@ module Razorpay
         rescue NameError
           Razorpay::Error
         end
-      fail klass.new(*args), error['description']
+      raise klass.new(*args), error['description']
     end
   end
 end

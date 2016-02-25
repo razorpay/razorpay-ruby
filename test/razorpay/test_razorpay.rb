@@ -24,18 +24,18 @@ module Razorpay
       WebMock.allow_net_connect!
       req = Razorpay::Request.new('dummy')
       response = req.make_test_request.parsed_response
-      assert_equal "Welcome to Razorpay API.", response['message']
+      assert_equal 'Welcome to Razorpay API.', response['message']
       WebMock.disable_net_connect!
     end
 
     # We mock this request
     def test_auth_header_and_user_agent
       stub_get(/$/, 'hello_response')
-      req = Razorpay::Request.new('dummy').make_test_request
+      Razorpay::Request.new('dummy').make_test_request
       user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}"
-      assert_requested :get, "https://key_id:key_secret@api.razorpay.com/",
-        :headers => {'User-Agent' => user_agent},
-        :times => 1
+      assert_requested :get, 'https://key_id:key_secret@api.razorpay.com/',
+                       headers: { 'User-Agent' => user_agent },
+                       times: 1
     end
   end
 end

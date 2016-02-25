@@ -7,7 +7,7 @@ module Razorpay
   class ErrorTest < Minitest::Test
     def setup
       @payment_id = 'fake_payment_id'
-      stub_get(/payments\/#{Regexp.quote(@payment_id)}$/, 'fake_payment')
+      stub_get(%r{payments\/#{Regexp.quote(@payment_id)}$}, 'fake_payment')
     end
 
     def test_bad_request_error

@@ -10,7 +10,7 @@ end
 
 def stub_response(_url, filename, status = nil)
   response = { body: fixture_file(filename) }
-  response.merge!(status: status) unless status.nil?
+  response[:status] = status unless status.nil?
   response.merge!(headers: { 'Content-Type' => 'application/json' })
 end
 
