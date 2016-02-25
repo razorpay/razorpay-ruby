@@ -1,0 +1,29 @@
+{
+  "entity": "collection",
+  "count": 1,
+  "items": [
+    {
+      "id": "pay_50sbkZA9AcyE5a",
+      "entity": "payment",
+      "amount": 5000,
+      "currency": "INR",
+      "status": "authorized",
+      "method": "card",
+      "emi_plan_id": null,
+      "amount_refunded": 0,
+      "refund_status": null,
+      "captured": false,
+      "description": null,
+      "email": "test@razorpay.com",
+      "contact": "1234567890",
+      "notes": {
+        "order_id": "3453"
+      },
+      "fee": 0,
+      "service_tax": 0,
+      "error_code": null,
+      "error_description": null,
+      "created_at": 1456412144
+    }
+  ]
+}

@@ -34,6 +34,10 @@ module Razorpay
       request :post, "/#{@entity_name}/#{url}", data
     end
 
+    def create(data)
+      request :post, "/#{@entity_name}", data
+    end
+
     def request(method, url, data = {})
       case method
       when :get
