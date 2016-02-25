@@ -18,10 +18,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(/^(test|spec|features)/)
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 1.6'
-  spec.add_development_dependency 'rake', '~> 10.4'
-  spec.add_development_dependency 'minitest', '~> 5.5'
-  spec.add_development_dependency 'webmock', '~> 1.20'
-  spec.add_development_dependency 'simplecov', '~> 0.9'
+  spec.add_development_dependency 'bundler', '~> 1.11'
+  spec.add_development_dependency 'rake', '~> 10.5'
+  spec.add_development_dependency 'minitest', '~> 5.8'
+  spec.add_development_dependency 'webmock', '~> 1.24'
+  spec.add_development_dependency 'simplecov', '~> 0.11'
   spec.add_dependency 'httparty', '~> 0.13'
 end
