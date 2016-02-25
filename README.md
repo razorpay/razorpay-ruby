@@ -43,6 +43,27 @@ You can handle refunds using the following constructs:
 For other applications (such as fetching payments and refunds),
 see our online documentation on <https://docs.razorpay.com>
 
+### Orders API
+
+Send us a mail at <support@razorpay.com> to enable the Orders API
+for your account. You can use the orders API using the following
+constructs:
+
+```rb
+order = Razorpay::Order.create amount: 5000, currency: 'INR', receipt: 'TEST'
+# order.id = order_50sX9hGHZJvjjI
+
+# Same collection as Refunds or Payments
+orders = Razorpay::Order.all
+
+# Fetching an Order
+order = Razorpay::Order.fetch('order_50sX9hGHZJvjjI')
+puts order.amount
+
+# Fetching payments corresponding to an order
+payments = order.payments
+```
+
 ## Development
 
 - Everything is namespaced under the Razorpay module
