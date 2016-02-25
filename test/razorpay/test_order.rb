@@ -9,8 +9,7 @@ module Razorpay
       @order_id = 'order_50sX9hGHZJvjjI'
 
       # Any request that ends with orders/order_id
-      stub_get(/orders\/#{Regexp.quote(@order_id)}$/, 'fake_order')
-
+      stub_get(%r{orders/#{@order_id}$}, 'fake_order')
     end
 
     def test_order_should_be_defined
@@ -18,8 +17,8 @@ module Razorpay
     end
 
     def test_order_should_be_created
-      stub_post(%r{orders$}, 'fake_order', 'amount=5000&currency=INR&receipt=TEST')
-      order = Razorpay::Order.create :amount => 5000, :currency => 'INR', :receipt => 'TEST'
+      stub_post(/orders$/, 'fake_order', 'amount=5000&currency=INR&receipt=TEST')
+      order = Razorpay::Order.create amount: 5000, currency: 'INR', receipt: 'TEST'
 
       assert_equal 5000, order.amount
       assert_equal 'INR', order.currency
@@ -40,7 +39,7 @@ module Razorpay
     end
 
     def test_order_payments_should_be_fetched
-      stub_get(/orders\/#{Regexp.quote(@order_id)}\/payments$/, 'order_payments')
+      stub_get(%r{orders/#{@order_id}/payments$}, 'order_payments')
 
       payments = Razorpay::Order.fetch(@order_id).payments
       assert_instance_of Razorpay::Collection, payments, 'Payments should be an array'
