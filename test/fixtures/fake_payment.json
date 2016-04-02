@@ -9,5 +9,6 @@
   "error_code": null,
   "error_description": null,
   "udf": {},
-  "created_at": 1400826750
+  "created_at": 1400826750,
+  "method": "card"
 }
