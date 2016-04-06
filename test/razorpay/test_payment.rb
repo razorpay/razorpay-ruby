@@ -21,7 +21,8 @@ module Razorpay
       payment = Razorpay::Payment.fetch(@payment_id)
       assert_instance_of Razorpay::Payment, payment, 'Payment not an instance of Payment class'
       assert_equal @payment_id, payment.id, 'Payment IDs do not match'
-      assert_equal 'card', payment.method_missing(:method), 'Payment method hack is working'
+      assert_equal 500, payment.amount, 'Payment amount is accessible'
+      assert_equal 'card', payment.method, 'Payment method is accessible'
     end
 
     def test_all_payments

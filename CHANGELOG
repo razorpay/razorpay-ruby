@@ -2,6 +2,10 @@
 
 Changelog for Razorpay-Ruby SDK.
 
+## Unreleased
+### Added
+- Fixed payment.method as an attribute accessor
+
 ## [1.1.0] - 2016-02-25
 ### Added
 - Add support for Orders API
