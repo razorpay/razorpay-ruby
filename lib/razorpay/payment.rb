@@ -19,8 +19,17 @@ module Razorpay
       request.all options
     end
 
+    def self.capture_id(payment_id, options)
+      raise ArgumentError, 'Please provide capture amount' unless options.key?(:amount)
+      request.post "#{payment_id}/capture", options
+    end
+
+    def self.refund_id(payment_id, options = {})
+      request.post "#{payment_id}/refund", options
+    end
+
     def refund(options = {})
-      self.class.request.post "#{id}/refund", options
+      self.class.refund_id(id, options)
     end
 
     def refunds
@@ -29,8 +38,7 @@ module Razorpay
     end
 
     def capture(options)
-      raise ArgumentError, 'Please provide capture amount' unless options.key?(:amount)
-      self.class.request.post "#{id}/capture", options
+      self.class.capture_id(id, options)
     end
 
     def method
