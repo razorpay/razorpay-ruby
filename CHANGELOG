@@ -3,6 +3,8 @@
 Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
+
+## [1.2.0] - 2016-11-23
 ### Added
 - Fixed payment.method as an attribute accessor
 
@@ -23,7 +25,8 @@ Changelog for Razorpay-Ruby SDK.
 ### Added
 - Initial Release
 
-[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/razorpay/razorpay-ruby/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/razorpay/razorpay-ruby/compare/1.0.3...1.1.0
 [1.0.3]: https://github.com/razorpay/razorpay-ruby/compare/1.0.1...1.0.3
 [1.0.1]: https://github.com/razorpay/razorpay-ruby/compare/1.0.0...1.0.1
