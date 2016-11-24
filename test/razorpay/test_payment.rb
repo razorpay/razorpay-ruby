@@ -45,6 +45,12 @@ module Razorpay
       assert_equal refund.payment_id, @payment_id
     end
 
+    def test_payment_refund_id
+      stub_post(%r{payments/#{@payment_id}/refund$}, 'fake_refund', {})
+      refund = Razorpay::Payment.refund_id(@payment_id)
+      assert_equal refund.payment_id, @payment_id
+    end
+
     def test_partial_refund
       # For some reason, stub doesn't work if I pass it a hash of post body
       stub_post(%r{payments/#{@payment_id}/refund$}, 'fake_refund', 'amount=2000')
@@ -61,6 +67,15 @@ module Razorpay
         payment.capture
       end
       payment = payment.capture(amount: 5100)
+      assert_equal 'captured', payment.status
+    end
+
+    def test_payment_capture_id
+      stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
+      assert_raises(ArgumentError, 'ArgumentError should be raised if amount is not provided') do
+        Payment.capture_id(@payment_id, {})
+      end
+      payment = Payment.capture_id(@payment_id, amount: 5100)
       assert_equal 'captured', payment.status
     end
   end
