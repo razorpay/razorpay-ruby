@@ -57,9 +57,6 @@ module Razorpay
     def test_payment_capture
       stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
       payment = Razorpay::Payment.fetch(@payment_id)
-      assert_raises(ArgumentError, 'ArgumentError should be raised if amount is not provided') do
-        payment.capture
-      end
       payment = payment.capture(amount: 5100)
       assert_equal 'captured', payment.status
     end
