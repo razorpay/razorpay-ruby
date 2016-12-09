@@ -2,8 +2,8 @@ require 'razorpay/request'
 require 'razorpay/entity'
 
 module Razorpay
-  # Order API is currently in beta and allows you to
-  # associate Payments with an order entity
+  # Order API allows you to associate
+  # Payments with an order entity
   class Order < Entity
     def self.request
       Razorpay::Request.new('orders')

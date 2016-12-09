@@ -36,6 +36,5 @@ module Razorpay
     def method
       method_missing(:method)
     end
-
   end
 end
