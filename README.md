@@ -53,9 +53,9 @@ see our online documentation on <https://docs.razorpay.com>
 
 ### Orders API
 
-Send us a mail at <support@razorpay.com> to enable the Orders API
-for your account. You can use the orders API using the following
-constructs:
+You can use the orders API using the following constructs:
+
+You can find docs at <https://docs.razorpay.com/v1/page/orders>
 
 ```rb
 order = Razorpay::Order.create amount: 5000, currency: 'INR', receipt: 'TEST'
