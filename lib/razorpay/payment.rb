@@ -29,7 +29,6 @@ module Razorpay
     end
 
     def capture(options)
-      raise ArgumentError, 'Please provide capture amount' unless options.key?(:amount)
       self.class.request.post "#{id}/capture", options
     end
 

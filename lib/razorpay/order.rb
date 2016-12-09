@@ -10,9 +10,6 @@ module Razorpay
     end
 
     def self.create(options)
-      raise ArgumentError, 'Please provide order amount' unless options.key?(:amount)
-      raise ArgumentError, 'Please provide order currency' unless options.key?(:currency)
-      raise ArgumentError, 'Please provide order receipt' unless options.key?(:receipt)
       request.create options
     end
 
