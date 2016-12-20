@@ -1,0 +1,93 @@
+{
+  "entity": "collection",
+  "count": 3,
+  "items": [
+    {
+      "id": "inv_6vRZmJYFAG1mNq",
+      "entity": "invoice",
+      "receipt": null,
+      "customer_id": "cust_6vRXClWqnLhV14",
+      "customer_details": {
+        "customer_name": null,
+        "customer_email": "test@razorpay.com",
+        "customer_contact": "9876543210",
+        "customer_address": null
+      },
+      "order_id": "order_6vRZmJu7EPEMY0",
+      "line_items": [],
+      "payment_id": null,
+      "status": "issued",
+      "issued_at": 1482299421,
+      "paid_at": null,
+      "sms_status": "sent",
+      "email_status": "sent",
+      "date": 1482299421,
+      "amount": 100,
+      "description": "Test description",
+      "notes": [],
+      "currency": "INR",
+      "short_url": "http://bit.ly/2i8kSqu",
+      "view_less": true,
+      "type": "link",
+      "created_at": 1482299422
+    },
+    {
+      "id": "inv_6vRaHV8UDx58xy",
+      "entity": "invoice",
+      "receipt": null,
+      "customer_id": "cust_6vRXClWqnLhV14",
+      "customer_details": {
+        "customer_name": null,
+        "customer_email": "test@razorpay.com",
+        "customer_contact": "9876543210",
+        "customer_address": null
+      },
+      "order_id": "order_6vRaHVgZ1D3ESr",
+      "line_items": [],
+      "payment_id": null,
+      "status": "issued",
+      "issued_at": 1482299449,
+      "paid_at": null,
+      "sms_status": "sent",
+      "email_status": "sent",
+      "date": 1482299449,
+      "amount": 100,
+      "description": "Test description",
+      "notes": [],
+      "currency": "INR",
+      "short_url": "http://bit.ly/2h0nLV7",
+      "view_less": true,
+      "type": "link",
+      "created_at": 1482299450
+    },
+    {
+      "id": "inv_6vRaaIQ6I3vO53",
+      "entity": "invoice",
+      "receipt": null,
+      "customer_id": "cust_6vRXClWqnLhV14",
+      "customer_details": {
+        "customer_name": null,
+        "customer_email": "test@razorpay.com",
+        "customer_contact": "9876543210",
+        "customer_address": null
+      },
+      "order_id": "order_6vRaaInhKbWFUB",
+      "line_items": [],
+      "payment_id": null,
+      "status": "issued",
+      "issued_at": 1482299466,
+      "paid_at": null,
+      "sms_status": "sent",
+      "email_status": "sent",
+      "date": 1482299466,
+      "amount": 100,
+      "description": "Test description",
+      "notes": [],
+      "currency": "INR",
+      "short_url": "http://bit.ly/2h0jYHp",
+      "view_less": true,
+      "type": "link",
+      "created_at": 1482299468
+    }
+  ]
+}
