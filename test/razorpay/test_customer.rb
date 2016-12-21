@@ -18,10 +18,10 @@ module Razorpay
 
     def test_customer_should_be_created
       stub_post(/customers$/, 'fake_customer', 'email=test%40razorpay.com&contact=9876543210')
-      customer = Razorpay::Customer.create email: 'test@razorpay.com', contact: 9876543210
+      customer = Razorpay::Customer.create email: 'test@razorpay.com', contact: '9876543210'
 
       assert_equal 'test@razorpay.com', customer.email
-      assert_equal 9876543210, customer.contact
+      assert_equal '9876543210', customer.contact
     end
   end
 end
