@@ -2,5 +2,5 @@
 module Razorpay
   BASE_URI = 'https://api.razorpay.com/v1/'.freeze
   TEST_URL = 'https://api.razorpay.com/'.freeze
-  VERSION = '1.2.2'.freeze
+  VERSION = '1.2.1'.freeze
 end
