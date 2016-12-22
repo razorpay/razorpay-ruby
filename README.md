@@ -70,7 +70,16 @@ puts order.amount
 
 # Fetching payments corresponding to an order
 payments = order.payments
+
+# Create a customer
+customer = Razorpay::Customer.create email: 'test@razorpay.com', contact: '9876543210'
+puts customer.id #cust_6vRXClWqnLhV14
+
+# Creating an invoice
+invoice = Razorpay::Invoice.create customer_id: customer.id, amount: 100, currency: 'INR', description: 'Test description', type: 'link'
 ```
+
+You can find invoices API documentation at <https://docs.razorpay.com/v1/page/invoices>.
 
 ## Development
 
