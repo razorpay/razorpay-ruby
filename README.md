@@ -99,3 +99,19 @@ You can find invoices API documentation at <https://docs.razorpay.com/v1/page/in
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create a new Pull Request
+
+## Release
+
+Steps to follow for a release:
+
+0. Merge the branch with the new code to master.
+1. Bump the Version in `lib/razorpay/constants.rb`
+2. Rename Unreleased to the new tag in `CHANGELOG`
+3. Fix links at bottom in `CHANGELOG`
+4. Commit (message should include version number)
+5. Tag the release and push to GitHub. Get the tag signed using Razorpay GPG key.
+6. Create a release on GitHub using the website with more details about the release
+7. Run `gem build razorpay-ruby.gemspec`
+8. Run `gem push razorpay-{version}.gem`
+
+`gem push` will ask you for credentials, if you are not logged in already.
