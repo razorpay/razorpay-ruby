@@ -5,6 +5,7 @@ Changelog for Razorpay-Ruby SDK.
 ## Unreleased
 ### Changed
 - Drops ArgumentError checks for local validation. Rely on server side checks instead.
+
 ### Added
 - Support for customers and invoices API
 
