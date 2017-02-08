@@ -3,6 +3,10 @@
 Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
+### Added
+- Adds `require` for all Razorpay supported entities
+
+## [1.2.1] - 2106-12-22
 ### Changed
 - Drops ArgumentError checks for local validation. Rely on server side checks instead.
 
