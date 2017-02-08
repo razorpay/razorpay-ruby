@@ -1,6 +1,9 @@
 require 'razorpay/constants'
 require 'razorpay/payment'
+require 'razorpay/refund'
 require 'razorpay/order'
+require 'razorpay/customer'
+require 'razorpay/invoice'
 
 # Base Razorpay module
 module Razorpay
