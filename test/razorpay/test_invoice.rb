@@ -17,8 +17,12 @@ module Razorpay
     end
 
     def test_invoice_should_be_created
-      stub_post(/invoices$/, 'fake_invoice', 'customer_id=cust_6vRXClWqnLhV14&amount=100&currency=INR&description=Test%20description&type=link')
-      invoice = Razorpay::Invoice.create customer_id: 'cust_6vRXClWqnLhV14', amount: 100, currency: 'INR', description: 'Test description', type: 'link'
+      stub_post(/invoices$/, 'fake_invoice', 'customer_id=cust_6vRXClWqnLhV14&'\
+                'amount=100&currency=INR&description=Test%20description&type=link')
+      invoice = Razorpay::Invoice.create customer_id: 'cust_6vRXClWqnLhV14',
+                                         amount: 100, currency: 'INR',
+                                         description: 'Test description',
+                                         type: 'link'
 
       assert_equal 'cust_6vRXClWqnLhV14', invoice.customer_id
       assert_equal 100, invoice.amount
