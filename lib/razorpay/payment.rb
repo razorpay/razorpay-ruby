@@ -24,8 +24,7 @@ module Razorpay
     end
 
     def refunds
-      # This needs to be a string, not a symbol
-      Refund.new('payment_id' => id)
+      self.class.request.request :get, "payments/#{id}/refunds"
     end
 
     def capture(options)
