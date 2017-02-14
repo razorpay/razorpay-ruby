@@ -19,16 +19,20 @@ module Razorpay
       request.all options
     end
 
+    def self.capture(id, options)
+      request.post "#{id}/capture", options
+    end
+
     def refund(options = {})
       self.class.request.post "#{id}/refund", options
     end
 
-    def refunds
-      self.class.request.request :get, "payments/#{id}/refunds"
-    end
-
     def capture(options)
       self.class.request.post "#{id}/capture", options
+    end
+
+    def refunds
+      self.class.request.request :get, "payments/#{id}/refunds"
     end
 
     def method
