@@ -13,12 +13,16 @@ module Razorpay
     def initialize(entity_name)
       self.class.base_uri(Razorpay::BASE_URI)
       @entity_name = entity_name
+      custom_headers = Razorpay.custom_headers || {}
+      predefined_headers = {
+        'User-Agent': "Razorpay-Ruby/#{Razorpay::VERSION}"
+      }
+      # Order is important to give precedence to predefined headers
+      headers = custom_headers.merge(predefined_headers)
       @options = {
         basic_auth: Razorpay.auth,
         timeout: 30,
-        headers: {
-          'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}"
-        }
+        headers: headers
       }
     end
 

@@ -19,6 +19,18 @@ module Razorpay
       assert_equal auth, Razorpay.auth
     end
 
+    def test_custom_header
+      custom_headers = { key: 'value' }
+      stub_get(/$/, 'hello_response')
+      Razorpay.set_headers(custom_headers)
+      Razorpay::Request.new('dummy').make_test_request
+      user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}"
+      expected_headers = { 'User-Agent' => user_agent }.merge(custom_headers)
+      assert_requested :get, 'https://key_id:key_secret@api.razorpay.com/',
+                       headers: expected_headers,
+                       times: 1
+    end
+
     # We make a request to the / endpoint to test SSL support
     def test_sample_request
       WebMock.allow_net_connect!
