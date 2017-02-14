@@ -4,6 +4,7 @@ require 'razorpay/refund'
 require 'razorpay/order'
 require 'razorpay/customer'
 require 'razorpay/invoice'
+require 'razorpay/utility'
 
 # Base Razorpay module
 module Razorpay

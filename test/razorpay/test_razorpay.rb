@@ -1,7 +1,6 @@
 require 'test_helper'
 require 'razorpay'
 require 'webmock'
-require 'test_helper'
 
 module Razorpay
   # Tests for Razorpay
