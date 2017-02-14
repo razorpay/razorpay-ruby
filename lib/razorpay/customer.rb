@@ -16,6 +16,10 @@ module Razorpay
       request.fetch id
     end
 
+    def self.edit(id, options = {})
+      request.put id, options
+    end
+
     def self.all(options = {})
       request.all options
     end

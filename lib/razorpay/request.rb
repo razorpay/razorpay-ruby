@@ -34,6 +34,14 @@ module Razorpay
       request :post, "/#{@entity_name}/#{url}", data
     end
 
+    def delete(id)
+      request :delete, "/#{@entity_name}/#{id}"
+    end
+
+    def put(id, data = {})
+      request :put, "/#{@entity_name}/#{id}", data
+    end
+
     def create(data)
       request :post, "/#{@entity_name}", data
     end
@@ -43,6 +51,8 @@ module Razorpay
       when :get
         @options[:query] = data
       when :post
+        @options[:body] = data
+      when :put
         @options[:body] = data
       end
       create_instance self.class.send(method, url, @options)

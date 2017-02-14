@@ -29,3 +29,17 @@ def stub_post(*args)
   url = args[0]
   stub_request(:post, url).with(body: data).to_return(response)
 end
+
+def stub_put(*args)
+  # The last argument is put data
+  data = args.pop
+  response = stub_response(*args)
+  url = args[0]
+  stub_request(:put, url).with(body: data).to_return(response)
+end
+
+def stub_delete(*args)
+  response = stub_response(*args)
+  url = args[0]
+  stub_request(:delete, url).to_return(response)
+end
