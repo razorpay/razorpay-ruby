@@ -19,7 +19,7 @@ module Razorpay
     end
 
     def test_custom_header
-      custom_headers = { key: 'value' }
+      custom_headers = { 'key' => 'value' }
       stub_get(/$/, 'hello_response')
       Razorpay.set_headers(custom_headers)
       Razorpay::Request.new('dummy').make_test_request
