@@ -1,6 +1,8 @@
-require 'simplecov'
+require 'coveralls'
 require 'minitest/autorun'
 require 'webmock/minitest'
+
+Coveralls.wear!
 
 def fixture_file(filename)
   return '' if filename == ''
