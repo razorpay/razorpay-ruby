@@ -5,6 +5,7 @@ Changelog for Razorpay-Ruby SDK.
 ## Unreleased
 ### Added
 - Adds `require` for all Razorpay supported entities
+- All entity objects now throw `NoMethodError` instead of `NameError` if the attribute doesn't exist
 
 ## [1.2.1] - 2016-12-22
 ### Changed
