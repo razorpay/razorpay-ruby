@@ -1,4 +1,5 @@
 require 'rake/testtask'
+require 'rubocop/rake_task'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
@@ -7,7 +8,12 @@ Rake::TestTask.new do |t|
 end
 
 desc 'Run tests'
-task default: :test
+task default: [:test, :rubocop]
+
+desc 'Run rubocop'
+task :rubocop do
+  RuboCop::RakeTask.new
+end
 
 FileList['test/razorpay/test_*.rb'].each do |file|
   group = File.basename(file, '.rb').split('_').last.to_sym
