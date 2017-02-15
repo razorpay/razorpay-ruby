@@ -21,7 +21,7 @@ module Razorpay
     def test_custom_header
       custom_headers = { 'key' => 'value' }
       stub_get(/$/, 'hello_response')
-      Razorpay.set_headers(custom_headers)
+      Razorpay.headers = custom_headers
       Razorpay::Request.new('dummy').make_test_request
       user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}"
       expected_headers = { 'User-Agent' => user_agent }.merge(custom_headers)

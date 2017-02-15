@@ -17,7 +17,7 @@ module Razorpay
     self.auth = { username: key_id, password: key_secret }
   end
 
-  def self.set_headers(headers = {})
+  def self.headers=(headers = {})
     self.custom_headers = headers
   end
 end

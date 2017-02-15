@@ -1,7 +1,7 @@
 require 'openssl'
 
-# Helper functions are defined here
 module Razorpay
+  # Helper functions are defined here
   class Utility
     def self.validate_payment_signature(attributes)
       signature = attributes[:razorpay_signature]
@@ -10,28 +10,34 @@ module Razorpay
 
       data = [order_id, payment_id].join '|'
 
-      return validate_signature(signature, data)
+      validate_signature(signature, data)
     end
 
-    private
+    class << self
+      private
 
-    def self.validate_signature(signature, data)
-      secret = Razorpay.auth[:password]
+      def validate_signature(signature, data)
+        secret = Razorpay.auth[:password]
 
-      expected_signature = OpenSSL::HMAC.hexdigest('SHA256', secret, data)
+        expected_signature = OpenSSL::HMAC.hexdigest('SHA256', secret, data)
 
-      return secure_compare(expected_signature, signature)
-    end
+        secure_compare(expected_signature, signature)
+      end
 
-    def self.secure_compare(a, b)
-      return false unless a.bytesize == b.bytesize
+      def secure_compare(a, b)
+        return false unless a.bytesize == b.bytesize
 
-      l = a.unpack("C*")
+        l = a.unpack('C*')
+        r = 0
+        i = -1
 
-      r, i = 0, -1
-      b.each_byte { |v| r |= v ^ l[i+=1] }
+        b.each_byte do |v|
+          i += 1
+          r |= v ^ l[i]
+        end
 
-      return r == 0
+        r.zero?
+      end
     end
   end
 end

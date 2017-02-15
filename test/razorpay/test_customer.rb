@@ -10,7 +10,7 @@ module Razorpay
 
       # Any request that ends with customers/customer_id
       stub_get(%r{customers/#{@customer_id}$}, 'fake_customer')
-      stub_get(%r{customers$}, 'customer_collection')
+      stub_get(/customers$/, 'customer_collection')
     end
 
     def test_customer_should_be_defined
@@ -26,7 +26,7 @@ module Razorpay
     end
 
     def test_edit_customer
-      new_email="test.edit@razorpay.com"
+      new_email = 'test.edit@razorpay.com'
       stub_put(%r{customers/#{@customer_id}$}, 'fake_customer_edited', "email=#{new_email}")
       customer = Razorpay::Customer.edit(@customer_id, "email=#{new_email}")
       assert_instance_of Razorpay::Customer, customer
