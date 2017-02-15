@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'razorpay/card'
-require 'razorpay/collection'
 
 module Razorpay
   # Tests for Razorpay::Card
