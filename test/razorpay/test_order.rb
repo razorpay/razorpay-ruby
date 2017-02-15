@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'razorpay/order'
-require 'razorpay/collection'
 
 module Razorpay
   # Tests for Razorpay::Order

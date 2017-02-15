@@ -1,4 +1,4 @@
-require 'razorpay'
+require 'razorpay/constants'
 require 'httparty'
 
 module Razorpay
@@ -13,12 +13,16 @@ module Razorpay
     def initialize(entity_name)
       self.class.base_uri(Razorpay::BASE_URI)
       @entity_name = entity_name
+      custom_headers = Razorpay.custom_headers || {}
+      predefined_headers = {
+        'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}"
+      }
+      # Order is important to give precedence to predefined headers
+      headers = custom_headers.merge(predefined_headers)
       @options = {
         basic_auth: Razorpay.auth,
         timeout: 30,
-        headers: {
-          'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}"
-        }
+        headers: headers
       }
     end
 
@@ -34,6 +38,14 @@ module Razorpay
       request :post, "/#{@entity_name}/#{url}", data
     end
 
+    def get(url)
+      request :get, "/#{@entity_name}/#{url}"
+    end
+
+    def put(id, data = {})
+      request :put, "/#{@entity_name}/#{id}", data
+    end
+
     def create(data)
       request :post, "/#{@entity_name}", data
     end
@@ -43,6 +55,8 @@ module Razorpay
       when :get
         @options[:query] = data
       when :post
+        @options[:body] = data
+      when :put
         @options[:body] = data
       end
       create_instance self.class.send(method, url, @options)

@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'razorpay/customer'
-require 'razorpay/collection'
 
 module Razorpay
   # Tests for Razorpay::Customer
@@ -10,6 +8,7 @@ module Razorpay
 
       # Any request that ends with customers/customer_id
       stub_get(%r{customers/#{@customer_id}$}, 'fake_customer')
+      stub_get(/customers$/, 'customer_collection')
     end
 
     def test_customer_should_be_defined
@@ -22,6 +21,25 @@ module Razorpay
 
       assert_equal 'test@razorpay.com', customer.email
       assert_equal '9876543210', customer.contact
+    end
+
+    def test_edit_customer
+      new_email = 'test.edit@razorpay.com'
+      stub_put(%r{customers/#{@customer_id}$}, 'fake_customer_edited', "email=#{new_email}")
+      customer = Razorpay::Customer.edit(@customer_id, "email=#{new_email}")
+      assert_instance_of Razorpay::Customer, customer
+      assert_equal customer.email, new_email
+    end
+
+    def test_fetch_all_customers
+      customers = Razorpay::Customer.all
+      assert_instance_of Razorpay::Collection, customers
+    end
+
+    def test_fetch_specific_customer
+      customer = Razorpay::Customer.fetch(@customer_id)
+      assert_instance_of Razorpay::Customer, customer
+      assert_equal customer.id, @customer_id
     end
   end
 end

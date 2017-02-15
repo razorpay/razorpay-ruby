@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'razorpay/invoice'
-require 'razorpay/collection'
 
 module Razorpay
   # Tests for Razorpay::Invoice

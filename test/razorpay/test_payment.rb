@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'razorpay/payment'
-require 'razorpay/collection'
 
 module Razorpay
   # Tests for Razorpay::Payment
@@ -58,6 +56,12 @@ module Razorpay
       stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
       payment = Razorpay::Payment.fetch(@payment_id)
       payment = payment.capture(amount: 5100)
+      assert_equal 'captured', payment.status
+    end
+
+    def test_payment_capture_without_fetch
+      stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
+      payment = Razorpay::Payment.capture(@payment_id, amount: 5100)
       assert_equal 'captured', payment.status
     end
   end

@@ -1,5 +1,5 @@
 {
-  "count": 3,
+  "count": 2,
   "entity": "collection",
   "items": [
     {
@@ -16,14 +16,6 @@
       "amount": 100,
       "currency": "INR",
       "payment_id": "fake_payment_id",
-      "created_at": 1500826750
-    },
-    {
-      "id": "rfnd_6vRZmJu7EPEMY0",
-      "entity": "refund",
-      "amount": 200,
-      "currency": "INR",
-      "payment_id": "fake_payment_id_2",
       "created_at": 1500826750
     }
   ]

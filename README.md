@@ -30,6 +30,11 @@ Next, you need to setup your key and secret using the following:
 Razorpay.setup("merchant_key_id", "merchant_key_secret")
 ```
 
+You can set customer headers for your requests using the following:
+```rb
+Razorpay.headers = {"CUSTOM_APP_HEADER" => "CUSTOM_VALUE"}
+```
+
 You can find your API keys at <https://dashboard.razorpay.com/#/app/keys>.
 
 If you are using rails, the right place to do this might be `config/initializers/razorpay.rb`.
@@ -37,7 +42,7 @@ If you are using rails, the right place to do this might be `config/initializers
 The most common construct is capturing a payment, which you do via the following:
 
 ```rb
-Razorpay::Payment.fetch("pay-ment_id").capture({amount:500})
+Razorpay::Payment.fetch("payment_id").capture({amount:500})
 # Note that the amount should come from your session, so as to verify
 # that the purchase was correctly done and not tampered
 ```
@@ -46,6 +51,13 @@ You can handle refunds using the following constructs:
 
 ```rb
 Razorpay::Payment.fetch("payment_id").refund({amount:500})
+refunds = Razorpay::Payment.fetch("payment_id").refunds
+```
+
+Refunds can also be handled without fetching payments:
+```rb
+refund = Razorpay::Refund.create(payment_id:"payment_id")
+Razorpay::Refund.fetch(refund.id)
 ```
 
 For other applications (such as fetching payments and refunds),
@@ -70,11 +82,38 @@ puts order.amount
 
 # Fetching payments corresponding to an order
 payments = order.payments
+```
 
+### Verification
+You can use the Utility class to verify the signature received in response to a payment made using Orders API
+```rb
+puts payment_response
+# {
+#   :razorpay_order_id   => "fake_order_id",
+#   :razorpay_payment_id => "fake_payment_id",
+#   :razorpay_signature  => "signature"
+# }
+Razorpay::Utility.verify_payment_signature(payment_response)
+```
+
+### Customers
+```rb
 # Create a customer
 customer = Razorpay::Customer.create email: 'test@razorpay.com', contact: '9876543210'
 puts customer.id #cust_6vRXClWqnLhV14
+```
 
+### Cards
+```rb
+# Fetch a card
+card = Razorpay::Card.fetch('card_7EZLhWkDt05n7V')
+puts card.network #VISA
+```
+
+You can find invoices API documentation at <https://docs.razorpay.com/v1/page/cards>.
+
+### Invoices
+```rb
 # Creating an invoice
 invoice = Razorpay::Invoice.create customer_id: customer.id, amount: 100, currency: 'INR', description: 'Test description', type: 'link'
 ```

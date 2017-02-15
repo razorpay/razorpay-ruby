@@ -19,17 +19,20 @@ module Razorpay
       request.all options
     end
 
+    def self.capture(id, options)
+      request.post "#{id}/capture", options
+    end
+
     def refund(options = {})
       self.class.request.post "#{id}/refund", options
     end
 
-    def refunds
-      # This needs to be a string, not a symbol
-      Refund.new('payment_id' => id)
-    end
-
     def capture(options)
       self.class.request.post "#{id}/capture", options
+    end
+
+    def refunds
+      self.class.request.get "#{id}/refunds"
     end
 
     def method
