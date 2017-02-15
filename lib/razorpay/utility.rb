@@ -13,6 +13,10 @@ module Razorpay
       verify_signature(signature, data)
     end
 
+    def self.verify_webhook_signature(signature, body)
+      verify_signature(signature, body)
+    end
+
     class << self
       private
 

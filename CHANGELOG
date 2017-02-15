@@ -9,7 +9,7 @@ Changelog for Razorpay-Ruby SDK.
 - Adds customer edit API
 - Adds card fetch API
 - Adds custom header support
-- Adds constant time payment signature verification API
+- Adds constant time signature verification API for payments and webhooks
 - Adds payment capture-without-fetch API
 - Enables warnings for tests
 - Removes circular `require` calls
