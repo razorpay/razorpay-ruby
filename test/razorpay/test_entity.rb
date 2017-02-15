@@ -18,7 +18,7 @@ module Razorpay
     end
 
     def test_invalid_attribute_get
-      assert_raises(NameError, 'It must raise a NameError on invalid attribute') { @entity.b }
+      assert_raises(NoMethodError, 'It must raise a NoMethodError on invalid attribute') { @entity.b }
     end
   end
 end
