@@ -32,7 +32,7 @@ Razorpay.setup("merchant_key_id", "merchant_key_secret")
 
 You can set customer headers for your requests using the following:
 ```rb
-Razorpay.set_headers({"CUSTOM_APP_HEADER" => "CUSTOM_VALUE"})
+Razorpay.headers = {"CUSTOM_APP_HEADER" => "CUSTOM_VALUE"}
 ```
 
 You can find your API keys at <https://dashboard.razorpay.com/#/app/keys>.
