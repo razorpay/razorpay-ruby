@@ -4,6 +4,7 @@ rvm:
   - "2.1.10"
   - "2.2.6"
   - "2.3.3"
+before_install: gem update --system
 script:
   - bundle exec rake
   - bundle exec rubocop
