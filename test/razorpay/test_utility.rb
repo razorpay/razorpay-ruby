@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'razorpay'
+require 'razorpay/utility'
 
 module Razorpay
   # Tests for Razorpay::Utility

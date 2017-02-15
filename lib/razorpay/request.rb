@@ -1,4 +1,4 @@
-require 'razorpay'
+require 'razorpay/constants'
 require 'httparty'
 
 module Razorpay

@@ -1,4 +1,3 @@
-require 'razorpay'
 require 'openssl'
 
 # Helper functions are defined here

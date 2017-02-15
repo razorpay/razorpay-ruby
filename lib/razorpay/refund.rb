@@ -1,4 +1,3 @@
-require 'razorpay'
 require 'razorpay/request'
 require 'razorpay/entity'
 
