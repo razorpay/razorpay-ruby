@@ -1,6 +1,7 @@
 require 'coveralls'
 require 'minitest/autorun'
 require 'webmock/minitest'
+require 'razorpay'
 
 Coveralls.wear!
 

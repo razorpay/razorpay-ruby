@@ -13,6 +13,7 @@ Changelog for Razorpay-Ruby SDK.
 - Adds payment capture-without-fetch API
 - Enables warnings for tests
 - Removes circular `require` calls
+- Adds rake test groups
 
 ## [1.2.1] - 2016-12-22
 ### Changed

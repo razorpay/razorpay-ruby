@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'razorpay/card'
 
 module Razorpay
   # Tests for Razorpay::Card
@@ -12,7 +11,7 @@ module Razorpay
     end
 
     def test_card_should_be_defined
-      refute_nil Razorpay::Invoice
+      refute_nil Razorpay::Card
     end
 
     def test_cards_should_be_fetched

@@ -1,7 +1,4 @@
 require 'test_helper'
-require 'razorpay/payment'
-require 'razorpay/refund'
-require 'razorpay/collection'
 
 module Razorpay
   # Tests for Razorpay::Refund

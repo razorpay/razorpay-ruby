@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'razorpay/entity'
-require 'razorpay/errors/bad_request_error'
 
 module Razorpay
   # Tests for Razorpay::Entity
