@@ -32,7 +32,7 @@ module Razorpay
     end
 
     def refunds
-      self.class.request.request :get, "payments/#{id}/refunds"
+      self.class.request.get "#{id}/refunds"
     end
 
     def method

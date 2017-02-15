@@ -2,7 +2,7 @@ require 'rake/testtask'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
-  t.warning = false
+  t.warning = true
   t.pattern = 'test/razorpay/test_*.rb'
 end
 

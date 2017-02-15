@@ -38,6 +38,10 @@ module Razorpay
       request :post, "/#{@entity_name}/#{url}", data
     end
 
+    def get(url)
+      request :get, "/#{@entity_name}/#{url}"
+    end
+
     def delete(id)
       request :delete, "/#{@entity_name}/#{id}"
     end
