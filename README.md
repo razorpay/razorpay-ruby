@@ -82,11 +82,38 @@ puts order.amount
 
 # Fetching payments corresponding to an order
 payments = order.payments
+```
 
+### Verification
+You can use the Utility class to verify the signature received in response to a payment made using Orders API
+```rb
+puts payment_response
+# {
+#   :razorpay_order_id   => "fake_order_id",
+#   :razorpay_payment_id => "fake_payment_id",
+#   :razorpay_signature  => "signature"
+# }
+Razorpay::Utility.verify_payment_signature(payment_response)
+```
+
+### Customers
+```rb
 # Create a customer
 customer = Razorpay::Customer.create email: 'test@razorpay.com', contact: '9876543210'
 puts customer.id #cust_6vRXClWqnLhV14
+```
 
+### Cards
+```rb
+# Fetch a card
+card = Razorpay::Card.fetch('card_7EZLhWkDt05n7V')
+puts card.network #VISA
+```
+
+You can find invoices API documentation at <https://docs.razorpay.com/v1/page/cards>.
+
+### Invoices
+```rb
 # Creating an invoice
 invoice = Razorpay::Invoice.create customer_id: customer.id, amount: 100, currency: 'INR', description: 'Test description', type: 'link'
 ```
