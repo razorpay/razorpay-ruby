@@ -13,9 +13,15 @@ module Razorpay
     # the @attributes hash as the source, instead of
     # instance variables
     def method_missing(name)
-      name = name.to_s
-      raise NameError, "No such data member: #{name}" unless @attributes.key? name
-      @attributes[name]
+      if @attributes.key? name.to_s
+        @attributes[name.to_s]
+      else
+        super
+      end
+    end
+
+    def respond_to_missing?(method_name, include_private = false)
+      @attributes.key?(method_name.to_s) || super
     end
 
     # Public: Convert the Entity object to JSON
