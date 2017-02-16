@@ -1,9 +1,10 @@
 require 'coveralls'
+require 'simplecov'
 require 'minitest/autorun'
 require 'webmock/minitest'
 require 'razorpay'
 
-Coveralls.wear!
+Coveralls.wear! if ENV['RUBY_ENV'] == 'travis'
 
 def fixture_file(filename)
   return '' if filename == ''
