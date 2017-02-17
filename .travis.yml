@@ -6,7 +6,6 @@ rvm:
   - "2.4.0"
 before_install: gem update --system
 script:
-  - RUBY_ENV=travis
   - bundle exec rake test
   - bundle exec rake rubocop
 # This is because coveralls doesn't yet support
