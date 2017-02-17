@@ -24,12 +24,12 @@ module Razorpay
       order_id = 'order_50sX9hGHZJvjjI'
       stub_get(%r{orders/#{order_id}$}, 'fake_order')
       order = Razorpay::Order.fetch(order_id)
-      assert_raises(NameError) { order.non_existent_method }
+      assert_equal order.respond_to?(:non_existent_method), false
 
       payment_id = 'fake_payment_id'
       stub_get(%r{payments/#{payment_id}$}, 'fake_payment')
       payment = Razorpay::Payment.fetch(payment_id)
-      assert_equal 'card', payment.method
+      assert_equal payment.respond_to?(:method), true
     end
 
     def test_attribute_get
