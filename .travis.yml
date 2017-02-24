@@ -8,10 +8,3 @@ before_install: gem update --system
 script:
   - bundle exec rake test
   - bundle exec rake rubocop
-# This is because coveralls doesn't yet support
-# Ruby 2.4.0
-# https://github.com/lemurheavy/coveralls-ruby/pull/117/files
-matrix:
-  allow_failures:
-    - rvm: 2.4.0
-
