@@ -8,7 +8,7 @@ Rake::TestTask.new do |t|
 end
 
 desc 'Run tests'
-task default: %i[test rubocop]
+task default: [:test, :rubocop]
 
 desc 'Run rubocop'
 task :rubocop do
