@@ -110,7 +110,7 @@ card = Razorpay::Card.fetch('card_7EZLhWkDt05n7V')
 puts card.network #VISA
 ```
 
-You can find invoices API documentation at <https://docs.razorpay.com/v1/page/cards>.
+You can find cards API documentation at <https://docs.razorpay.com/v1/page/cards>.
 
 ### Invoices
 ```rb
