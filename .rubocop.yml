@@ -6,6 +6,11 @@ Metrics/LineLength:
   Max: 110
   AllowURI: true
 
+# TODO: Enable when rubocop#4262 is released
+Style/SymbolArray:
+  Enabled: false
+  # MinSize: 3
+
 Style/ClassVars:
   Enabled: false
 
