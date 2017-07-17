@@ -95,6 +95,10 @@ puts payment_response
 # }
 Razorpay::Utility.verify_payment_signature(payment_response)
 ```
+You can also verify the signature received in a webhook:
+```rb
+Razorpay::Utility.verify_webhook_signature(webhook_signature, webhook_body, webhook_secret)
+```
 
 ### Customers
 ```rb
