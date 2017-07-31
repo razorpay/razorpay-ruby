@@ -12,17 +12,17 @@ module Razorpay
 
       secret = Razorpay.auth[:password]
 
-      verify_signature(signature, data, secret)
+      verify_signature(data, signature, secret)
     end
 
-    def self.verify_webhook_signature(signature, body, secret)
-      verify_signature(signature, body, secret)
+    def self.verify_webhook_signature(body, signature, secret)
+      verify_signature(body, signature, secret)
     end
 
     class << self
       private
 
-      def verify_signature(signature, data, secret)
+      def verify_signature(data, signature, secret)
         expected_signature = OpenSSL::HMAC.hexdigest('SHA256', secret, data)
 
         verified = secure_compare(expected_signature, signature)

@@ -25,11 +25,11 @@ module Razorpay
       webhook_body = fixture_file('fake_payment_authorized_webhook')
       secret = 'chosen_webhook_secret'
       signature = 'dda9ca344c56ccbd90167b1be0fd99dfa92fe2b827020f27e2a46024e31c7c99'
-      Razorpay::Utility.verify_webhook_signature(signature, webhook_body, secret)
+      Razorpay::Utility.verify_webhook_signature(webhook_body, signature, secret)
 
       signature = '_dummy_signature' * 4
       assert_raises(SecurityError) do
-        Razorpay::Utility.verify_webhook_signature(signature, webhook_body, secret)
+        Razorpay::Utility.verify_webhook_signature(webhook_body, signature, secret)
       end
     end
   end
