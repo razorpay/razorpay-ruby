@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'razorpay'
   spec.version       = Razorpay::VERSION
   spec.authors       = ['Abhay Rana', 'Harman Singh']
-  spec.email         = ['nemo@razorpay.com']
+  spec.email         = ['nemo@razorpay.com', 'harman@razorpay.com']
   spec.summary       = "Razorpay's Ruby API"
   spec.description   = 'Official ruby bindings for the Razorpay API'
   spec.homepage      = 'https://razorpay.com/'
