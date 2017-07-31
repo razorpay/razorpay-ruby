@@ -4,7 +4,11 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
-## [2.0.0] - 2016-03-02
+## [2.0.1] - 2017-07-31
+### Fixed
+- Webhook signature verification
+
+## [2.0.0] - 2017-03-02
 ### Added
 - Adds `require` for all Razorpay supported entities
 - All entity objects now throw `NoMethodError` instead of `NameError` if the attribute doesn't exist
@@ -46,7 +50,8 @@ Changelog for Razorpay-Ruby SDK.
 ### Added
 - Initial Release
 
-[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/razorpay/razorpay-ruby/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/razorpay/razorpay-ruby/compare/1.2.1...2.0.0
 [1.2.1]: https://github.com/razorpay/razorpay-ruby/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/razorpay/razorpay-ruby/compare/1.1.0...1.2.0
