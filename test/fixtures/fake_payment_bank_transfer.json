@@ -1,0 +1,12 @@
+{
+   "payment_id" : "fake_payment_id",
+   "virtual_account_id" : "va_4xbQrmEoA5WJ0G",
+   "amount" : 900,
+   "payer_bank_account" : {
+      "id" : "ba_8JpVEbAkzgjtuB",
+      "entity" : "bank_account",
+      "account_number" : "765432123456789",
+      "ifsc" : "RAZR0000001",
+      "name" : "Merchant Billing Label"
+   }
+}
