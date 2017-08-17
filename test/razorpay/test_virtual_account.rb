@@ -61,5 +61,12 @@ module Razorpay
       assert_equal @virtual_account_id, bank_transfer.virtual_account_id
       assert_equal 'fake_payment_id', bank_transfer.payment_id
     end
+
+    def test_fetch_virtual_account_payments
+      stub_get(/payments$/, 'payment_collection')
+      payments = Razorpay::VirtualAccount.fetch(@virtual_account_id).payments
+      assert_instance_of Razorpay::Collection, payments, 'Payments should be an array'
+      assert !payments.items.empty?, 'Payments should be more than one'
+    end
   end
 end
