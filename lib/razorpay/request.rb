@@ -46,6 +46,10 @@ module Razorpay
       request :put, "/#{@entity_name}/#{id}", data
     end
 
+    def patch(id, data = {})
+      request :patch, "/#{@entity_name}/#{id}", data
+    end
+
     def create(data)
       request :post, "/#{@entity_name}", data
     end
@@ -54,9 +58,7 @@ module Razorpay
       case method
       when :get
         @options[:query] = data
-      when :post
-        @options[:body] = data
-      when :put
+      when :post, :put, :patch
         @options[:body] = data
       end
       create_instance self.class.send(method, url, @options)
@@ -77,8 +79,9 @@ module Razorpay
 
       # There must be a top level entity
       # This is either one of payment, refund, or collection at present
-      class_name = response['entity'].capitalize
       begin
+        class_name = response['entity'].split('_').collect(&:capitalize).join
+
         klass = Razorpay.const_get class_name
       rescue NameError
         # Use Entity class if we don't find any

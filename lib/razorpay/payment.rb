@@ -38,5 +38,9 @@ module Razorpay
     def method
       method_missing(:method)
     end
+
+    def bank_transfer
+      self.class.request.get "#{id}/bank_transfer"
+    end
   end
 end

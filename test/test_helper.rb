@@ -25,17 +25,21 @@ def stub_get(*args)
 end
 
 def stub_post(*args)
-  # The last argument is post data
-  data = args.pop
-  response = stub_response(*args)
-  url = args[0]
-  stub_request(:post, url).with(body: data).to_return(response)
+  stub_request_with_body(:post, *args)
 end
 
 def stub_put(*args)
-  # The last argument is put data
+  stub_request_with_body(:put, *args)
+end
+
+def stub_patch(*args)
+  stub_request_with_body(:patch, *args)
+end
+
+def stub_request_with_body(verb, *args)
+  # The last argument is the data
   data = args.pop
   response = stub_response(*args)
   url = args[0]
-  stub_request(:put, url).with(body: data).to_return(response)
+  stub_request(verb, url).with(body: data).to_return(response)
 end

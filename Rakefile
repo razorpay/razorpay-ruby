@@ -16,7 +16,7 @@ task :rubocop do
 end
 
 FileList['test/razorpay/test_*.rb'].each do |file|
-  group = File.basename(file, '.rb').split('_').last.to_sym
+  group = File.basename(file, '.rb').split('_').drop(1).join('_').to_sym
   Rake::TestTask.new(group) do |t|
     t.libs << 'test'
     t.test_files = [file]
