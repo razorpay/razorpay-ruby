@@ -36,9 +36,25 @@ module Razorpay
       assert_includes receiver.keys, 'account_number'
     end
 
-    def test_close_virtual_account
+    def test_close_virtual_account_class_method
       stub_patch(%r{virtual_accounts/#{@virtual_account_id}$}, 'fake_virtual_account_closed', 'status=closed')
       virtual_account = Razorpay::VirtualAccount.close(@virtual_account_id)
+      assert_instance_of Razorpay::VirtualAccount, virtual_account
+      assert_equal 'closed', virtual_account.status
+    end
+
+    def test_close_virtual_account
+      stub_patch(%r{virtual_accounts/#{@virtual_account_id}$}, 'fake_virtual_account_closed', 'status=closed')
+      virtual_account = Razorpay::VirtualAccount.fetch(@virtual_account_id)
+      virtual_account = virtual_account.close
+      assert_instance_of Razorpay::VirtualAccount, virtual_account
+      assert_equal 'closed', virtual_account.status
+    end
+
+    def test_close_virtual_account!
+      stub_patch(%r{virtual_accounts/#{@virtual_account_id}$}, 'fake_virtual_account_closed', 'status=closed')
+      virtual_account = Razorpay::VirtualAccount.fetch(@virtual_account_id)
+      virtual_account.close!
       assert_instance_of Razorpay::VirtualAccount, virtual_account
       assert_equal 'closed', virtual_account.status
     end

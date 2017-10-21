@@ -25,6 +25,16 @@ module Razorpay
       request.patch id, status: 'closed'
     end
 
+    def close
+      self.class.request.patch id, status: 'closed'
+    end
+
+    def close!
+      closed_virtual_account = close
+      @attributes = closed_virtual_account.attributes
+      closed_virtual_account
+    end
+
     def payments(options = {})
       r = self.class.request
       r.request :get, "/virtual_accounts/#{id}/payments", options
