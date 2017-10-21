@@ -7,7 +7,7 @@ module Razorpay
       @payment_id = 'fake_payment_id'
 
       # Any request that ends with payments/payment_id
-      stub_get(%r{payments\/#{Regexp.quote(@payment_id)}$}, 'fake_payment')
+      stub_get(%r{payments\/#{@payment_id}$}, 'fake_payment')
       stub_get(/payments$/, 'payment_collection')
     end
 
@@ -43,6 +43,14 @@ module Razorpay
       assert_equal refund.payment_id, @payment_id
     end
 
+    def test_payment_refund!
+      payment = Razorpay::Payment.fetch(@payment_id)
+      stub_get(%r{payments/#{@payment_id}$}, 'fake_refunded_payment')
+      stub_post(%r{payments/#{@payment_id}/refund$}, 'fake_refund', {})
+      payment.refund!
+      assert_equal 'refunded', payment.status
+    end
+
     def test_partial_refund
       # For some reason, stub doesn't work if I pass it a hash of post body
       stub_post(%r{payments/#{@payment_id}/refund$}, 'fake_refund', 'amount=2000')
@@ -56,6 +64,13 @@ module Razorpay
       stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
       payment = Razorpay::Payment.fetch(@payment_id)
       payment = payment.capture(amount: 5100)
+      assert_equal 'captured', payment.status
+    end
+
+    def test_payment_capture!
+      stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
+      payment = Razorpay::Payment.fetch(@payment_id)
+      payment.capture!(amount: 5100)
       assert_equal 'captured', payment.status
     end
 
