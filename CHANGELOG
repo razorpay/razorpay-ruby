@@ -3,6 +3,9 @@
 Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
+### Changed
+- Generic `Razorpay::Error` is thrown when server is unreachable
+
 
 ## [2.1.0.pre] - 2017-08-17
 ### Added

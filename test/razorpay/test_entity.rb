@@ -20,6 +20,10 @@ module Razorpay
       assert_raises(Razorpay::Error) { Razorpay::Request.new('dummy').raise_error(error, 500) }
     end
 
+    def test_raise_error_server_unreachable
+      assert_raises(Razorpay::Error) { Razorpay::Request.new('dummy').raise_error(nil, nil) }
+    end
+
     def test_respond_to_missing_method
       order_id = 'order_50sX9hGHZJvjjI'
       stub_get(%r{orders/#{order_id}$}, 'fake_order')
