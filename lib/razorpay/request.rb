@@ -75,7 +75,9 @@ module Razorpay
       response = res.parsed_response
 
       # if there was an error, throw it
-      raise_error(response['error'], res.code) if response.key?('error')
+      if response.nil? || response.key?('error')
+        raise_error(response['error'], res.code)
+      end
 
       # There must be a top level entity
       # This is either one of payment, refund, or collection at present
@@ -95,15 +97,12 @@ module Razorpay
       class_name = error['code'].split('_').map(&:capitalize).join('')
       args = [error['code'], status]
       args.push error['field'] if error.key?('field')
-      klass =
-        begin
-          require "razorpay/errors/#{error['code'].downcase}"
-          Razorpay.const_get(class_name)
-        # We got an unknown error, cast it to Error for now
-        rescue NameError, LoadError
-          Razorpay::Error
-        end
+      require "razorpay/errors/#{error['code'].downcase}"
+      klass = Razorpay.const_get(class_name)
       raise klass.new(*args), error['description']
+    rescue NameError, LoadError
+      # We got an unknown error, cast it to Error for now
+      raise Razorpay::Error.new, 'Unknown Error'
     end
   end
 end

@@ -3,7 +3,7 @@ module Razorpay
   class Error < StandardError
     attr_reader :code, :status
 
-    def initialize(code, status)
+    def initialize(code = nil, status = nil)
       @code = code
       @status = status
     end
