@@ -35,6 +35,14 @@ module Razorpay
       self.class.request.get "#{id}/refunds"
     end
 
+    def create_transfer
+      self.class.request.post "#{id}/transfers", options
+    end
+
+    def get_transfers
+      self.class.request.get "#{id}/transfers"
+    end
+
     def method
       method_missing(:method)
     end
