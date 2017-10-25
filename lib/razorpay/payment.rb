@@ -35,7 +35,7 @@ module Razorpay
       self.class.request.get "#{id}/refunds"
     end
 
-    def create_transfer(options = {})
+    def create_transfer(options = [])
       self.class.request.post "#{id}/transfers", options
     end
 
