@@ -10,7 +10,7 @@ module Razorpay
 
     ssl_ca_file File.dirname(__FILE__) + '/../ca-bundle.crt'
 
-    def initialize(entity_name)
+    def initialize(entity_name = nil)
       self.class.base_uri(Razorpay::BASE_URI)
       @entity_name = entity_name
       custom_headers = Razorpay.custom_headers || {}
@@ -55,13 +55,18 @@ module Razorpay
     end
 
     def request(method, url, data = {})
+      create_instance raw_request(method, url, data)
+    end
+
+    def raw_request(method, url, data = {})
       case method
       when :get
         @options[:query] = data
       when :post, :put, :patch
         @options[:body] = data
       end
-      create_instance self.class.send(method, url, @options)
+
+      self.class.send(method, url, @options)
     end
 
     # Since we need to change the base route
