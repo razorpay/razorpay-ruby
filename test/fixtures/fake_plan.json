@@ -1,0 +1,26 @@
+{
+  "id": "fake_plan_id",
+  "entity": "plan",
+  "interval": 1,
+  "period": "monthly",
+  "item": {
+    "id": "item_92ARNuCnESXZkj",
+    "active": true,
+    "name": "Plan 751..1000",
+    "description": "Share docs + user mgmt",
+    "amount": 2500000,
+    "unit_amount": 2500000,
+    "currency": "INR",
+    "type": "plan",
+    "unit": null,
+    "tax_inclusive": false,
+    "tax_id": null,
+    "tax_group_id": null,
+    "created_at": 1510841630,
+    "updated_at": 1510841630
+  },
+  "notes": {
+    "identifier": "plan_monthly_1000"
+  },
+  "created_at": 1510841630
+}

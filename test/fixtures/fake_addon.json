@@ -1,0 +1,24 @@
+{
+  "id": "fake_addon_id",
+  "entity": "addon",
+  "item": {
+    "id": "fake_item_id",
+    "active": true,
+    "name": "fake_item_name",
+    "description": "fake_item_description",
+    "amount": 500,
+    "unit_amount": 500,
+    "currency": "INR",
+    "type": "addon",
+    "unit": null,
+    "tax_inclusive": false,
+    "tax_id": null,
+    "tax_group_id": null,
+    "created_at": 1511525691,
+    "updated_at": 1511525691
+  },
+  "quantity": 1,
+  "created_at": 1511525697,
+  "subscription_id": "fake_subscription_id",
+  "invoice_id": null
+}

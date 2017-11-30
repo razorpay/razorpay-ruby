@@ -1,0 +1,26 @@
+{
+  "entity":"collection",
+  "count":10,
+  "items": [
+    {
+      "id": "fake_subscription_id",
+      "entity": "subscription",
+      "plan_id": "fake_plan_id",
+      "customer_id": "fake_customer_id",
+      "status": "created",
+      "current_start": null,
+      "current_end": null,
+      "ended_at": null,
+      "quantity": 1,
+      "notes": [],
+      "charge_at": 1509494400,
+      "start_at": 1509494400,
+      "end_at": 1538332200,
+      "auth_attempts": 0,
+      "total_count": 12,
+      "paid_count": 0,
+      "customer_notify": true,
+      "created_at": 1509114729
+    }
+  ]
+}
