@@ -54,6 +54,10 @@ module Razorpay
       request :post, "/#{@entity_name}", data
     end
 
+    def delete(id)
+      request :delete, "/#{@entity_name}/#{id}"
+    end
+
     def request(method, url, data = {})
       create_instance raw_request(method, url, data)
     end
@@ -78,6 +82,7 @@ module Razorpay
     # out of all hashes in the response object
     def create_instance(res)
       response = res.parsed_response
+      response = { 'entity' => 'Void' } if response.is_a?(Array) && response.empty?
 
       # if there was an error, throw it
       if response.nil? || response.key?('error')
