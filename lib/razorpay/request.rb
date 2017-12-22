@@ -80,9 +80,7 @@ module Razorpay
       response = res.parsed_response
 
       # if there was an error, throw it
-      if response.nil? || response.key?('error')
-        raise_error(response['error'], res.code)
-      end
+      raise_error(response['error'], res.code) if response.nil? || response.key?('error')
 
       # There must be a top level entity
       # This is either one of payment, refund, or collection at present
