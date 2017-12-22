@@ -43,3 +43,9 @@ def stub_request_with_body(verb, *args)
   url = args[0]
   stub_request(verb, url).with(body: data).to_return(response)
 end
+
+def stub_delete(*args)
+  response = stub_response(*args)
+  url = args[0]
+  stub_request(:delete, url).to_return(response)
+end
