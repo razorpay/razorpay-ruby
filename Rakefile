@@ -1,5 +1,7 @@
 require 'rake/testtask'
-require 'rubocop/rake_task'
+
+# Don't try to run rubocop in 1.9.3
+require 'rubocop/rake_task' if RUBY_VERSION >= '2.0.0'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
@@ -8,7 +10,7 @@ Rake::TestTask.new do |t|
 end
 
 desc 'Run tests'
-task default: [:test, :rubocop]
+task default: [:test]
 
 desc 'Run rubocop'
 task :rubocop do
