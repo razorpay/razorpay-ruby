@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'coveralls', '~> 0.8'
-  spec.add_development_dependency 'minitest', '~> 5.10'
+  spec.add_development_dependency 'minitest', '~> 5.11'
   spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'rubocop', '~> 0.49'
   spec.add_development_dependency 'webmock', '~> 2.3'

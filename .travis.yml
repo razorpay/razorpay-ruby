@@ -1,19 +1,29 @@
 language: ruby
-rvm:
-  # List is from https://www.ruby-lang.org/en/downloads/branches/
-  - "1.9.3"
-  - "2.0.0"
-  - "2.1"
-  - "2.2"
-  - "2.3"
-  - "2.4"
-  - "2.5"
+# List is from https://www.ruby-lang.org/en/downloads/branches/
+# Merged with whatever is the top of each branch at https://www.ruby-lang.org/en/downloads/releases/
 matrix:
+  include:
+    - rvm: "1.9.3"
+    - rvm: "2.0.0"
+    - rvm: "2.1.10"
+    - rvm: "2.2.9"
+    - rvm: "2.3.6"
+    - rvm: "2.4.2"
+    - rvm: "2.5.0"
+    - rvm: "2.5.0"
+      env: LINT=rubocop
+  allow_failures:
+    - rvm: "1.9.3"
+matrix:
+  # These are EOL versions of ruby
   allow_failures:
   - rvm: "1.9.3"
   - rvm: "2.0.0"
-  - rvm: "2.1"
+  - rvm: "2.1.10"
 before_install: gem update --system
 script:
   - bundle exec rake test
-  - bundle exec rake rubocop
+  - |
+    if [[ "$LINT" == "rubocop" ]] ; then
+      bundle exec rake rubocop
+    fi
