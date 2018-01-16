@@ -143,6 +143,19 @@ You can find invoices API documentation at <https://docs.razorpay.com/v1/page/in
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create a new Pull Request
 
+## Supported Versions
+
+While we support [all currently supported versions of Ruby](https://www.ruby-lang.org/en/downloads/branches/)
+only, the code is tested against the following versions:
+
+* 1.9.3
+* 2.0.0
+* 2.1.10
+* 2.2.9
+* 2.3.6
+* 2.4.2
+* 2.5.0
+
 ## Release
 
 Steps to follow for a release:
