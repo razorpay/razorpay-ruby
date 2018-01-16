@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '~> 5.11'
   spec.add_development_dependency 'rake', '~> 12.0'
 
-  if RUBY_VERSION >= '2.0.0'
+  if RUBY_VERSION >= '2.1.0'
     # rubocop is only run in the latest ruby build
     # so we use the latest version and don't switch to a
     # older version for 1.9.3
