@@ -31,6 +31,6 @@ Gem::Specification.new do |spec|
     spec.add_development_dependency 'webmock', '~> 3.0'
   else
     # Webmock 3.0 does not support Ruby 1.9.3
-    s.add_development_dependency 'webmock', '~> 2.3'
+    spec.add_development_dependency 'webmock', '~> 2.3'
   end
 end
