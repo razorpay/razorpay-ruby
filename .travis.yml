@@ -13,13 +13,10 @@ matrix:
     - rvm: "2.5.0"
       env: LINT=rubocop
   allow_failures:
-    - rvm: "1.9.3"
-matrix:
   # These are EOL versions of ruby
-  allow_failures:
-  - rvm: "1.9.3"
-  - rvm: "2.0.0"
-  - rvm: "2.1.10"
+    - rvm: "1.9.3"
+    - rvm: "2.0.0"
+    - rvm: "2.1.10"
 before_install: gem update --system
 script:
   - bundle exec rake test
