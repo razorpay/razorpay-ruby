@@ -90,7 +90,7 @@ module Razorpay
       assert_invoice_details(invoice)
     end
 
-    def test_invoice_can_be_updated
+    def test_edit_invoice
       invoice = Razorpay::Invoice.fetch(@invoice_id)
       assert_instance_of Razorpay::Invoice, invoice, 'invoice not an instance of Razorpay::Invoice class'
       assert_nil invoice.invoice_number
@@ -98,7 +98,7 @@ module Razorpay
       update_invoice_data = { invoice_number: '12345678' }
       stub_patch(%r{invoices/#{@invoice_id}$}, 'update_invoice', update_invoice_data)
 
-      invoice = invoice.update(update_invoice_data)
+      invoice = invoice.edit(update_invoice_data)
       assert_instance_of Razorpay::Invoice, invoice, 'invoice not an instance of Razorpay::Invoice class'
       refute_nil invoice.invoice_number
     end

@@ -12,8 +12,5 @@ module Razorpay
     def self.fetch(id)
       request.fetch id
     end
-
-    ## delete response is blank Array
-    ## getting consensus on how to better handle it
   end
 end

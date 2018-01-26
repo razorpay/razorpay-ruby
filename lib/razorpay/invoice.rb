@@ -21,8 +21,8 @@ module Razorpay
       request.all options
     end
 
-    def self.update(id, data = {})
-      request.patch id, data
+    def self.edit(id, options = {})
+      request.patch id, options
     end
 
     def self.issue(id)
@@ -33,30 +33,16 @@ module Razorpay
       request.post "#{id}/cancel"
     end
 
-    def update(data = {})
-      self.class.update id, data
+    def edit(options = {})
+      self.class.edit id, options
     end
 
     def issue
-      self.class.issue(id)
+      self.class.issue id
     end
 
     def cancel
-      self.class.cancel(id)
+      self.class.cancel id
     end
-
-    # no delete
   end
 end
-
-__END__
-
-
-    # Coming Soon
-    ##
-    def self.charge(id)
-      request.post "#{id}/charge"
-    end
-    def charge
-      self.class.charge(id)
-    end

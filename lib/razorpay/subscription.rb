@@ -30,7 +30,7 @@ module Razorpay
     end
 
     def cancel(options = {})
-      self.class.cancel(id, options)
+      self.class.cancel id, options
     end
   end
 end
