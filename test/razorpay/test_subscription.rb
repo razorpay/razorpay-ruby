@@ -70,7 +70,7 @@ module Razorpay
       assert_equal 'created', subscription.status, 'Subscription status is accessible'
       assert_nil subscription.ended_at, 'Subscription ended_at is accessible'
 
-      subscription = subscription.cancel
+      subscription = subscription.cancel(cancel_at_cycle_end: 1)
 
       assert_equal @subscription_id, subscription.id, 'Subscription IDs do not match'
       assert_equal 'cancelled', subscription.status, 'Subscription status is accessible'

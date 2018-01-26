@@ -21,16 +21,16 @@ module Razorpay
       request.all options
     end
 
-    def self.cancel(id)
-      request.post "#{id}/cancel"
+    def self.cancel(id, options = {})
+      request.post "#{id}/cancel", options
     end
 
     def self.addons(id, addons)
       request.post "#{id}/addons", addons
     end
 
-    def cancel
-      self.class.cancel(id)
+    def cancel(options = {})
+      self.class.cancel(id, options)
     end
   end
 end
