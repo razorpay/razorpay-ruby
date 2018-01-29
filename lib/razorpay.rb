@@ -9,6 +9,9 @@ require 'razorpay/customer'
 require 'razorpay/constants'
 require 'razorpay/collection'
 require 'razorpay/virtual_account'
+require 'razorpay/plan'
+require 'razorpay/subscription'
+require 'razorpay/addon'
 
 # Base Razorpay module
 module Razorpay

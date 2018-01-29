@@ -20,5 +20,29 @@ module Razorpay
     def self.all(options = {})
       request.all options
     end
+
+    def self.edit(id, options = {})
+      request.patch id, options
+    end
+
+    def self.issue(id)
+      request.post "#{id}/issue"
+    end
+
+    def self.cancel(id)
+      request.post "#{id}/cancel"
+    end
+
+    def edit(options = {})
+      self.class.edit id, options
+    end
+
+    def issue
+      self.class.issue id
+    end
+
+    def cancel
+      self.class.cancel id
+    end
   end
 end

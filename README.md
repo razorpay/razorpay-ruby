@@ -124,6 +124,33 @@ invoice = Razorpay::Invoice.create customer_id: customer.id, amount: 100, curren
 
 You can find invoices API documentation at <https://docs.razorpay.com/v1/page/invoices>.
 
+### Plan
+```rb
+# Creating a plan
+plan = Razorpay::Plan.create interval: 1, period: 'monthly', item: { name: 'fake_plan', description: 'fake_desc', currency: 'INR', amount: 500 }, notes: { identifier: 'plan_monthly_super' }
+```
+
+You can find plan API documentation at <https://razorpay.com/docs/subscriptions/api/#plan>.
+
+### Subscription
+```rb
+# Creating a subscription and starting after 24 hours (24 hours = 60 * 60 * 24)
+subscription = Razorpay::Subscription.create plan_id: plan.id, customer_id: customer.id, start_at: (Time.now + (60 * 60 * 24)).to_i, total_count: 3
+```
+
+You can find subscription API documentation at <https://razorpay.com/docs/subscriptions/api/#subscription>.
+
+### Addon
+```rb
+# Creating an addon
+subscription_addon = Razorpay::Addon.create subscription.id, item: { name: 'fake_plan', description: 'fake_desc', currency: 'INR', amount: 500 }, quantity: 1
+
+# Fetching an addon
+addon = Razorpay::Addon.fetch subscription_addon.id
+```
+
+You can find addon API documentation at <https://razorpay.com/docs/subscriptions/api/#add-on>.
+
 ## Development
 
 - Everything is namespaced under the Razorpay module
