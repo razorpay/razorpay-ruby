@@ -12,5 +12,12 @@ module Razorpay
     def self.fetch(id)
       request.fetch id
     end
+
+    # request.post "/subscriptions/#{subscription_id}/addons", options
+    ## results in wrong url /v1/addons//subscriptions/sub_9UIyKhqF0C64AM/addons
+    def self.create(subscription_id, options)
+      r = request
+      r.request :post, "/subscriptions/#{subscription_id}/addons", options
+    end
   end
 end

@@ -25,10 +25,6 @@ module Razorpay
       request.post "#{id}/cancel", options
     end
 
-    def self.addons(id, addons)
-      request.post "#{id}/addons", addons
-    end
-
     def cancel(options = {})
       self.class.cancel id, options
     end
