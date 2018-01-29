@@ -4,6 +4,10 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
+## [2.2.0] - 2018-01-29
+### Added
+- Support for Subscriptions
+
 ## [2.1.0] - 2017-11-17
 ### Changed
 - Generic `Razorpay::Error` is thrown when server is unreachable
@@ -61,7 +65,8 @@ Changelog for Razorpay-Ruby SDK.
 ### Added
 - Initial Release
 
-[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/2.2.0...HEAD
+[2.2.0]: https://github.com/razorpay/razorpay-ruby/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0
 [2.1.0.pre]: https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0.pre
 [2.0.1]: https://github.com/razorpay/razorpay-ruby/compare/2.0.0...2.0.1
