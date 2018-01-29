@@ -136,15 +136,15 @@ You can find plan API documentation at <https://razorpay.com/docs/subscriptions/
 ```rb
 # Creating a subscription and starting after 24 hours (24 hours = 60 * 60 * 24)
 subscription = Razorpay::Subscription.create plan_id: plan.id, customer_id: customer.id, start_at: (Time.now + (60 * 60 * 24)).to_i, total_count: 3
-
-# Creating an addon
-subscription_addon = Razorpay::Subscription.addons subscription.id, item: { name: 'fake_plan', description: 'fake_desc', currency: 'INR', amount: 500 }, quantity: 1
 ```
 
 You can find subscription API documentation at <https://razorpay.com/docs/subscriptions/api/#subscription>.
 
 ### Addon
 ```rb
+# Creating an addon
+subscription_addon = Razorpay::Addon.create subscription.id, item: { name: 'fake_plan', description: 'fake_desc', currency: 'INR', amount: 500 }, quantity: 1
+
 # Fetching an addon
 addon = Razorpay::Addon.fetch subscription_addon.id
 ```
