@@ -13,10 +13,11 @@ module Razorpay
       request.fetch id
     end
 
-    # request.post "/subscriptions/#{subscription_id}/addons", options
-    ## results in wrong url /v1/addons//subscriptions/sub_9UIyKhqF0C64AM/addons
     def self.create(subscription_id, options)
       r = request
+      # POST /addons is not supported
+      # Addon creation endpoint is:
+      # POST subscriptions/{sub_id}/addons
       r.request :post, "/subscriptions/#{subscription_id}/addons", options
     end
   end
