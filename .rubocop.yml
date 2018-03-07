@@ -14,3 +14,8 @@ Style/ClassVars:
 
 Metrics/MethodLength:
   Max: 15
+
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 1
+  AllowNamesEndingInNumbers: false
+
