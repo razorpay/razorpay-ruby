@@ -5,7 +5,7 @@ module Razorpay
   class Utility
     def self.verify_payment_signature(attributes)
       signature = attributes[:razorpay_signature]
-      order_id = attributes[:razorpay_order_id]
+      order_id = attributes[:razorpay_order_id] || attributes[:razorpay_subscription_id]
       payment_id = attributes[:razorpay_payment_id]
 
       data = [order_id, payment_id].join '|'
