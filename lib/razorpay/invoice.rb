@@ -37,12 +37,24 @@ module Razorpay
       self.class.edit id, options
     end
 
+    def edit!(options = {})
+      with_a_bang { edit options }
+    end
+
     def issue
       self.class.issue id
     end
 
+    def issue!
+      with_a_bang { issue }
+    end
+
     def cancel
       self.class.cancel id
+    end
+
+    def cancel!
+      with_a_bang { cancel }
     end
   end
 end

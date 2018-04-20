@@ -79,6 +79,13 @@ module Razorpay
       assert_subscription_details(subscription)
     end
 
+    def test_subscription_can_be_cancelled_by_subscription_instance!
+      stub_post(%r{subscriptions\/#{@subscription_id}\/cancel$}, 'cancel_subscription', {})
+      subscription = Razorpay::Subscription.fetch(@subscription_id)
+      subscription.cancel!
+      assert_equal 'cancelled', subscription.status
+    end
+
     private
 
     def assert_subscription_details(subscription)
