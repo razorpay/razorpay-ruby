@@ -3,6 +3,9 @@
 Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
+### Added
+- Support for subscription signature verification
+- Bang! methods (`capture!`, `refund!`) that update the calling entity
 
 ## [2.2.0] - 2018-01-29
 ### Added
