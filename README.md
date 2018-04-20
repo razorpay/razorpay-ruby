@@ -60,6 +60,19 @@ refund = Razorpay::Refund.create(payment_id:"payment_id")
 Razorpay::Refund.fetch(refund.id)
 ```
 
+If payment is captured or refunded via `capture!` or `refund!`, then the calling object is also updated:
+```rb
+payment = Razorpay::Payment.fetch('payment_id')
+payment.status
+# 'authorized'
+payment.capture!
+payment.status
+# 'captured'
+payment.refund!
+payment.status
+# 'refunded'
+```
+
 For other applications (such as fetching payments and refunds),
 see our online documentation on <https://docs.razorpay.com>
 
