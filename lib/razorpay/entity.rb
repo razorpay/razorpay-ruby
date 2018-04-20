@@ -32,6 +32,11 @@ module Razorpay
       @attributes.to_json
     end
 
+    # Mutates the entity in accordance with
+    # the block passed to this construct
+    #
+    # Used to implement bang methods, by calling
+    # the non-bang method in the passed block
     def with_a_bang
       mutated_entity = yield
       @attributes = mutated_entity.attributes
