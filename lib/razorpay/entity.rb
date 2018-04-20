@@ -31,5 +31,11 @@ module Razorpay
     def to_json
       @attributes.to_json
     end
+
+    def with_a_bang
+      mutated_entity = yield
+      @attributes = mutated_entity.attributes
+      mutated_entity
+    end
   end
 end

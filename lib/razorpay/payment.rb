@@ -29,8 +29,7 @@ module Razorpay
 
     def refund!(options = {})
       refund = refund options
-      refunded_payment = self.class.request.fetch id
-      @attributes = refunded_payment.attributes
+      with_a_bang { self.class.request.fetch id }
       refund
     end
 
@@ -39,9 +38,7 @@ module Razorpay
     end
 
     def capture!(options)
-      captured_payment = capture options
-      @attributes = captured_payment.attributes
-      captured_payment
+      with_a_bang { capture options }
     end
 
     def refunds
