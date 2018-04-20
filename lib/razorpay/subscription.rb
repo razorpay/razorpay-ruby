@@ -28,5 +28,9 @@ module Razorpay
     def cancel(options = {})
       self.class.cancel id, options
     end
+
+    def cancel!(options = {})
+      with_a_bang { cancel options }
+    end
   end
 end

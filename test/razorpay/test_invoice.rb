@@ -66,6 +66,14 @@ module Razorpay
       assert_invoice_details(invoice)
     end
 
+    def test_invoice_can_be_issued_by_invoice_instance!
+      stub_post(%r{invoices\/#{@invoice_id}\/issue$}, 'issue_invoice', {})
+      invoice = Razorpay::Invoice.fetch(@invoice_id)
+      invoice.issue!
+      assert_equal 'issued', invoice.status
+      refute_nil invoice.issued_at
+    end
+
     def test_invoice_can_be_cancelled_by_invoice_id
       stub_post(%r{invoices\/#{@invoice_id}\/cancel$}, 'cancel_invoice', {})
       invoice = Razorpay::Invoice.cancel(@invoice_id)
@@ -90,15 +98,21 @@ module Razorpay
       assert_invoice_details(invoice)
     end
 
-    def test_edit_invoice
+    def test_invoice_can_be_cancelled_by_invoice_instance!
+      stub_post(%r{invoices\/#{@invoice_id}\/cancel$}, 'cancel_invoice', {})
+      invoice = Razorpay::Invoice.fetch(@invoice_id)
+      invoice.cancel!
+      assert_equal 'cancelled', invoice.status
+      refute_nil invoice.cancelled_at
+    end
+
+    def test_edit_invoice!
       invoice = Razorpay::Invoice.fetch(@invoice_id)
       assert_instance_of Razorpay::Invoice, invoice, 'invoice not an instance of Razorpay::Invoice class'
       assert_nil invoice.invoice_number
-
       update_invoice_data = { invoice_number: '12345678' }
       stub_patch(%r{invoices/#{@invoice_id}$}, 'update_invoice', update_invoice_data)
-
-      invoice = invoice.edit(update_invoice_data)
+      invoice.edit!(update_invoice_data)
       assert_instance_of Razorpay::Invoice, invoice, 'invoice not an instance of Razorpay::Invoice class'
       refute_nil invoice.invoice_number
     end
