@@ -3,6 +3,8 @@
 Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
+
+## [2.3.0] - 2018-04-20
 ### Added
 - Support for subscription signature verification
 - Bang! methods (`capture!`, `refund!`) that update the calling entity
@@ -68,7 +70,8 @@ Changelog for Razorpay-Ruby SDK.
 ### Added
 - Initial Release
 
-[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/razorpay/razorpay-ruby/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/razorpay/razorpay-ruby/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0
 [2.1.0.pre]: https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0.pre
