@@ -30,9 +30,7 @@ module Razorpay
     end
 
     def close!
-      closed_virtual_account = close
-      @attributes = closed_virtual_account.attributes
-      closed_virtual_account
+      with_a_bang { close }
     end
 
     def payments(options = {})
