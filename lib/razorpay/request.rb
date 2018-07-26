@@ -1,5 +1,6 @@
-require 'razorpay/constants'
 require 'httparty'
+require 'extensions/httparty/hash_conversions'
+require 'razorpay/constants'
 
 module Razorpay
   # Request objects are used to create fetch

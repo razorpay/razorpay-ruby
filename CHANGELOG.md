@@ -3,6 +3,8 @@
 Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
+### Changed
+- Use indexed keys in x-www-form-urlencoded request bodies
 
 ## [2.3.0] - 2018-04-20
 ### Added
