@@ -51,6 +51,31 @@ module Razorpay
       assert_subscription_details(subscription)
     end
 
+    def test_subscription_should_be_created_with_upfront_amount
+      subscription_attrs = {
+        plan_id: 'fake_plan_id',
+        total_count: 12,
+        addons: [
+          { item: { amount: 100, currency: 'INR' } },
+          { item: { amount: 200, currency: 'INR' } }
+        ]
+      }
+
+      #
+      # Note that the stubbed request has the addons array
+      # indexed, ensuring that the right request is being built
+      #
+      # This test will fail if the request sends
+      # "addons[][item][amount]=100&addons[][item][currency]=INR" instead
+      #
+      stub_params = 'plan_id=fake_plan_id&total_count=12&' \
+                    'addons[0][item][amount]=100&addons[0][item][currency]=INR&' \
+                    'addons[1][item][amount]=200&addons[1][item][currency]=INR'
+      stub_post(/subscriptions$/, 'fake_subscription', stub_params)
+
+      Razorpay::Subscription.create subscription_attrs
+    end
+
     def test_subscription_can_be_cancelled_by_subscription_id
       stub_post(%r{subscriptions\/#{@subscription_id}\/cancel$}, 'cancel_subscription', {})
       subscription = Razorpay::Subscription.cancel(@subscription_id)

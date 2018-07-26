@@ -9,12 +9,14 @@ Metrics/LineLength:
 Style/SymbolArray:
   MinSize: 3
 
-Style/ClassVars:
-  Enabled: false
-
 Metrics/MethodLength:
   Max: 15
 
 Naming/UncommunicativeMethodParamName:
   MinNameLength: 1
   AllowNamesEndingInNumbers: false
+
+# Near-duplicate of a file from an external package, want to keep changes minimal
+AllCops:
+  Exclude:
+    - 'lib/extensions/httparty/hash_conversions.rb'

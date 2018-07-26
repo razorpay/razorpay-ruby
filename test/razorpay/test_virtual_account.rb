@@ -24,7 +24,7 @@ module Razorpay
       stub_post(
         /virtual_accounts$/,
         'fake_virtual_account',
-        'receiver_types[]=bank_account&description=First%20Virtual%20Account'
+        'receiver_types[0]=bank_account&description=First%20Virtual%20Account'
       )
 
       virtual_account = Razorpay::VirtualAccount.create @virtual_account_create_array
