@@ -28,6 +28,8 @@ module Razorpay
         verified = secure_compare(expected_signature, signature)
 
         raise SecurityError, 'Signature verification failed' unless verified
+
+        verified
       end
 
       def secure_compare(a, b)
