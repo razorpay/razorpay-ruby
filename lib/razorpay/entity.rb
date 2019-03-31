@@ -28,8 +28,8 @@ module Razorpay
 
     # Public: Convert the Entity object to JSON
     # Returns the JSON representation of the Entity (as a string)
-    def to_json
-      @attributes.to_json
+    def to_json(*args)
+      @attributes.to_json(*args)
     end
 
     # Mutates the entity in accordance with
