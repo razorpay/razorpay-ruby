@@ -45,7 +45,7 @@ module Razorpay
     end
 
     def test_json_conversion_with_args
-      assert_equal '{"a": 1}', @entity.to_json({space: ' '})
+      assert_equal '{"a": 1}', @entity.to_json(space: ' ')
     end
 
     def test_invalid_attribute_get
