@@ -6,14 +6,13 @@ matrix:
     - rvn: "2.6.1"
     - rvm: "2.5.3"
     - rvm: "2.4.5"
-    # EOL for 2.3 is 2019-03-31
-    - rvm: "2.3.8"
       env: LINT=rubocop
   allow_failures:
   # These are EOL versions of ruby
     - rvm: "1.9.3"
     - rvm: "2.0.0"
     - rvm: "2.1.10"
+    - rvm: "2.3.8"
 before_install: gem update --system
 script:
   - bundle exec rake test
