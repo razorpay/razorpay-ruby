@@ -44,6 +44,10 @@ module Razorpay
       assert_equal '{"a":1}', @entity.to_json
     end
 
+    def test_json_conversion_with_args
+      assert_equal '{"a": 1}', @entity.to_json(space: ' ')
+    end
+
     def test_invalid_attribute_get
       assert_raises(NoMethodError, 'It must raise a NoMethodError on invalid attribute') { @entity.b }
     end
