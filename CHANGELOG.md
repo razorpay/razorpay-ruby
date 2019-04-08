@@ -3,8 +3,14 @@
 Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
+
+## [2.4.0] - 2019-04-08
 ### Changed
-- Use indexed keys in x-www-form-urlencoded request bodies
+- Indexed keys used in x-www-form-urlencoded request bodies
+- Updated Utility verify_* methods to return verification bool
+
+### Added
+- Support for custom JSON options to Entity to_json
 
 ## [2.3.0] - 2018-04-20
 ### Added
@@ -72,15 +78,18 @@ Changelog for Razorpay-Ruby SDK.
 ### Added
 - Initial Release
 
-[Unreleased]: https://github.com/razorpay/razorpay-ruby/compare/2.3.0...HEAD
-[2.3.0]: https://github.com/razorpay/razorpay-ruby/compare/2.2.0...2.3.0
-[2.2.0]: https://github.com/razorpay/razorpay-ruby/compare/2.1.0...2.2.0
-[2.1.0]: https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0
-[2.1.0.pre]: https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0.pre
-[2.0.1]: https://github.com/razorpay/razorpay-ruby/compare/2.0.0...2.0.1
-[2.0.0]: https://github.com/razorpay/razorpay-ruby/compare/1.2.1...2.0.0
-[1.2.1]: https://github.com/razorpay/razorpay-ruby/compare/1.2.0...1.2.1
-[1.2.0]: https://github.com/razorpay/razorpay-ruby/compare/1.1.0...1.2.0
-[1.1.0]: https://github.com/razorpay/razorpay-ruby/compare/1.0.3...1.1.0
-[1.0.3]: https://github.com/razorpay/razorpay-ruby/compare/1.0.1...1.0.3
-[1.0.1]: https://github.com/razorpay/razorpay-ruby/compare/1.0.0...1.0.1
+# Diff
+
+- [Unreleased](https://github.com/razorpay/razorpay-ruby/compare/2.4.0...HEAD)
+- [2.4.0](https://github.com/razorpay/razorpay-ruby/compare/2.3.0...2.4.0)
+- [2.3.0](https://github.com/razorpay/razorpay-ruby/compare/2.2.0...2.3.0)
+- [2.2.0](https://github.com/razorpay/razorpay-ruby/compare/2.1.0...2.2.0)
+- [2.1.0](https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0)
+- [2.1.0.pre](https://github.com/razorpay/razorpay-ruby/compare/2.0.1...2.1.0.pre)
+- [2.0.1](https://github.com/razorpay/razorpay-ruby/compare/2.0.0...2.0.1)
+- [2.0.0](https://github.com/razorpay/razorpay-ruby/compare/1.2.1...2.0.0)
+- [1.2.1](https://github.com/razorpay/razorpay-ruby/compare/1.2.0...1.2.1)
+- [1.2.0](https://github.com/razorpay/razorpay-ruby/compare/1.1.0...1.2.0)
+- [1.1.0](https://github.com/razorpay/razorpay-ruby/compare/1.0.3...1.1.0)
+- [1.0.3](https://github.com/razorpay/razorpay-ruby/compare/1.0.1...1.0.3)
+- [1.0.1](https://github.com/razorpay/razorpay-ruby/compare/1.0.0...1.0.1)
