@@ -4,6 +4,16 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
+## [2.4.1] - 2019-04-09
+
+### Fixed
+
+- Subscription signature verification [[#81][81]]
+
+### Added
+
+- Ruby version to user agent header [[#79][79]]
+
 ## [2.4.0] - 2019-04-08
 
 ### Changed
@@ -109,7 +119,8 @@ Changelog for Razorpay-Ruby SDK.
 
 # Diff
 
-- [Unreleased](https://github.com/razorpay/razorpay-ruby/compare/2.4.0...HEAD)
+- [Unreleased](https://github.com/razorpay/razorpay-ruby/compare/2.4.1...HEAD)
+- [2.4.1](https://github.com/razorpay/razorpay-ruby/compare/2.4.0...2.4.1)
 - [2.4.0](https://github.com/razorpay/razorpay-ruby/compare/2.3.0...2.4.0)
 - [2.3.0](https://github.com/razorpay/razorpay-ruby/compare/2.2.0...2.3.0)
 - [2.2.0](https://github.com/razorpay/razorpay-ruby/compare/2.1.0...2.2.0)
@@ -126,3 +137,5 @@ Changelog for Razorpay-Ruby SDK.
 [68]: https://github.com/razorpay/razorpay-ruby/pull/68
 [72]: https://github.com/razorpay/razorpay-ruby/pull/72
 [75]: https://github.com/razorpay/razorpay-ruby/pull/75
+[79]: https://github.com/razorpay/razorpay-ruby/pull/79
+[81]: https://github.com/razorpay/razorpay-ruby/pull/81
