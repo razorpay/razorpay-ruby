@@ -22,7 +22,7 @@ module Razorpay
       stub_get(/$/, 'hello_response')
       Razorpay.headers = custom_headers
       Razorpay::Request.new('dummy').make_test_request
-      user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}"
+      user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}; Ruby/#{RUBY_VERSION}"
       headers = { 'User-Agent' => user_agent, 'Authorization' => 'Basic a2V5X2lkOmtleV9zZWNyZXQ=' }
       headers = headers.merge(custom_headers)
       assert_requested :get, 'https://api.razorpay.com/',
@@ -43,7 +43,7 @@ module Razorpay
     def test_auth_header_and_user_agent
       stub_get(/$/, 'hello_response')
       Razorpay::Request.new('dummy').make_test_request
-      user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}"
+      user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}; Ruby/#{RUBY_VERSION}"
       headers = { 'User-Agent' => user_agent, 'Authorization' => 'Basic a2V5X2lkOmtleV9zZWNyZXQ=' }
       assert_requested :get, 'https://api.razorpay.com/',
                        headers: headers,
