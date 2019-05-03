@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Remember to `require razorpay` before anything else.
+Remember to `require 'razorpay'` before anything else.
 
 Next, you need to setup your key and secret using the following:
 
