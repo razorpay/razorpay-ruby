@@ -74,13 +74,13 @@ payment.status
 ```
 
 For other applications (such as fetching payments and refunds),
-see our online documentation on <https://docs.razorpay.com>
+see our online documentation on <https://razorpay.com/docs/api/>
 
 ### Orders API
 
 You can use the orders API using the following constructs:
 
-You can find docs at <https://docs.razorpay.com/v1/page/orders>
+You can find docs at <https://razorpay.com/docs/api/orders/>
 
 ```rb
 order = Razorpay::Order.create amount: 5000, currency: 'INR', receipt: 'TEST'
@@ -135,7 +135,7 @@ You can find cards API documentation at <https://docs.razorpay.com/v1/page/cards
 invoice = Razorpay::Invoice.create customer_id: customer.id, amount: 100, currency: 'INR', description: 'Test description', type: 'link'
 ```
 
-You can find invoices API documentation at <https://docs.razorpay.com/v1/page/invoices>.
+You can find invoices API documentation at <https://razorpay.com/docs/api/invoices/>.
 
 ### Plan
 ```rb
@@ -143,7 +143,7 @@ You can find invoices API documentation at <https://docs.razorpay.com/v1/page/in
 plan = Razorpay::Plan.create interval: 1, period: 'monthly', item: { name: 'fake_plan', description: 'fake_desc', currency: 'INR', amount: 500 }, notes: { identifier: 'plan_monthly_super' }
 ```
 
-You can find plan API documentation at <https://razorpay.com/docs/subscriptions/api/#plan>.
+You can find plan API documentation at <https://razorpay.com/docs/api/subscriptions/#plans>.
 
 ### Subscription
 ```rb
@@ -151,7 +151,7 @@ You can find plan API documentation at <https://razorpay.com/docs/subscriptions/
 subscription = Razorpay::Subscription.create plan_id: plan.id, customer_id: customer.id, start_at: (Time.now + (60 * 60 * 24)).to_i, total_count: 3
 ```
 
-You can find subscription API documentation at <https://razorpay.com/docs/subscriptions/api/#subscription>.
+You can find subscription API documentation at <https://razorpay.com/docs/api/subscriptions/>.
 
 ### Addon
 ```rb
