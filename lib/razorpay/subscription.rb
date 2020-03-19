@@ -21,6 +21,10 @@ module Razorpay
       request.all options
     end
 
+    def self.update(id, options = {})
+      request.patch id, options
+    end
+
     def self.cancel(id, options = {})
       request.post "#{id}/cancel", options
     end
