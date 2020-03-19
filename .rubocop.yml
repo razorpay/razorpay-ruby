@@ -12,6 +12,9 @@ Style/SymbolArray:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Gemspec/RubyVersionGlobalsUsage:
+  Enabled: false
+
 Metrics/MethodLength:
   Max: 15
 
