@@ -4,11 +4,12 @@ module Razorpay
   # Helper functions are defined here
   class Utility
     def self.verify_payment_signature(attributes)
-      signature = attributes[:razorpay_signature]
-      order_id = attributes[:razorpay_order_id] || attributes[:razorpay_subscription_id]
-      payment_id = attributes[:razorpay_payment_id]
+      signature = attributes.delete(:razorpay_signature)
 
-      data = [order_id, payment_id].join '|'
+      # Data requires the values to be in sorted order of their keys.
+      # attributes.sort returns a nested array, and the last
+      # element of each is the value. These are joined.
+      data = attributes.sort.map(&:last).join('|')
 
       secret = Razorpay.auth[:password]
 

@@ -16,7 +16,7 @@ module Razorpay
       @entity_name = entity_name
       custom_headers = Razorpay.custom_headers || {}
       predefined_headers = {
-        'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}"
+        'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}; Ruby/#{RUBY_VERSION}"
       }
       # Order is important to give precedence to predefined headers
       headers = custom_headers.merge(predefined_headers)

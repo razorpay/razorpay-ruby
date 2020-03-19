@@ -9,9 +9,9 @@ module Razorpay
 
     def test_payment_signature_verification
       payment_response = {
-        razorpay_order_id: 'fake_order_id',
+        razorpay_order_id: 'fake_other_id',
         razorpay_payment_id: 'fake_payment_id',
-        razorpay_signature: 'b2335e3b0801106b84a7faff035df56ecffde06918c9ddd1f0fafbb37a51cc89'
+        razorpay_signature: '965ee2de4c5c4e6f006fb0a5a1736d992e5d4d52f9fe10b98c9b97ee169ebe18'
       }
       Razorpay::Utility.verify_payment_signature(payment_response)
 
@@ -23,10 +23,12 @@ module Razorpay
 
     def test_subscription_signature_verification
       payment_response = {
-        razorpay_subscription_id: 'fake_order_id',
         razorpay_payment_id: 'fake_payment_id',
-        razorpay_signature: 'b2335e3b0801106b84a7faff035df56ecffde06918c9ddd1f0fafbb37a51cc89'
+        razorpay_subscription_id: 'fake_other_id',
+        razorpay_signature: '3dabcab8ca113e7994cf78c80f8d50974ddfb2d380029743f30a6d67934cd845'
       }
+      # A different signature is expected here compared to the previous test,
+      # since the sorted order of the keys is different in this case
       Razorpay::Utility.verify_payment_signature(payment_response)
 
       payment_response[:razorpay_signature] = '_dummy_signature' * 4
