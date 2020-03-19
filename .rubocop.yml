@@ -9,10 +9,13 @@ Metrics/LineLength:
 Style/SymbolArray:
   MinSize: 3
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Metrics/MethodLength:
   Max: 15
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   MinNameLength: 1
   AllowNamesEndingInNumbers: false
 
