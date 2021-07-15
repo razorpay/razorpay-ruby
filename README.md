@@ -149,6 +149,9 @@ You can find plan API documentation at <https://razorpay.com/docs/subscriptions/
 ```rb
 # Creating a subscription and starting after 24 hours (24 hours = 60 * 60 * 24)
 subscription = Razorpay::Subscription.create plan_id: plan.id, customer_id: customer.id, start_at: (Time.now + (60 * 60 * 24)).to_i, total_count: 3
+
+# Update a subscription
+Razorpa::Subscription.update 'sub_AbcdXYz', { start_at: (Time.now + (60 * 60 * 24)).to_i, quantity: 5 }
 ```
 
 You can find subscription API documentation at <https://razorpay.com/docs/subscriptions/api/#subscription>.
