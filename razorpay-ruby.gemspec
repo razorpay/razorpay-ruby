@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
     # rubocop is only run in the latest ruby build
     # so we use the latest version and don't switch to a
     # older version for 1.9.3
-    spec.add_development_dependency 'rubocop', '~> 0.49'
+    spec.add_development_dependency 'rubocop', '~> 1.23'
     spec.add_development_dependency 'webmock', '~> 3.0'
   else
     # Webmock 3.0 does not support Ruby 1.9.3
