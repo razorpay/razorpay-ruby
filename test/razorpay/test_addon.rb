@@ -28,6 +28,13 @@ module Razorpay
       assert_addon_item_details(addon)
     end
 
+    def test_fetch_all_addon
+      stub_get(/addons$/, 'addon_collection')
+      addons = Razorpay::Addon.all
+      assert_instance_of Razorpay::Collection, addons, 'Addons should be an array'
+      assert !addons.items.empty?, 'invoices should be more than one'
+    end
+
     def test_add_addons_to_subscription
       addon_attrs = {
         item: {

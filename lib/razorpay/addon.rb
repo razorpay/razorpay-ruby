@@ -13,6 +13,10 @@ module Razorpay
       request.fetch id
     end
 
+    def self.all(options = {})
+       request.all options
+    end
+
     def self.create(subscription_id, options)
       r = request
       # POST /addons is not supported
