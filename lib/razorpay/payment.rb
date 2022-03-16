@@ -10,6 +10,46 @@ module Razorpay
     def self.request
       Razorpay::Request.new('payments')
     end
+    
+    def self.createRecurringPayment(data={})
+      request.post "create/recurring" , data
+    end
+
+    def self.createJsonPayment(data={})
+      request.post "create/json" , data
+    end
+
+    def self.fetchPaymentDowntime()
+      request.get "downtimes"
+    end
+
+    def self.fetchPaymentDowntimeById(id)
+      request.get "downtimes/#{id}"
+    end
+
+    def self.fetchCardDetails(id)
+      request.get "#{id}/card"  
+    end
+    
+    def fetchTransfer
+      self.class.request.get "#{id}/transfers"  
+    end
+
+    def self.fetchRefund(id, refundId)
+      request.get "#{id}/refunds/#{refundId}"  
+    end
+    
+    def fetchMultipleRefund
+      self.class.request.get "#{id}/refunds"
+    end
+
+    def self.transfer(id, options = {})
+      request.post "#{id}/transfers", options
+    end
+
+    def self.edit(id, options = {})
+      request.patch id, options
+    end
 
     def self.fetch(id)
       request.fetch id
