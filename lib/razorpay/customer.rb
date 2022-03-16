@@ -23,5 +23,17 @@ module Razorpay
     def self.all(options = {})
       request.all options
     end
+
+    def fetchTokens
+      self.class.request.get "#{id}/tokens" 
+    end
+
+    def fetchToken(tokenId)
+      self.class.request.get "#{id}/tokens/#{tokenId}" 
+    end
+
+    def deleteToken(tokenId)
+      self.class.request.delete "#{id}/tokens/#{tokenId}" 
+    end
   end
 end
