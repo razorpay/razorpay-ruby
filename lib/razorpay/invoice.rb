@@ -56,5 +56,13 @@ module Razorpay
     def cancel!
       with_a_bang { cancel }
     end
+
+    def self.notifyBy(id, medium)
+      request.post "#{id}/notify_by/#{medium}"
+    end
+    
+    def self.delete(id)
+      request.delete "#{id}" 
+    end
   end
 end
