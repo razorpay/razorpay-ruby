@@ -25,6 +25,12 @@ def stub_get(*args)
   stub_request(:get, url).to_return(response)
 end
 
+def stub_delete(*args)
+  response = stub_response(*args)
+  url = args[0]
+  stub_request(:delete, url).to_return(response)
+end
+
 def stub_post(*args)
   stub_request_with_body(:post, *args)
 end
