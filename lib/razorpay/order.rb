@@ -25,5 +25,13 @@ module Razorpay
       r = self.class.request
       r.request :get, "/orders/#{id}/payments", options
     end
+    
+    def self.edit(id, options = {})
+      request.patch id, options
+    end
+
+    def fetchTransferOrder
+      self.class.request.get "#{id}/?expand[]=transfers&status"
+    end
   end
 end

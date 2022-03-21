@@ -44,5 +44,19 @@ module Razorpay
       assert !payments.items.empty?, 'payments should be more than one'
       assert_equal 'pay_50sbkZA9AcyE5a', payments.items[0]['id'], 'payment id should match'
     end
+
+    def test_edit_order
+      param_attr = {
+        "notes": {
+          "key1": "value3",
+          "key2": "value2"
+        }
+      }
+     
+      stub_patch(%r{orders/#{@order_id}$}, 'fake_order', param_attr.to_json)
+      order = Razorpay::Order.edit(@order_id, param_attr.to_json)
+      assert_instance_of Razorpay::Order, order
+      assert_equal @order_id, order.id, 'order IDs do not match'
+   end
   end
 end
