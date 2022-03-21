@@ -117,7 +117,6 @@ module Razorpay
       refute_nil invoice.invoice_number
     end
 
-    private
 
     def assert_invoice_details(invoice)
       assert_equal 'cust_6vRXClWqnLhV14', invoice.customer_id
@@ -125,6 +124,12 @@ module Razorpay
       assert_equal 'INR', invoice.currency
       assert_equal 'Test description', invoice.description
       assert_equal 'invoice', invoice.type
+    end
+
+    def test_delete_specific_invoice
+      stub_delete(%r{invoices/#{@invoice_id}$}, 'empty')
+      item = Razorpay::Invoice.delete(@invoice_id)
+      assert_instance_of Razorpay::Entity, item
     end
   end
 end
