@@ -59,14 +59,14 @@ module Razorpay
       create_instance raw_request(method, url, data)
     end
 
-    def raw_request(method, url, data = {})
+    def raw_request(method, url, data = {}) 
       case method
       when :get
         @options[:query] = data
       when :post, :put, :patch
         @options[:body] = data
       end
-
+      
       self.class.send(method, url, @options)
     end
 
