@@ -1,0 +1,33 @@
+{
+    "id": "pay_DJiaO3iqUZaZrO",
+    "entity": "payment",
+    "amount": 5000,
+    "currency": "INR",
+    "status": "captured",
+    "order_id": null,
+    "invoice_id": null,
+    "international": false,
+    "method": "netbanking",
+    "amount_refunded": 0,
+    "refund_status": null,
+    "captured": true,
+    "description": "Credits towards consultation",
+    "card_id": null,
+    "bank": "UTIB",
+    "wallet": null,
+    "vpa": null,
+    "email": "void@razorpay.com",
+    "contact": "+919191919191",
+    "notes": [],
+    "fee": 171,
+    "tax": 26,
+    "error_code": null,
+    "error_description": null,
+    "error_source": null,
+    "error_step": null,
+    "error_reason": null,
+    "acquirer_data": {
+      "bank_transaction_id": "7909502"
+    },
+    "created_at": 1568822005
+  }

@@ -13,11 +13,12 @@
         "amount_reversed": 0,
         "fees": 1,
         "tax": 0,
-        "notes": [
-  
-        ],
+        "notes": {
+          "name": "Saurav Kumar",
+          "roll_no": "IEC2011026"
+        },
         "linked_account_notes": [
-  
+          "roll_no"
         ],
         "on_hold": true,
         "on_hold_until": null,

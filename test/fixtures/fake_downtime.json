@@ -1,6 +1,5 @@
 {
     "id": "fake_downtime_id",
-    "entity": "payment",
     "method": "card",
     "begin": 1593196031,
     "end": null,
