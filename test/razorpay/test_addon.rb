@@ -32,7 +32,7 @@ module Razorpay
       stub_get(/addons$/, 'addon_collection')
       addons = Razorpay::Addon.all
       assert_instance_of Razorpay::Collection, addons, 'Addons should be an array'
-      assert !addons.items.empty?, 'invoices should be more than one'
+      assert !addons.items.empty?, 'Addon should be more than one'
     end
 
     def test_add_addons_to_subscription
