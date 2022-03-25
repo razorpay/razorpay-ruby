@@ -5,7 +5,7 @@ module Razorpay
   class RazorpayCustomerTest < Minitest::Test
     def setup
       @customer_id = 'cust_6vRXClWqnLhV14'
-      @token_id = 'fake_token_id'
+      @token_id = 'token_FHfn3rIiM1Z8nr'
       # Any request that ends with customers/customer_id
       stub_get(%r{customers/#{@customer_id}$}, 'fake_customer')
       stub_get(/customers$/, 'customer_collection')
@@ -46,7 +46,7 @@ module Razorpay
       stub_get(%r{customers/#{@customer_id}/tokens$}, 'tokens_collection')
       customers = Razorpay::Customer.fetch(@customer_id).fetchTokens
       assert_instance_of Razorpay::Collection, customers, 'Customer not an instance of Razorpay::Customer class'
-      assert !customers.items.empty?, 'payments should be more than one'
+      refute_empty customers.items, 'customers should be more than one'
     end
 
     def test_payments_fetch_token
@@ -58,7 +58,7 @@ module Razorpay
     def test_payments_delete_token
       stub_delete(%r{customers/#{@customer_id}/tokens/#{@token_id}$}, 'delete_token')
       customers = Razorpay::Customer.fetch(@customer_id).deleteToken(@token_id)
-      assert_equal true, customers.deleted
+      assert customers.deleted
     end
   end
 end
