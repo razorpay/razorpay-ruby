@@ -32,5 +32,29 @@ module Razorpay
     def cancel!(options = {})
       with_a_bang { cancel options }
     end
+
+    def self.edit(id, options = {})
+      request.patch id, options
+    end
+
+    def pendingUpdate
+      self.class.request.get "#{id}/retrieve_scheduled_changes"
+    end
+
+    def self.cancelScheduledChanges(id)
+      request.post "#{id}/cancel_scheduled_changes"
+    end
+
+    def self.pause(id, options = {})
+      request.post "#{id}/pause", options
+    end
+
+    def self.resume(id, options = {})
+      request.post "#{id}/resume", options
+    end
+
+    def self.deleteOffer(id, offerId)
+      request.delete "#{id}/#{offerId}"
+    end
   end
 end
