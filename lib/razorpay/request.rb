@@ -33,14 +33,15 @@ module Razorpay
 
     def all(options)
       request :get, "/#{@entity_name}", options
+      puts(request)
     end
 
     def post(url, data = {})
       request :post, "/#{@entity_name}/#{url}", data
     end
 
-    def get(url)
-      request :get, "/#{@entity_name}/#{url}"
+    def get(url, data = {})
+      request :get, "/#{@entity_name}/#{url}", data
     end
 
     def put(id, data = {})

@@ -12,6 +12,7 @@ require 'razorpay/virtual_account'
 require 'razorpay/plan'
 require 'razorpay/subscription'
 require 'razorpay/addon'
+require 'razorpay/settlement'
 
 # Base Razorpay module
 module Razorpay
