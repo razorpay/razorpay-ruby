@@ -13,8 +13,8 @@ module Razorpay
       request.create options
     end
 
-    def self.fetch(id)
-      request.fetch "?customer_id=#{id}"
+    def self.all(data = {})
+      request.all data
     end
   end
 end
