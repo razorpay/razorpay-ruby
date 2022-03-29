@@ -5,6 +5,7 @@ module Razorpay
   class RazorpayVirtualAccountTest < Minitest::Test
     def setup
       @virtual_account_id = 'va_4xbQrmEoA5WJ0G'
+      @payer_id = "ba_J3gpYBXh92ZL5M"
 
       @virtual_account_create_array = {
         receiver_types: ['bank_account'],
@@ -21,13 +22,22 @@ module Razorpay
     end
 
     def test_virtual_account_should_be_created
+      
+      para_attr = {
+        "type": "bank_account",
+        "bank_account": {
+          "ifsc": "RATN0VAAPIS",
+          "account_number": "2223330027558515"
+        }
+      }
+
       stub_post(
         /virtual_accounts$/,
         'fake_virtual_account',
-        'receiver_types[0]=bank_account&description=First%20Virtual%20Account'
+        para_attr.to_json
       )
 
-      virtual_account = Razorpay::VirtualAccount.create @virtual_account_create_array
+      virtual_account = Razorpay::VirtualAccount.create para_attr.to_json
       assert_equal 'First Virtual Account', virtual_account.description
       assert_equal 'active', virtual_account.status
       refute_empty virtual_account.receivers
@@ -83,6 +93,70 @@ module Razorpay
       payments = Razorpay::VirtualAccount.fetch(@virtual_account_id).payments
       assert_instance_of Razorpay::Collection, payments, 'Payments should be an array'
       assert !payments.items.empty?, 'Payments should be more than one'
+    end
+
+    def test_virtual_account_add_receivers
+      
+      para_attr = {
+        "types": [
+          "vpa"
+        ],
+        "vpa": {
+          "descriptor": "gauravkumar"
+        }
+      }
+
+      stub_post(%r{virtual_accounts/#{@virtual_account_id}/receivers$},'fake_virtual_account_receiver',para_attr.to_json)
+
+      virtual_account = Razorpay::VirtualAccount.addReceiver(@virtual_account_id,para_attr.to_json)
+      assert_equal @virtual_account_id , virtual_account.id
+      assert_equal 'First Virtual Account', virtual_account.name
+      assert_equal 'active', virtual_account.status
+      refute_empty virtual_account.receivers
+    end
+
+    def test_virtual_account_allowed_payer
+      
+      para_attr = {
+        "types": "bank_account",
+        "bank_account": {
+          "ifsc": "UTIB0000013",
+          "account_number": 914010012345679
+        }
+      }
+
+      stub_post(%r{virtual_accounts/#{@virtual_account_id}/allowed_payers$},'fake_virtual_account_allowed',para_attr.to_json)
+
+      virtual_account = Razorpay::VirtualAccount.allowedPayer(@virtual_account_id,para_attr.to_json)
+      assert_equal @virtual_account_id , virtual_account.id
+      assert_equal 'Gaurav Kumar', virtual_account.name
+      assert_equal 'active', virtual_account.status
+      refute_empty virtual_account.allowed_payers
+    end
+
+    def test_virtual_account_allowed_payer
+      
+      para_attr = {
+        "types": "bank_account",
+        "bank_account": {
+          "ifsc": "UTIB0000013",
+          "account_number": 914010012345679
+        }
+      }
+
+      stub_post(%r{virtual_accounts/#{@virtual_account_id}/allowed_payers$},'fake_virtual_account_allowed',para_attr.to_json)
+
+      virtual_account = Razorpay::VirtualAccount.allowedPayer(@virtual_account_id,para_attr.to_json)
+      assert_equal @virtual_account_id , virtual_account.id
+      assert_equal 'Gaurav Kumar', virtual_account.name
+      assert_equal 'active', virtual_account.status
+      refute_empty virtual_account.allowed_payers
+    end
+
+    def test_virtual_account_delete_payer
+      stub_delete(%r{virtual_accounts/#{@virtual_account_id}/allowed_payers/#{@payer_id}$},'empty')
+      virtual_account = Razorpay::VirtualAccount.deleteAllowedPayer(@virtual_account_id,@payer_id)
+      assert_instance_of Razorpay::Entity, virtual_account
     end
   end
 end

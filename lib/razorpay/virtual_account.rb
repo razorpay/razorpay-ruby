@@ -37,5 +37,17 @@ module Razorpay
       r = self.class.request
       r.request :get, "/virtual_accounts/#{id}/payments", options
     end
+
+    def self.addReceiver(id, options = {})
+      request.post "#{id}/receivers", options
+    end
+
+    def self.allowedPayer(id, options = {})
+      request.post "#{id}/allowed_payers", options
+    end
+
+    def self.deleteAllowedPayer(id, payer_id)
+      request.delete "#{id}/allowed_payers/#{payer_id}"
+    end
   end
 end
