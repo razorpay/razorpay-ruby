@@ -31,6 +31,17 @@ module Razorpay
       refute_empty settlement.items, 'Settlement should be more than one'
     end
 
+    def test_settlement_reports
+      para_attr = {
+        "year": 2022,
+        "month":12
+      }  
+      stub_get("#{BASE_URI}settlements/recon/combined?month=12&year=2022", 'settlement_report_collection')
+      settlement = Razorpay::Settlement.reports(para_attr)
+      assert_instance_of Razorpay::Collection, settlement, 'Settlement not an instance of Settlement class'
+      refute_empty settlement.items, 'Settlement should be more than one'
+    end
+
     def test_settlement_should_be_created_on_demand
         para_attr = {
             "amount": 1221,
@@ -43,7 +54,9 @@ module Razorpay
           }
 
         stub_post( %r{settlements/ondemand$},'fake_settlement_on_demand',para_attr.to_json)
-        settlement = Razorpay::Settlement.create(para_attr.to_json)
+        settlement = Razorpay::Settlement.create para_attr.to_json
+        assert_instance_of = Razorpay::Settlement, settlement, 'Settlement should be an array'
+        assert_equal @settlement_id , settlement.id
       end
     
     def test_fetch_all_instant_settlement

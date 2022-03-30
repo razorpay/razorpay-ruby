@@ -1,0 +1,88 @@
+{
+   "id":"order_50sX9hGHZJvjjI",
+   "entity":"order",
+   "amount":1000,
+   "amount_paid":1000,
+   "amount_due":0,
+   "currency":"INR",
+   "receipt":null,
+   "offer_id":null,
+   "status":"paid",
+   "attempts":1,
+   "notes":[
+      
+   ],
+   "created_at":1570794714,
+   "transfers":{
+      "entity":"collection",
+      "count":2,
+      "items":[
+         {
+            "id":"trf_DSkl2lXWbiADZG",
+            "entity":"transfer",
+            "transfer_status":"processed",
+            "settlement_status":null,
+            "source":"order_DSkl2lBNvueOly",
+            "recipient":"acc_CNo3jSI8OkFJJJ",
+            "amount":500,
+            "currency":"INR",
+            "amount_reversed":0,
+            "notes":{
+               "branch":"Acme Corp Bangalore North",
+               "name":"Gaurav Kumar"
+            },
+            "fees":2,
+            "tax":0,
+            "on_hold":true,
+            "on_hold_until":1670776632,
+            "recipient_settlement_id":null,
+            "created_at":1570794714,
+            "linked_account_notes":[
+               "Acme Corp Bangalore North"
+            ],
+            "processed_at":1570794772,
+            "error":{
+               "code":null,
+               "description":null,
+               "field":null,
+               "source":null,
+               "step":null,
+               "reason":null
+            }
+         },
+         {
+            "id":"trf_DSkl2pJE49IRc3",
+            "entity":"transfer",
+            "transfer_status":"pending",
+            "settlement_status":null,
+            "source":"order_DSkl2lBNvueOly",
+            "recipient":"acc_CMaomTz4o0FOFz",
+            "amount":500,
+            "currency":"INR",
+            "amount_reversed":0,
+            "notes":{
+               "branch":"Acme Corp Bangalore South",
+               "name":"Saurav Kumar"
+            },
+            "fees":2,
+            "tax":0,
+            "on_hold":false,
+            "on_hold_until":null,
+            "recipient_settlement_id":null,
+            "created_at":1570794714,
+            "linked_account_notes":[
+               "Acme Corp Bangalore South"
+            ],
+            "processed_at":null,
+            "error":{
+               "code":null,
+               "description":null,
+               "field":null,
+               "source":null,
+               "step":null,
+               "reason":null
+            }
+         }
+      ]
+   }
+}
