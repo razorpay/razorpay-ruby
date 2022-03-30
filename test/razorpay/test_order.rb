@@ -55,8 +55,16 @@ module Razorpay
      
       stub_patch(%r{orders/#{@order_id}$}, 'fake_order', param_attr.to_json)
       order = Razorpay::Order.edit(@order_id, param_attr.to_json)
-      assert_instance_of Razorpay::Order, order
+      assert_instance_of Razorpay::Order, order, 'order not an instance of Razorpay::Order class'
       assert_equal @order_id, order.id, 'order IDs do not match'
    end
+
+   def test_fetch_order_transfers
+    stub_get("#{BASE_URI}orders/#{@order_id}/?expand[]=transfers&status", 'fake_order_transfers')
+    order = Razorpay::Order.fetchTransferOrder(@order_id)
+    assert_instance_of Razorpay::Order, order, 'order not an instance of Razorpay::Order class'
+    assert_equal @order_id, order.id, 'order IDs do not match'
+    refute_empty order.transfers
+   end 
   end
 end

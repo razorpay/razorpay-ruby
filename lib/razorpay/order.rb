@@ -30,8 +30,8 @@ module Razorpay
       request.patch id, options
     end
 
-    def fetchTransferOrder
-      self.class.request.get "#{id}/?expand[]=transfers&status"
+    def self.fetchTransferOrder(id)
+      request.get "#{id}/?expand[]=transfers&status"
     end
   end
 end
