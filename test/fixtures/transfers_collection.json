@@ -1,0 +1,34 @@
+{
+    "entity": "collection",
+    "count": 1,
+    "items": [
+      {
+        "id": "trf_DGSTeXzBkEVh48",
+        "entity": "transfer",
+        "source": "pay_DGSRhvMbOqeCe7",
+        "recipient": "acc_CMaomTz4o0FOFz",
+        "amount": 500,
+        "currency": "INR",
+        "amount_reversed": 0,
+        "notes": [],
+        "fees": 2,
+        "tax": 0,
+        "on_hold": false,
+        "on_hold_until": null,
+        "recipient_settlement_id": "setl_DHYJ3dRPqQkAgV",
+        "recipient_settlement": {
+          "id": "setl_DHYJ3dRPqQkAgV",
+          "entity": "settlement",
+          "amount": 500,
+          "status": "failed",
+          "fees": 0,
+          "tax": 0,
+          "utr": "CN0038699836",
+          "created_at": 1568349124
+        },
+        "created_at": 1568110256,
+        "linked_account_notes": [],
+        "processed_at": null
+      }
+    ]
+  }
