@@ -42,23 +42,24 @@ module Razorpay
       assert_equal customer.id, @customer_id
     end
 
-    def test_payments_fetch_tokens
+    def test_customer_fetch_tokens
       stub_get(%r{customers/#{@customer_id}/tokens$}, 'tokens_collection')
-      customers = Razorpay::Customer.fetch(@customer_id).fetchTokens
-      assert_instance_of Razorpay::Collection, customers, 'Customer not an instance of Razorpay::Customer class'
-      refute_empty customers.items, 'customers should be more than one'
+      tokens = Razorpay::Customer.fetch(@customer_id).fetchTokens
+      assert_instance_of Razorpay::Collection, tokens, 'Tokens should be an array'
+      refute_empty tokens.items, 'tokens should be more than one'
     end
 
-    def test_payments_fetch_token
+    def test_customer_fetch_token
       stub_get(%r{customers/#{@customer_id}/tokens/#{@token_id}$}, 'fake_token')
-      customers = Razorpay::Customer.fetch(@customer_id).fetchToken(@token_id)
-      assert_equal @token_id, customers.id
+      token = Razorpay::Customer.fetch(@customer_id).fetchToken(@token_id)
+      assert_instance_of Razorpay::Entity, token, 'Token not an instance of Razorpay::Entity class'
+      assert_equal @token_id, token.id
     end
 
-    def test_payments_delete_token
+    def test_customer_delete_token
       stub_delete(%r{customers/#{@customer_id}/tokens/#{@token_id}$}, 'delete_token')
-      customers = Razorpay::Customer.fetch(@customer_id).deleteToken(@token_id)
-      assert customers.deleted
+      token = Razorpay::Customer.fetch(@customer_id).deleteToken(@token_id)
+      assert token.deleted
     end
   end
 end

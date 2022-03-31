@@ -23,11 +23,14 @@ module Razorpay
     def self.all(options = {})
       request.all options
     end
-
+    
+    # Fetch token by customerId
+    # https://razorpay.com/docs/api/recurring-payments/upi/tokens/#22-fetch-tokens-by-customer-id 
     def fetchTokens
       self.class.request.get "#{id}/tokens" 
     end
-
+ 
+   # Fetch specific token 
     def fetchToken(tokenId)
       self.class.request.get "#{id}/tokens/#{tokenId}" 
     end
