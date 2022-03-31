@@ -17,6 +17,9 @@ module Razorpay
     end
 
     def self.edit(id, options = {})
+      if(!options.is_a?(String) && options.key?(:active))
+        options[:active] = (options[:active] ? 1 : 0)
+      end 
       request.patch id, options
     end
 

@@ -4,7 +4,7 @@ module Razorpay
   # Tests for Razorpay::Item
   class RazorpayItemTest < Minitest::Test
     def setup
-      @item_id = 'fake_item_id'
+      @item_id = 'item_JDcbIdX9xojCje'
 
       # Any request that ends with items/item_id
       stub_get(%r{items/#{@item_id}$}, 'fake_item')
@@ -41,8 +41,8 @@ module Razorpay
 
       stub_patch(%r{items/#{@item_id}$}, 'fake_item', param_attr.to_json)
       item = Razorpay::Item.edit(@item_id, param_attr.to_json)
-      assert_instance_of Razorpay::Item, item
-      assert_equal @item_id, items.id
+      assert_instance_of Razorpay::Entity, item
+      assert_equal @item_id, item.id
     end
 
     def test_fetch_all_items
@@ -56,10 +56,10 @@ module Razorpay
       assert_equal @item_id, item.id
     end
  
-    def test_delete_specific_item
-        stub_delete(%r{items/#{@item_id}$}, 'empty')
-        item = Razorpay::Item.delete(@item_id)
-        assert_instance_of Razorpay::Entity, item
-      end
+    def test_delete_item
+      stub_delete(%r{items/#{@item_id}$}, 'empty')
+      item = Razorpay::Item.delete(@item_id)
+      assert_instance_of Razorpay::Entity, item
+    end
   end
 end
