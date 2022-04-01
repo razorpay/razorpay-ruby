@@ -42,18 +42,19 @@ module Razorpay
       stub_patch(%r{items/#{@item_id}$}, 'fake_item', param_attr.to_json)
       item = Razorpay::Item.edit(@item_id, param_attr.to_json)
       assert_instance_of Razorpay::Entity, item
-      assert_equal @item_id, item.id
+      assert_equal @item_id, item.id, 'Item IDs do not match'
     end
 
     def test_fetch_all_items
       items = Razorpay::Item.all
-      assert_instance_of Razorpay::Collection, items
+      assert_instance_of Razorpay::Collection, items, 'Items should be an array'
+      refute_empty items.items, 'Items should be more than one'
     end
 
     def test_fetch_specific_item
       item = Razorpay::Item.fetch(@item_id)
       assert_instance_of Razorpay::Entity, item
-      assert_equal @item_id, item.id
+      assert_equal @item_id, item.id, 'Item IDs do not match'
     end
  
     def test_delete_item
