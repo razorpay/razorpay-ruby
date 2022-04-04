@@ -20,22 +20,6 @@ module Razorpay
       refute_nil Razorpay::VirtualAccount
     end
 
-    def test_virtual_account_should_be_created
-      stub_post(
-        /virtual_accounts$/,
-        'fake_virtual_account',
-        'receiver_types[0]=bank_account&description=First%20Virtual%20Account'
-      )
-
-      virtual_account = Razorpay::VirtualAccount.create @virtual_account_create_array
-      assert_equal 'First Virtual Account', virtual_account.description
-      assert_equal 'active', virtual_account.status
-      refute_empty virtual_account.receivers
-
-      receiver = virtual_account.receivers.first
-      assert_includes receiver.keys, 'account_number'
-    end
-
     def test_close_virtual_account_class_method
       stub_patch(%r{virtual_accounts/#{@virtual_account_id}$}, 'fake_virtual_account_closed', 'status=closed')
       virtual_account = Razorpay::VirtualAccount.close(@virtual_account_id)
