@@ -42,7 +42,7 @@ module Razorpay
         notes: { identifier: 'plan_monthly_1000' }
       }
 
-      stub_post(/plans$/, 'fake_plan', plan_attrs.to_json)
+      stub_post(/plans$/, 'fake_plan', plan_attrs)
 
       plan = Razorpay::Plan.create plan_attrs.to_json
 
