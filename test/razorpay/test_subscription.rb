@@ -68,12 +68,9 @@ module Razorpay
       # This test will fail if the request sends
       # "addons[][item][amount]=100&addons[][item][currency]=INR" instead
       #
-      stub_params = 'plan_id=fake_plan_id&total_count=12&' \
-                    'addons[0][item][amount]=100&addons[0][item][currency]=INR&' \
-                    'addons[1][item][amount]=200&addons[1][item][currency]=INR'
-      stub_post(/subscriptions$/, 'fake_subscription', stub_params)
+      stub_post(/subscriptions$/, 'fake_subscription', subscription_attrs.to_json)
 
-      Razorpay::Subscription.create subscription_attrs
+      Razorpay::Subscription.create subscription_attrs.to_json
     end
 
     def test_subscription_can_be_cancelled_by_subscription_id

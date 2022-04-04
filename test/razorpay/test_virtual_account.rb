@@ -21,13 +21,22 @@ module Razorpay
     end
 
     def test_virtual_account_should_be_created
+      
+      para_attr = {
+        "type": "bank_account",
+        "bank_account": {
+          "ifsc": "RATN0VAAPIS",
+          "account_number": "2223330027558515"
+        }
+      }
+
       stub_post(
         /virtual_accounts$/,
         'fake_virtual_account',
-        'receiver_types[0]=bank_account&description=First%20Virtual%20Account'
+        para_attr.to_json
       )
 
-      virtual_account = Razorpay::VirtualAccount.create @virtual_account_create_array
+      virtual_account = Razorpay::VirtualAccount.create para_attr.to_json
       assert_equal 'First Virtual Account', virtual_account.description
       assert_equal 'active', virtual_account.status
       refute_empty virtual_account.receivers

@@ -37,14 +37,14 @@ module Razorpay
         quantity: 1
       }
 
-      stub_post(%r{subscriptions\/#{@subscription_id}\/addons$}, 'fake_addon', create_addon_stub_url_params)
+      stub_post(%r{subscriptions\/#{@subscription_id}\/addons$}, 'fake_addon', addon_attrs.to_json)
 
-      addon = Razorpay::Addon.create(@subscription_id, addon_attrs)
+      addon = Razorpay::Addon.create(@subscription_id, addon_attrs.to_json)
       assert_instance_of Razorpay::Addon, addon, 'Addon not an instance of Addon class'
 
-      assert_equal 'fake_addon_id', addon.id, 'Addon IDs do not match'
+      assert_equal @addon_id, addon.id, 'Addon IDs do not match'
       assert_equal 1, addon.quantity, 'Addon quantity is accessible'
-      assert_equal 'fake_subscription_id', addon.subscription_id, 'Addon subscription_id is accessible'
+      assert_equal @subscription_id, addon.subscription_id, 'Addon subscription_id is accessible'
       assert_nil addon.invoice_id, 'Addon invoice_id is accessible'
 
       assert_addon_item_details(addon)
