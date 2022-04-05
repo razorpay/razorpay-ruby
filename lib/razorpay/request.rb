@@ -84,7 +84,7 @@ module Razorpay
     def create_instance(res)
       response = res.parsed_response
 
-      if response.is_a?(Array)==true && response.length == 0
+      if response.is_a?(Array)==true && response.empty?
         response = {}
       end     
        
