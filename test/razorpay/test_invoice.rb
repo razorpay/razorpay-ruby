@@ -135,7 +135,7 @@ module Razorpay
 
     def test_invoice_notifyBy
       stub_post(%r{invoices/#{@invoice_id}/notify_by/#{@medium}$}, 'success', {})
-      invoice = Razorpay::Invoice.notifyBy(@invoice_id,@medium)
+      invoice = Razorpay::Invoice.notify_by(@invoice_id,@medium)
       assert_instance_of Razorpay::Entity, invoice, 'invoice not an instance of Razorpay::Invoice class'
       assert invoice
     end
