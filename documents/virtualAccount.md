@@ -460,7 +460,7 @@ para_attr = {
   }
 }
 
-Razorpay::VirtualAccount.addReceiver(virtualId, para_attr)
+Razorpay::VirtualAccount.add_receiver(virtualId, para_attr)
 ```
 
 **Parameters:**
@@ -489,7 +489,7 @@ para_attr = {
   }
 }
 
-Razorpay::VirtualAccount.allowedPayer(virtualId, para_attr)
+Razorpay::VirtualAccount.allowed_payer(virtualId, para_attr)
 ```
 
 **Parameters:**
@@ -548,7 +548,7 @@ virtualId = "va_Di5gbNptcWV8fQ"
 
 allowedPayersId = "ba_J0XikIKgezi6PC"
 
-Razorpay::VirtualAccount.deleteAllowedPayer(virtualId,allowedPayersId)
+Razorpay::VirtualAccount.delete_allowed_payer(virtualId,allowedPayersId)
 ```
 
 **Parameters:**

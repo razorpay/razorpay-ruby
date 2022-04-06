@@ -108,7 +108,7 @@ module Razorpay
 
       stub_post(%r{virtual_accounts/#{@virtual_account_id}/receivers$},'fake_virtual_account_receiver',para_attr.to_json)
 
-      virtual_account = Razorpay::VirtualAccount.addReceiver(@virtual_account_id,para_attr.to_json)
+      virtual_account = Razorpay::VirtualAccount.add_receiver(@virtual_account_id,para_attr.to_json)
       assert_equal @virtual_account_id , virtual_account.id
       assert_equal 'First Virtual Account', virtual_account.name
       assert_equal 'active', virtual_account.status
@@ -127,26 +127,7 @@ module Razorpay
 
       stub_post(%r{virtual_accounts/#{@virtual_account_id}/allowed_payers$},'fake_virtual_account_allowed',para_attr.to_json)
 
-      virtual_account = Razorpay::VirtualAccount.allowedPayer(@virtual_account_id,para_attr.to_json)
-      assert_equal @virtual_account_id , virtual_account.id
-      assert_equal 'Gaurav Kumar', virtual_account.name
-      assert_equal 'active', virtual_account.status
-      refute_empty virtual_account.allowed_payers
-    end
-
-    def test_virtual_account_allowed_payer
-      
-      para_attr = {
-        "types": "bank_account",
-        "bank_account": {
-          "ifsc": "UTIB0000013",
-          "account_number": 914010012345679
-        }
-      }
-
-      stub_post(%r{virtual_accounts/#{@virtual_account_id}/allowed_payers$},'fake_virtual_account_allowed',para_attr.to_json)
-
-      virtual_account = Razorpay::VirtualAccount.allowedPayer(@virtual_account_id,para_attr.to_json)
+      virtual_account = Razorpay::VirtualAccount.allowed_payer(@virtual_account_id,para_attr.to_json)
       assert_equal @virtual_account_id , virtual_account.id
       assert_equal 'Gaurav Kumar', virtual_account.name
       assert_equal 'active', virtual_account.status
@@ -155,7 +136,7 @@ module Razorpay
 
     def test_virtual_account_delete_payer
       stub_delete(%r{virtual_accounts/#{@virtual_account_id}/allowed_payers/#{@payer_id}$},'empty')
-      virtual_account = Razorpay::VirtualAccount.deleteAllowedPayer(@virtual_account_id,@payer_id)
+      virtual_account = Razorpay::VirtualAccount.delete_allowed_payer(@virtual_account_id,@payer_id)
       assert_instance_of Razorpay::Entity, virtual_account
     end
   end
