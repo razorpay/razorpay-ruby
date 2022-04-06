@@ -17,7 +17,7 @@ module Razorpay
     def self.verify_payment_link_signature(attributes)
       signature = attributes.delete(:razorpay_signature)
       # element of each is the value. These are joined.
-      data = attributes.map(&:last).join('|')
+      data = attributes.values.join('|')
       secret = Razorpay.auth[:password]
       verify_signature(data, signature, secret)
     end

@@ -21,7 +21,7 @@ module Razorpay
       end
     end
 
-    def test_payment_link_signature_verification
+    def test_payment_link_signature_verification_exception
 
       payment_response = {
         payment_link_id: 'fake_razorpay_payment_link_id',
@@ -37,6 +37,20 @@ module Razorpay
       assert_raises(SecurityError) do
         Razorpay::Utility.verify_payment_link_signature(payment_response)
       end
+    end
+
+    def test_payment_link_signature_verification
+
+      payment_response = {
+        payment_link_id: 'fake_razorpay_payment_link_id',
+        payment_link_reference_id: 'fake_reference_id',
+        payment_link_status: 'paid',
+        razorpay_payment_id: 'pay_IH3d0ara9bSsjQ',
+        razorpay_signature: 'b8a6acda585c9b74e9da393c7354c7e685e37e69d30ae654730f042e674e0283'
+      }
+
+      response = Razorpay::Utility.verify_payment_link_signature(payment_response)
+      assert(response)
     end
 
     def test_subscription_signature_verification
