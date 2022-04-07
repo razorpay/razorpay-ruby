@@ -9,7 +9,9 @@ Razorpay.setup('key_id', 'key_secret')
 ### Create a normal refund
 
 ```rb
-Razorpay::QrCode.create(paymentId,{
+paymentId = "pay_Ir1SV9FgF8pxxG"
+
+para_attr = {
   "amount": "100",
   "speed": "normal",
   "notes": {
@@ -17,7 +19,9 @@ Razorpay::QrCode.create(paymentId,{
     "notes_key_2": "Engage"
   },
   "receipt": "Receipt No. 31"
-})
+}
+
+Razorpay::Payment.fetch(paymentId).refund(para_attr)
 ```
 
 **Parameters:**
@@ -54,11 +58,14 @@ Razorpay::QrCode.create(paymentId,{
 ### Create an instant refund
 
 ```rb
-Razorpay::QrCode.create(paymentId,{
+paymentId = "pay_Ir1SV9FgF8pxxG"
+
+para_attr = {
   "amount": "100",
   "speed": "optimum",
   "receipt": "Receipt No. 31"
-})
+}
+Razorpay::Payment.fetch(paymentId).refund(para_attr)
 ```
 
 **Parameters:**
@@ -96,8 +103,12 @@ Razorpay::QrCode.create(paymentId,{
 
 ### Fetch multiple refunds for a payment
 
-```js
-instance.payments.fetch_multiple_refund(paymentId,option)
+```rb
+paymentId = "pay_FIKOnlyii5QGNx"
+
+option = {"count":1}
+
+Razorpay::Payment.fetch_multiple_refund(paymentId,option)
 ```
 
 **Parameters:**
@@ -141,8 +152,12 @@ instance.payments.fetch_multiple_refund(paymentId,option)
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch a specific refund for a payment
-```js
-instance.payments.fetch(paymentId,refundId)
+```rb
+paymentId = "pay_FIKOnlyii5QGNx"
+
+refundId = "rfnd_FP8DDKxqJif6ca"
+
+Razorpay::Payment.fetch(paymentId).fetch_refund(refundId)
 ```
 
 **Parameters:**
@@ -222,6 +237,8 @@ Razorpay::Refund.all(options)
 
 ### Fetch particular refund
 ```rb
+refundId = "rfnd_FFX6AnnIN3puqW"
+
 Razorpay::Refund.fetch(refundId)
 ```
 
