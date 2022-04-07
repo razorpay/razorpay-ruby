@@ -29,8 +29,10 @@ module Razorpay
     def self.edit(id, options = {})
       request.patch id, options
     end
-
-    def self.fetchTransferOrder(id)
+    
+    def self.fetch_transfer_order(id)
+      # Fetch Transfer for an Order
+      # Docs: https://razorpay.com/docs/api/payments/route/#fetch-transfer-for-an-order
       request.get "#{id}/?expand[]=transfers&status"
     end
   end
