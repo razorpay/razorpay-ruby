@@ -275,7 +275,7 @@ Razorpay::Payment.fetch(paymentId).transfer(para_attr)
 ```rb
 orderId = "order_DSkl2lBNvueOly"
 
-Razorpay::Order.fetchTransferOrder(orderId)
+Razorpay::Order.fetch_transfer_order(orderId)
 ```
 
 **Parameters:**
