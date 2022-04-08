@@ -11,35 +11,35 @@ module Razorpay
       Razorpay::Request.new('payments')
     end
     
-    def self.createRecurringPayment(data={})
+    def self.create_recurring_payment(data={})
       request.post "create/recurring" , data
     end
 
-    def self.createJsonPayment(data={})
+    def self.create_json_payment(data={})
       request.post "create/json" , data
     end
 
-    def self.fetchPaymentDowntime
+    def self.fetch_payment_downtime
       request.get "downtimes"
     end
 
-    def self.fetchPaymentDowntimeById(id)
+    def self.fetch_payment_downtime_by_id(id)
       request.get "downtimes/#{id}"
     end
 
-    def self.fetchCardDetails(id)
+    def self.fetch_card_details(id)
       request.get "#{id}/card"  
     end
     
-    def fetchTransfer
+    def fetch_transfer
       self.class.request.get "#{id}/transfers"  
     end
 
-    def fetchRefund(refundId)
+    def fetch_refund(refundId)
       self.class.request.get "#{id}/refunds/#{refundId}"  
     end
     
-    def self.fetchMultipleRefund(id, options = {})
+    def self.fetch_multiple_refund(id, options = {})
       request.get "#{id}/refunds",options
     end
 
@@ -47,8 +47,8 @@ module Razorpay
       self.class.request.post "#{id}/transfers", options
     end
 
-    def self.edit(id, options = {})
-      request.patch id, options
+    def edit(options = {})
+      self.class.request.patch id, options
     end
 
     def self.fetch(id)
