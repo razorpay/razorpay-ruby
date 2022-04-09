@@ -61,14 +61,14 @@ module Razorpay
     
     def test_fetch_all_instant_settlement
       stub_get(%r{settlements/ondemand$}, 'settlement_instant_collection')
-      settlement = Razorpay::Settlement.fetchAllOndemandSettlement
+      settlement = Razorpay::Settlement.fetch_all_ondemand_settlement
       assert_instance_of Razorpay::Collection, settlement, 'Settlement should be an array'
       refute_empty settlement.items, 'Settlement should be more than one'
     end
 
     def test_fetch_ondemand_settle_by_id
       stub_get(%r{settlements/ondemand/#{@settlement_id}$}, 'fake_instant_settlement')  
-      settlement = Razorpay::Settlement.fetch(@settlement_id).fetchOndemandSettlementById
+      settlement = Razorpay::Settlement.fetch(@settlement_id).fetch_ondemand_settlement_by_id
       assert_equal @settlement_ondemand_id, settlement.id, 'Settlement IDs do not match'
       refute settlement.settle_full_balance  
     end

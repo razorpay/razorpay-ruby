@@ -49,6 +49,8 @@ Razorpay::Settlement.all(options)
 ### Fetch a settlement
 
 ```rb
+settlementId = "setl_DGlQ1Rj8os78Ec"
+
 Razorpay::Settlement.fetch(settlementId)
 ```
 
@@ -429,7 +431,7 @@ Razorpay::Settlement.create(param_attr)
 ```rb
 options = {"count":1}
 
-Razorpay::Settlement.fetchAllOndemandSettlement(options)
+Razorpay::Settlement.fetch_all_ondemand_settlement(options)
 ```
 **Parameters:**
 
@@ -450,7 +452,7 @@ For all on-demand settlements response please click [here](https://razorpay.com/
 ```rb
 settlementId = "setl_DGlQ1Rj8os78Ec"
 
-Razorpay::Settlement.fetch(settlementId).fetchOndemandSettlementById;
+Razorpay::Settlement.fetch(settlementId).fetch_ondemand_settlement_by_id;
 ```
 
 **Parameters:**

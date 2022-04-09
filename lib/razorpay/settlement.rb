@@ -29,11 +29,11 @@ module Razorpay
       request.post "ondemand", options
     end
 
-    def self.fetchAllOndemandSettlement(options={})
+    def self.fetch_all_ondemand_settlement(options={})
       request.get "ondemand", options
     end
 
-    def fetchOndemandSettlementById
+    def fetch_ondemand_settlement_by_id
       self.class.request.get "ondemand/#{id}"
     end
   end
