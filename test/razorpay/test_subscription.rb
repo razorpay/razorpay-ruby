@@ -54,7 +54,7 @@ module Razorpay
 
     def test_subscription_pending_update
       stub_get(%r{subscriptions/#{@subscription_id}/retrieve_scheduled_changes$}, 'fake_pending_update')
-      subscription = Razorpay::Subscription.fetch(@subscription_id).pendingUpdate
+      subscription = Razorpay::Subscription.fetch(@subscription_id).pending_update
       assert_instance_of Razorpay::Subscription, subscription, 'not an instance of Subscription class'
       assert_equal "active", subscription.status
       refute subscription.customer_notify
@@ -62,7 +62,7 @@ module Razorpay
 
     def test_subscription_cancel_scheduled_changes
       stub_post(%r{subscriptions/#{@subscription_id}/cancel_scheduled_changes$}, 'fake_pending_update', {})
-      subscription = Razorpay::Subscription.cancelScheduledChanges @subscription_id
+      subscription = Razorpay::Subscription.cancel_scheduled_changes @subscription_id
       assert_instance_of Razorpay::Subscription, subscription, 'not an instance of Subscription class'
       assert_equal "active", subscription.status
       refute subscription.customer_notify
@@ -70,7 +70,7 @@ module Razorpay
 
     def test_subscription_delete_offer
       stub_delete(%r{subscriptions/#{@subscription_id}/#{@offer_id}$}, 'fake_pending_update', {})
-      subscription = Razorpay::Subscription.deleteOffer @subscription_id @offer_id
+      subscription = Razorpay::Subscription.delete_offer(@subscription_id,@offer_id)
       assert_instance_of Razorpay::Subscription, subscription, 'not an instance of Subscription class'
       assert_equal "active", subscription.status
       refute subscription.customer_notify
@@ -92,6 +92,29 @@ module Razorpay
       assert_equal 'created', subscription.status, 'Subscription status is accessible'
 
       assert_subscription_details(subscription)
+    end
+
+    def test_subscription_should_be_edited
+
+      subscription_attrs = {
+        "plan_id":"plan_00000000000002",
+        "offer_id":"offer_JHD834hjbxzhd38d",
+        "quantity":5,
+        "remaining_count":5,
+        "start_at":1496000432,
+        "schedule_change_at":"now",
+        "customer_notify":1
+      }
+
+      stub_patch(%r{/subscriptions/#{@subscription_id}$}, 'fake_subscription', subscription_attrs.to_json)
+
+      subscription = Razorpay::Subscription.fetch(@subscription_id).edit(subscription_attrs.to_json)
+      assert_instance_of Razorpay::Subscription, subscription, 'not an instance of Subscription class'
+
+       assert_equal @subscription_id, subscription.id, 'Subscription IDs do not match'
+       assert_equal 'created', subscription.status, 'Subscription status is accessible'
+
+      #assert_subscription_details(subscription)
     end
 
     def test_subscription_should_be_created_with_upfront_amount

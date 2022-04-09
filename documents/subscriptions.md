@@ -8,7 +8,7 @@ Razorpay.setup('key_id', 'key_secret')
 ### Create subscription
 
 ```rb
-Razorpay::Subscription.create({
+para_attr = {
   "plan_id": "plan_7wAosPWtrkhqZw",
   "customer_notify": 1,
   "quantity": 5,
@@ -27,7 +27,9 @@ Razorpay::Subscription.create({
     "key1": "value3",
     "key2": "value2"
   }
-})
+}
+
+Razorpay::Subscription.create(para_attr)
 ```
 
 **Parameters:**
@@ -80,7 +82,7 @@ Razorpay::Subscription.create({
 ### Create subscription link
 
 ```rb
-Razorpay::Subscription.create({
+para_attr = {
   "plan_id": "plan_HoYg68p5kmuvzD",
   "total_count": 12,
   "quantity": 1,
@@ -103,7 +105,9 @@ Razorpay::Subscription.create({
     "notify_phone": 9123456789,
     "notify_email": "gaurav.kumar@example.com"
   }
-})
+}
+
+Razorpay::Subscription.create(para_attr)
 ```
 
 **Parameters:**
@@ -321,7 +325,17 @@ Razorpay::Subscription.cancel(subscriptionId,options)
 
 subscriptionId = "sub_00000000000002"
 
-Razorpay::Subscription.edit(subscriptionId,options)
+options = {
+  "plan_id":"plan_00000000000002",
+  "offer_id":"offer_JHD834hjbxzhd38d",
+  "quantity":5,
+  "remaining_count":5,
+  "start_at":1496000432,
+  "schedule_change_at":"now",
+  "customer_notify":1
+}
+
+Razorpay::Subscription.fetch(subscriptionId).edit(options)
 ```
 
 **Parameters:**
@@ -372,7 +386,7 @@ Razorpay::Subscription.edit(subscriptionId,options)
 ```rb
 subscriptionId = "sub_00000000000001"
 
-Razorpay::Subscription.fetch(subscriptionId).pendingUpdate
+Razorpay::Subscription.fetch(subscriptionId).pending_update
 ```
 
 **Parameters:**
@@ -421,7 +435,7 @@ Razorpay::Subscription.fetch(subscriptionId).pendingUpdate
 ```rb
 subscriptionId = "sub_00000000000001"
 
-Razorpay::Subscriptions.cancelScheduledChanges(subscriptionId)
+Razorpay::Subscriptions.cancel_scheduled_changes(subscriptionId)
 ```
 
 **Parameters:**
@@ -468,6 +482,8 @@ Razorpay::Subscriptions.cancelScheduledChanges(subscriptionId)
 ### Pause a subscription
 
 ```rb
+subscriptionId = "sub_00000000000001"
+
 options = { "pause_at" : "now" }
 
 Razorpay::Subscriptions.pause(subscriptionId,options)
@@ -519,6 +535,8 @@ Razorpay::Subscriptions.pause(subscriptionId,options)
 ### Resume a subscription
 
 ```rb
+subscriptionId = "sub_00000000000001"
+
 options = {"resume_at": "now"}
 
 Razorpay::Subscriptions.resume(subscriptionId,options)
@@ -677,7 +695,7 @@ subscriptionId = "sub_I3GGEs7Xgmnozy"
 
 offerId = "offer_JCTD1XMlUmzF6Z"
 
-Razorpay::Subscriptions.deleteOffer(subscriptionId, offerId)
+Razorpay::Subscriptions.delete_offer(subscriptionId, offerId)
 ```
 
 **Parameters:**

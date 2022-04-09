@@ -33,15 +33,15 @@ module Razorpay
       with_a_bang { cancel options }
     end
 
-    def self.edit(id, options = {})
-      request.patch id, options
+    def edit(options = {})
+      self.class.request.patch id, options
     end
 
-    def pendingUpdate
+    def pending_update
       self.class.request.get "#{id}/retrieve_scheduled_changes"
     end
 
-    def self.cancelScheduledChanges(id)
+    def self.cancel_scheduled_changes(id)
       request.post "#{id}/cancel_scheduled_changes"
     end
 
@@ -53,7 +53,7 @@ module Razorpay
       request.post "#{id}/resume", options
     end
 
-    def self.deleteOffer(id, offerId)
+    def self.delete_offer(id, offerId)
       request.delete "#{id}/#{offerId}"
     end
   end
