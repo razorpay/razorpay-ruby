@@ -42,7 +42,7 @@ module Razorpay
 
     def test_transfer_fetch_settlement_details
       stub_get("#{BASE_URI}transfers/?expand[]=recipient_settlement", 'transfers_collection')
-      transfer = Razorpay::Transfer.fetchSettlements
+      transfer = Razorpay::Transfer.fetch_settlements
       assert_instance_of Razorpay::Collection, transfer , 'Transfer should be an array'
       refute_empty transfer.items , 'Transfer should be more than one'
     end

@@ -28,7 +28,7 @@ module Razorpay
       request.post "#{id}/reversals", options
     end
 
-    def self.fetchSettlements
+    def self.fetch_settlements
       request.get "?expand[]=recipient_settlement"
     end
   end

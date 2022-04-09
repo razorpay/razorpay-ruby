@@ -418,7 +418,7 @@ Razorpay::Transfer.all({
 ### Fetch settlement details
 
 ```rb
-Razorpay::Transfer.fetchSettlements
+Razorpay::Transfer.fetch_settlements
 ```
 
 **Response:**
