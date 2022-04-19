@@ -28,7 +28,7 @@ module Razorpay
       request.post "#{id}/cancel"
     end
     
-    def self.notifyBy(id,medium)
+    def self.notify_by(id,medium)
       request.post "#{id}/notify_by/#{medium}"
     end
   end

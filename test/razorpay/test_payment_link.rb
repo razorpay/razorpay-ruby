@@ -7,7 +7,7 @@ module Razorpay
       @payment_link_id = 'plink_J9feMU9xqHQVWX'
 
       # Any request that ends with payment_link/payment_link_id
-      stub_get(%r{payment_links/#{@customer_id}$}, 'fake_payment_link')
+      stub_get(%r{payment_links/#{@payment_link_id}$}, 'fake_payment_link')
       stub_get(/payment_links$/, 'payment_link_collection')
     end
 
@@ -54,8 +54,8 @@ module Razorpay
         }
       } 
 
-      stub_patch(%r{payment_links/#{@customer_id}$}, 'fake_payment_link', para_attr.to_json)
-      payment_link = Razorpay::PaymentLink.edit(@customer_id, para_attr.to_json)
+      stub_patch(%r{payment_links/#{@payment_link_id}$}, 'fake_payment_link', para_attr.to_json)
+      payment_link = Razorpay::PaymentLink.fetch(@payment_link_id).edit(para_attr.to_json)
       assert_instance_of Razorpay::Entity, payment_link
     end
 
