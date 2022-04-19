@@ -30,7 +30,7 @@ module Razorpay
       stub_get( %r{payments/downtimes$}, 'downtimes_collection')
       payments = Razorpay::Payment.fetch_payment_downtime
       assert_instance_of Razorpay::Collection, payments, 'Payments should be an array'
-      assert !payments.items.empty?, 'payments should be more than one'
+      refute_empty payments.items, 'payments should be more than one'
     end
     
     def test_payments_fetch_downtime_by_id
