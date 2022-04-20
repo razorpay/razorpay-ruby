@@ -6,11 +6,7 @@ module Razorpay
   # saved with Razorpay
   # Docs: https://docs.razorpay.com/v1/page/cards
   class Card < Entity
-    def self.request
-      Razorpay::Request.new('cards')
-    end
-
-    def self.fetch(id)
+    def fetch(id)
       request.fetch id
     end
   end

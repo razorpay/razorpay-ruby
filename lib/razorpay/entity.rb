@@ -5,10 +5,11 @@ module Razorpay
   # This saves data in a hash internally, and makes it available
   # via direct methods
   class Entity
-    attr_reader :attributes
+    attr_reader :attributes, :request
 
-    def initialize(attributes)
+    def initialize(auth_settings: {}, attributes: {})
       @attributes = attributes
+      @request = Razorpay::Request.new('orders', auth_settings)
     end
 
     # This method fakes attr_reader, but uses

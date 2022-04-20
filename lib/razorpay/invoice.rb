@@ -5,36 +5,32 @@ module Razorpay
   # Invoice API allows you to create and
   # manage invoices with Razorpay
   class Invoice < Entity
-    def self.request
-      Razorpay::Request.new('invoices')
-    end
-
-    def self.create(options)
+    def create(options)
       request.create options
     end
 
-    def self.fetch(id)
+    def fetch(id)
       request.fetch id
     end
 
-    def self.all(options = {})
+    def all(options = {})
       request.all options
     end
 
-    def self.edit(id, options = {})
+    def edit_with_id(id, options = {})
       request.patch id, options
     end
 
-    def self.issue(id)
+    def issue_with_id(id)
       request.post "#{id}/issue"
     end
 
-    def self.cancel(id)
+    def cancel_with_id(id)
       request.post "#{id}/cancel"
     end
 
     def edit(options = {})
-      self.class.edit id, options
+      edit_with_id id, options
     end
 
     def edit!(options = {})
@@ -42,7 +38,7 @@ module Razorpay
     end
 
     def issue
-      self.class.issue id
+      issue_with_id id
     end
 
     def issue!
@@ -50,7 +46,7 @@ module Razorpay
     end
 
     def cancel
-      self.class.cancel id
+      cancel_with_id id
     end
 
     def cancel!

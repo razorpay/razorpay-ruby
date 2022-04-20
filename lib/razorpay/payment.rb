@@ -7,24 +7,20 @@ module Razorpay
   # and is used to interact with Payments, the most
   # common type of transactions
   class Payment < Entity
-    def self.request
-      Razorpay::Request.new('payments')
-    end
-
-    def self.fetch(id)
+    def fetch(id)
       request.fetch id
     end
 
-    def self.all(options = {})
+    def all(options = {})
       request.all options
     end
 
-    def self.capture(id, options)
+    def capture_with_id(id, options)
       request.post "#{id}/capture", options
     end
 
     def refund(options = {})
-      self.class.request.post "#{id}/refund", options
+      request.post "#{id}/refund", options
     end
 
     def refund!(options = {})
@@ -34,7 +30,7 @@ module Razorpay
     end
 
     def capture(options)
-      self.class.request.post "#{id}/capture", options
+      request.post "#{id}/capture", options
     end
 
     def capture!(options)
@@ -42,7 +38,7 @@ module Razorpay
     end
 
     def refunds
-      self.class.request.get "#{id}/refunds"
+      request.get "#{id}/refunds"
     end
 
     def method
@@ -50,7 +46,7 @@ module Razorpay
     end
 
     def bank_transfer
-      self.class.request.get "#{id}/bank_transfer"
+      request.get "#{id}/bank_transfer"
     end
   end
 end

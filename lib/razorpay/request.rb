@@ -11,7 +11,7 @@ module Razorpay
 
     ssl_ca_file File.dirname(__FILE__) + '/../ca-bundle.crt'
 
-    def initialize(entity_name = nil)
+    def initialize(entity_name = nil, auth_settings = {})
       self.class.base_uri(Razorpay::BASE_URI)
       @entity_name = entity_name
       custom_headers = Razorpay.custom_headers || {}
@@ -21,7 +21,7 @@ module Razorpay
       # Order is important to give precedence to predefined headers
       headers = custom_headers.merge(predefined_headers)
       @options = {
-        basic_auth: Razorpay.auth,
+        basic_auth: auth_settings,
         timeout: 30,
         headers: headers
       }
@@ -93,7 +93,7 @@ module Razorpay
         # Use Entity class if we don't find any
         klass = Razorpay::Entity
       end
-      klass.new(response)
+      klass.new(attributes: response)
     end
 
     def raise_error(error, status)

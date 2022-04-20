@@ -4,19 +4,15 @@ require 'razorpay/entity'
 module Razorpay
   # Refund class handles all refund objects
   class Refund < Entity
-    def self.request
-      Razorpay::Request.new('refunds')
-    end
-
-    def self.create(options)
+    def create(options)
       request.create options
     end
 
-    def self.all(options = {})
+    def all(options = {})
       request.all options
     end
 
-    def self.fetch(id)
+    def fetch(id)
       request.fetch id
     end
   end
