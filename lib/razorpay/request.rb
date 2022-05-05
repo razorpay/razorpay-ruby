@@ -42,6 +42,10 @@ module Razorpay
     def get(url)
       request :get, "/#{@entity_name}/#{url}"
     end
+    
+    def delete(url)
+      request :delete, "/#{@entity_name}/#{url}"
+    end
 
     def delete(url)
       request :delete, "/#{@entity_name}/#{url}"
@@ -84,9 +88,9 @@ module Razorpay
     def create_instance(res)
       response = res.parsed_response
 
-      if response.is_a?(Array)==true && response.length == 0
+      if response.is_a?(Array)==true && response.empty?
         response = {}
-      end
+      end     
 
       # if there was an error, throw it
       raise_error(response['error'], res.code) if response.nil? || response.key?('error')
