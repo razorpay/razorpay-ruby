@@ -59,6 +59,10 @@ module Razorpay
       request.all options
     end
 
+    def self.capture(id, options)
+      request.post "#{id}/capture", options
+    end
+
     def refund(options = {})
       self.class.request.post "#{id}/refund", options
     end
