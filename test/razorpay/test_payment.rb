@@ -169,15 +169,21 @@ module Razorpay
     end
 
     def test_payment_capture
-      stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
-      payment = Razorpay::Payment.fetch(@payment_id).capture(amount: 5100)
+
+      para_attr = {
+        amount: 1000,
+        currency: 'INR'
+      }
+
+      stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', para_attr.to_json)
+      payment = Razorpay::Payment.fetch(@payment_id).capture(para_attr.to_json)
       assert_equal 'captured', payment.status
     end
 
     def test_payment_capture!
-      stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', 'amount=5100')
+      stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', para_attr.to_json)
       payment = Razorpay::Payment.fetch(@payment_id)
-      payment.capture!(amount: 5100)
+      payment.capture!(para_attr.to_json)
       assert_equal 'captured', payment.status
     end
 

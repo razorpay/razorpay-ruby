@@ -484,7 +484,7 @@ para_attr = {
   }
 }
 
-Razorpay::Payment.create_payment_json(para_attr)
+Razorpay::Payment.create_json_payment(para_attr)
 ```
 **Parameters:**
 | Name        | Type    | Description                          |
