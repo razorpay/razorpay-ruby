@@ -191,14 +191,14 @@ module Razorpay
 
       payment_attr = {
         "notes": {
-          "key1": 'value1',
-          "key2": 'value2'
+          "notes_key_1": 'Beam me up Scotty.',
+          "notes_key_2": 'Engage'
         }
-      } 
-      #stub_patch("#{BASE_URI}payments/pay_IY4ljejpy9KUr9", 'fake_update_payment', payment_attr.to_json)
+      }
       stub_patch(%r{payments\/#{@payment_id}$}, 'fake_update_payment', payment_attr.to_json)
       payment = Razorpay::Payment.fetch(@payment_id).edit(payment_attr.to_json)
       assert_equal 'payment', payment.entity
+      assert_equal 'Beam me up Scotty.', payment.notes["notes_key_1"]
     end
 
     def test_payment_create_payment_json

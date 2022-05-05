@@ -15,7 +15,7 @@ para_attr = {
     "amount": 1000,
     "currency" : "INR"
 }
-Razorpay::Payment.capture(paymentId, amount, currency)
+Razorpay::Payment.capture(paymentId, para_attr)
 ```
 
 **Parameters:**
@@ -23,8 +23,8 @@ Razorpay::Payment.capture(paymentId, amount, currency)
 | Name      | Type    | Description                                                                    |
 |-----------|---------|--------------------------------------------------------------------------------|
 | paymentId* | string  | Id of the payment to capture                                                   |
-| amount*    | integer | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency   | string  | The currency of the payment (defaults to INR)                                  |
+| para_attr["amount"]*    | integer | The amount to be captured (should be equal to the authorized amount, in paise) |
+| para_attr["currency"]*   | string  | The currency of the payment (defaults to INR)                                  |
 
 **Response:**
 ```json
@@ -185,7 +185,7 @@ Razorpay::Payment.fetch(paymentId)
 ```rb
 orderId = "order_DovFx48wjYEr2I"
 
-Razorpay::Payment.fetch(orderId).payments
+Razorpay::Order.fetch(orderId).payments
 ```
 **Parameters**
 
@@ -368,8 +368,9 @@ Razorpay::Payment.fetch_payment_downtime_by_id(downtimeId)
 |-------------|---------|--------------------------------------|
 | downtimeId* | string  | Id to fetch payment downtime         |
 
-**Response:**
+**Response:** <br>
 For payment downtime by id response please click [here](https://razorpay.com/docs/api/payments/downtime/#fetch-payment-downtime-details-by-id)
+
 -------------------------------------------------------------------------------------------------------
 
 ### Payment capture settings API
@@ -418,6 +419,52 @@ Razorpay::Order.create(para_attr)
 ```
 -------------------------------------------------------------------------------------------------------
 
+### Create a Recurring Payment
+
+```rb
+para_attr = {
+  "email": "gaurav.kumar@example.com",
+  "contact": "9123456789",
+  "amount": 1000,
+  "currency": "INR",
+  "order_id": "order_1Aa00000000002",
+  "customer_id": "cust_1Aa00000000001",
+  "token": "token_1Aa00000000001",
+  "recurring": "1",
+  "description": "Creating recurring payment for Gaurav Kumar",
+  "notes": {
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
+  }
+}
+Razorpay::Payment.create_recurring_payment(para_attr)
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| email*          | string | The customer's email address.                                               |
+| contact*        | string  | The customer's phone number.                      |
+| amount*         | integer  | The amount you want to charge your customer. This should be the same as the amount in the order.                        |
+| currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
+| order_id*        | string  | The unique identifier of the order created. |
+| customer_id*        | string  | The `customer_id` for the customer you want to charge.  |
+| token*        | string  | The `token_id` generated when the customer successfully completes the authorization payment. Different payment instruments for the same customer have different `token_id`.|
+| recurring*        | string  | Determines if recurring payment is enabled or not. Possible values:<br>* `1` - Recurring is enabled.* `0` - Recurring is not enabled.|
+| description*        | string  | A user-entered description for the payment.|
+| notes*        | object  | Key-value pair that can be used to store additional information about the entity. Maximum 15 key-value pairs, 256 characters (maximum) each. |
+
+**Response:**
+```json
+{
+  "razorpay_payment_id" : "pay_1Aa00000000001",
+  "razorpay_order_id" : "order_1Aa00000000001",
+  "razorpay_signature" : "9ef4dffbfd84f1318f6739a3ce19f9d85851857ae648f114332d8401e0949a3d"
+}
+```
+-------------------------------------------------------------------------------------------------------
+
 ### Create Payment Json
 
 ```rb
@@ -437,10 +484,24 @@ para_attr = {
   }
 }
 
-Razorpay::Payment.create_recurring_payment(para_attr)
+Razorpay::Payment.create_payment_json(para_attr)
 ```
-
 **Parameters:**
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| amount*          | integer | Amount of the order to be paid  |
+| currency*   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id*        | string  | The unique identifier of the order created. |
+| email*        | string      | Email of the customer                       |
+| contact*      | string      | Contact number of the customer              |
+| method*      | string  | Possible value is `card`, `netbanking`, `wallet`,`emi`, `upi`, `cardless_emi`, `paylater`.  |
+| card      | array      | All keys listed [here](https://razorpay.com/docs/payments/payment-gateway/s2s-integration/payment-methods/#supported-payment-fields) are supported  |
+| bank      | string      | Bank code of the bank used for the payment. Required if the method is `netbanking`.|
+| bank_account | array      | All keys listed [here](https://razorpay.com/docs/payments/customers/customer-fund-account-api/#create-a-fund-account) are supported |
+| vpa      | string      | Virtual payment address of the customer. Required if the method is `upi`. |
+| wallet | string      | Wallet code for the wallet used for the payment. Required if the method is `wallet`. |
+| notes | array  | A key-value pair  |
+
  please refer this [doc](https://razorpay.com/docs/payment-gateway/s2s-integration/payment-methods/) for params
 
 **Response:** <br>
