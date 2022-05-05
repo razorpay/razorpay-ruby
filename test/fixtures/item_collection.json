@@ -1,0 +1,24 @@
+{
+    "entity": "collection",
+    "count": 1,
+    "items": [
+      {
+        "id": "item_J7lZCyxMVeEtYB",
+        "active": true,
+        "name": "Test item",
+        "description": null,
+        "amount": 1000,
+        "unit_amount": 1000,
+        "currency": "INR",
+        "type": "invoice",
+        "unit": null,
+        "tax_inclusive": false,
+        "hsn_code": null,
+        "sac_code": null,
+        "tax_rate": null,
+        "tax_id": null,
+        "tax_group_id": null,
+        "created_at": 1647434940
+      }
+    ]
+  }
