@@ -47,6 +47,10 @@ module Razorpay
       request :delete, "/#{@entity_name}/#{url}"
     end
 
+    def delete(url)
+      request :delete, "/#{@entity_name}/#{url}"
+    end
+
     def put(id, data = {})
       request :put, "/#{@entity_name}/#{id}", data
     end
@@ -87,7 +91,7 @@ module Razorpay
       if response.is_a?(Array)==true && response.empty?
         response = {}
       end     
-       
+
       # if there was an error, throw it
       raise_error(response['error'], res.code) if response.nil? || response.key?('error')
 
