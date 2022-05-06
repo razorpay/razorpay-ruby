@@ -5,9 +5,12 @@ module Razorpay
   class RazorpayTransferTest < Minitest::Test
     def setup
       @transfer_id = 'trf_JDEnyfvGu22ECp'
+
+      # Any request that ends with transfers/transfer_id
+      stub_get(%r{/transfers/#{@transfer_id}$}, 'fake_transfer')
     end
 
-    def test_refund_should_be_defined
+    def test_transfer_should_be_defined
       refute_nil Razorpay::Transfer
     end
 
@@ -16,9 +19,10 @@ module Razorpay
           "amount":100
       }  
       stub_post(%r{/transfers/#{@transfer_id}/reversals$}, 'fake_transfer_reverse', para_attr.to_json)
-      transfer = Razorpay::Transfer.reverse(@transfer_id,para_attr.to_json)
-      assert_instance_of Razorpay::Entity, transfer
-      assert_equal transfer.transfer_id, @transfer_id, 'Transfer transfer_id is accessible'
+      transfer = Razorpay::Transfer.fetch(@transfer_id)
+      transfer.reverse(para_attr.to_json)
+      assert_instance_of Razorpay::Transfer, transfer, 'Transfer not an instance of Transfer class'
+      assert_equal transfer.id, @transfer_id, 'Transfer transfer_id is accessible'
     end
 
     def test_transfer_edit
@@ -26,18 +30,18 @@ module Razorpay
         "on_hold": "1",
         "on_hold_until": "1679691505"
       }
-
       stub_patch(%r{/transfers/#{@transfer_id}$}, 'fake_transfer', para_attr.to_json)
-      transfer = Razorpay::Transfer.edit(@transfer_id,para_attr.to_json)
+      transfer = Razorpay::Transfer.fetch(@transfer_id)
+      transfer.edit(para_attr.to_json);
       assert_instance_of Razorpay::Transfer, transfer, 'Transfer not an instance of Transfer class'
       assert_equal transfer.id, @transfer_id, 'Transfer transfer_id is accessible'
     end
 
     def test_transfer_fetch
-      stub_get(%r{/transfers/#{@transfer_id}$}, 'fake_transfer')
       transfer = Razorpay::Transfer.fetch(@transfer_id)
       assert_instance_of Razorpay::Transfer, transfer, 'Transfer not an instance of Transfer class'
       assert_equal transfer.id, @transfer_id , 'Transfer transfer_id is accessible'
+      refute transfer.on_hold
     end
 
     def test_transfer_fetch_settlement_details

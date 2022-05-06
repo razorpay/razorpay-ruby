@@ -556,11 +556,11 @@ Razorpay::Payment.all
 ```rb
 transferId = "trf_EAznuJ9cDLnF7Y"
 
-data = {
+para_attr = {
     "amount":100
 }
 
-Razorpay::Transfer.reverse(transferId,data)
+Razorpay::Transfer.fetch(transferId).reverse(para_attr)
 ```
 
 **Parameters:**
@@ -604,14 +604,14 @@ para_attr = {
   ]
 }
 
-Razorpay::Payment.transfer(paymentId,para_attr)
+Razorpay::Payment.fetch(paymentId).transfer(para_attr)
 ```
 
 **Parameters:**
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| paymentId*   | string      | The id of the payment to be fetched  |
+| transferId*   | string      | The id of the transfer to be fetched  |
 | transfers   | array     | All parameters listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
 
 **Response:**
@@ -651,7 +651,7 @@ para_attr = {
   "on_hold": "1",
   "on_hold_until": "1679691505"
 }
-Razorpay::Transfer.edit(paymentId,para_attr)
+Razorpay::Transfer.fetch(paymentId).edit(para_attr)
 ```
 
 **Parameters:**

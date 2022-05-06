@@ -17,15 +17,15 @@ module Razorpay
     end
 
     def self.fetch(id)
-      request.fetch "#{id}"
+      request.fetch id
     end
 
-    def self.edit(id, options = {})
-      request.patch id, options
+    def edit(options = {})
+      self.class.request.patch id, options
     end
 
-    def self.reverse(id, options = {})
-      request.post "#{id}/reversals", options
+    def reverse(options = {})
+      self.class.request.post "#{id}/reversals", options
     end
 
     def self.fetch_settlements

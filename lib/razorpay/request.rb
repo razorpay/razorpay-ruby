@@ -93,8 +93,7 @@ module Razorpay
       end     
 
       # if there was an error, throw it
-      raise_error(response['error'], res.code) if response.nil? || response.key?('error')
-
+      raise_error(response['error'], res.code) if response.nil? || response.key?('error') && res.code !=200
       # There must be a top level entity
       # This is either one of payment, refund, or collection at present
       begin
