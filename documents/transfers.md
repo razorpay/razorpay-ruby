@@ -8,6 +8,9 @@ Razorpay.setup('key_id', 'key_secret')
 ### Create transfers from payment
 
 ```rb
+
+paymentId = "pay_E8JR8E0XyjUSZd"
+
 para_attr = {
    "transfers": [
     {
@@ -116,7 +119,13 @@ Razorpay::Order.create(para_attr)
 | amount*   | integer      | The transaction amount, in paise |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 |  receipt      | string      | A unique identifier provided by you for your internal reference. |
-| transfers   | object     | All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-orders) are supported |
+| transfers["account"]*   | string     | The id of the account to be fetched   |
+| transfers["amount"]*   | integer     | The transaction amount, in paise |
+| transfers["currency"]*   | string     | The currency of the payment (defaults to INR)  |
+| transfers["notes"]   | object     | Key-value pair that can be used to store additional  |
+| transfers["linked_account_notes"]   | array     | A key-value pair  |
+| transfers["on_hold"]*   | boolean     | Possible values is `0` or `1`  |
+| transfers["on_hold_until"]   | integer     | Timestamp, in Unix, that indicates until when the settlement of the transfer must be put on hold |
 
 **Response:**
 ```json
@@ -213,6 +222,8 @@ Razorpay::Transfer.create(para_attr)
 ### Fetch transfer for a payment
 
 ```rb
+paymentId = "pay_E8JR8E0XyjUSZd"
+
 para_attr = {
    "transfers": [
     {
@@ -465,12 +476,12 @@ Razorpay::Transfer.fetch_settlements
 ```rb
 paymentId = "pay_EAdwQDe4JrhOFX"
 
-options = {
+para_attr = {
     "amount" : 100,
     "reverse_all" : 1
 }
 
-Razorpay::Payment.fetch(paymentId).refund(options)
+Razorpay::Payment.fetch(paymentId).refund(para_attr)
 ```
 
 **Parameters:**
@@ -651,15 +662,16 @@ para_attr = {
   "on_hold": "1",
   "on_hold_until": "1679691505"
 }
-Razorpay::Transfer.fetch(paymentId).edit(para_attr)
+Razorpay::Transfer.fetch(transferId).edit(para_attr)
 ```
 
 **Parameters:**
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| paymentId*   | string      | The id of the payment to be fetched  |
-| transfers   | array     | All parameters listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
+| transferId*   | string      | The id of the transfer to be fetched  |
+| on_hold*   | boolean      | Possible values is `0` or `1`  |
+| on_hold_until   | integer      | Timestamp, in Unix, that indicates until when the settlement of the transfer must be put on hold |
 
 **Response:**
 ```json
