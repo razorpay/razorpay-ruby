@@ -10,9 +10,15 @@ module Razorpay
       # attributes.sort returns a nested array, and the last
       # element of each is the value. These are joined.
       data = attributes.sort.map(&:last).join('|')
-
       secret = Razorpay.auth[:password]
+      verify_signature(data, signature, secret)
+    end
 
+    def self.verify_payment_link_signature(attributes)
+      signature = attributes.delete(:razorpay_signature)
+      # element of each is the value. These are joined.
+      data = attributes.values.join('|')
+      secret = Razorpay.auth[:password]
       verify_signature(data, signature, secret)
     end
 
@@ -25,7 +31,6 @@ module Razorpay
 
       def verify_signature(data, signature, secret)
         expected_signature = OpenSSL::HMAC.hexdigest('SHA256', secret, data)
-
         verified = secure_compare(expected_signature, signature)
 
         raise SecurityError, 'Signature verification failed' unless verified

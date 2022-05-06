@@ -5,7 +5,7 @@ module Razorpay
   class RazorpayInvoiceTest < Minitest::Test
     def setup
       @invoice_id = 'inv_6vRZmJYFAG1mNq'
-
+      @medium = "email"
       # Any request that ends with invoices/invoice_id
       stub_get(%r{invoices/#{@invoice_id}$}, 'fake_invoice')
     end
@@ -117,7 +117,6 @@ module Razorpay
       refute_nil invoice.invoice_number
     end
 
-    private
 
     def assert_invoice_details(invoice)
       assert_equal 'cust_6vRXClWqnLhV14', invoice.customer_id
@@ -125,6 +124,20 @@ module Razorpay
       assert_equal 'INR', invoice.currency
       assert_equal 'Test description', invoice.description
       assert_equal 'invoice', invoice.type
+    end
+
+    def test_delete_specific_invoice
+      stub_delete(%r{invoices/#{@invoice_id}$}, 'empty')
+      invoice = Razorpay::Invoice.delete(@invoice_id)
+      assert_instance_of Razorpay::Entity, invoice, 'invoice not an instance of Razorpay::Invoice class'
+      refute_nil invoice
+    end
+
+    def test_invoice_notifyBy
+      stub_post(%r{invoices/#{@invoice_id}/notify_by/#{@medium}$}, 'success', {})
+      invoice = Razorpay::Invoice.notify_by(@invoice_id,@medium)
+      assert_instance_of Razorpay::Entity, invoice, 'invoice not an instance of Razorpay::Invoice class'
+      assert invoice
     end
   end
 end

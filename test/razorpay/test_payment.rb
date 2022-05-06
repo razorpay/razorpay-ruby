@@ -4,7 +4,7 @@ module Razorpay
   # Tests for Razorpay::Payment
   class RazorpayPaymentTest < Minitest::Test
     def setup
-      @payment_id = 'fake_payment_id'
+      @payment_id = 'pay_FFX5FdEYx8jPwA'
 
       # Any request that ends with payments/payment_id
       stub_get(%r{payments\/#{@payment_id}$}, 'fake_payment')
