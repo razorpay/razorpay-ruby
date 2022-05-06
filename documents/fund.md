@@ -7,7 +7,7 @@ Razorpay.setup('key_id', 'key_secret')
 
 ### Create a fund account
 ```rb
-data = {
+para_attr = {
   "customer_id":"cust_Aa000000000001",
   "account_type":"bank_account",
   "bank_account":{
