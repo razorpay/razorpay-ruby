@@ -8,7 +8,7 @@ module Razorpay
       @fund_account_id = 'fa_J8B38pGr1Tfv8k'
     end
 
-    def test_customer_should_be_defined
+    def test_fund_account_should_be_defined
       refute_nil Razorpay::FundAccount
     end
 
@@ -32,10 +32,11 @@ module Razorpay
     
     def test_fetch_all_refunds_accounts
       
-      para_attr = {"customer_id": "cust_I3FToKbnExwDLu"}
+      para_attr = {"customer_id": @customer_id}
       stub_get(/fund_accounts/, 'refund_collection_for_payment', para_attr.to_json)
       fund_accounts = Razorpay::FundAccount.all(para_attr.to_json)
-      assert_instance_of Razorpay::Collection, fund_accounts 'FundAccounts should be an array'
+      assert_instance_of Razorpay::Collection, fund_accounts, 'FundAccounts should be an array'
+      assert !fund_accounts.items.empty?, 'FundAccounts should be more than one'
     end
   end
 end
