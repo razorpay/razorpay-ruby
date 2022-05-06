@@ -19,5 +19,9 @@ module Razorpay
     def self.fetch(id)
       request.fetch id
     end
+
+    def edit(options = {})
+      self.class.request.patch id, options
+    end
   end
 end

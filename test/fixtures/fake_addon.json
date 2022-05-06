@@ -1,8 +1,8 @@
 {
-  "id": "fake_addon_id",
+  "id": "ao_IrSY3UIqDRx7df",
   "entity": "addon",
   "item": {
-    "id": "fake_item_id",
+    "id": "item_00000000000001",
     "active": true,
     "name": "fake_item_name",
     "description": "fake_item_description",
@@ -19,6 +19,6 @@
   },
   "quantity": 1,
   "created_at": 1511525697,
-  "subscription_id": "fake_subscription_id",
+  "subscription_id": "sub_00000000000001",
   "invoice_id": null
 }
