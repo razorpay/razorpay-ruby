@@ -622,7 +622,7 @@ Razorpay::Payment.fetch(paymentId).transfer(para_attr)
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| transferId*   | string      | The id of the transfer to be fetched  |
+| paymentId*   | string      | The id of the transfer to be fetched  |
 | transfers   | array     | All parameters listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
 
 **Response:**
