@@ -22,7 +22,6 @@ module Razorpay
     end
 
     def self.create(options={})
-     
       if(!options.is_a?(String) && options.key?(:settle_full_balance))
         options[:settle_full_balance] = (options[:settle_full_balance] ? 1 : 0)
       end 
@@ -33,8 +32,8 @@ module Razorpay
       request.get "ondemand", options
     end
 
-    def fetch_ondemand_settlement_by_id
-      self.class.request.get "ondemand/#{id}"
+    def self.fetch_ondemand_settlement_by_id(id, options={})
+      request.get "ondemand/#{id}", options
     end
   end
 end

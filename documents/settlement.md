@@ -9,9 +9,9 @@ Razorpay.setup('key_id', 'key_secret')
 ### Fetch all  settlements
 
 ```rb
-options = {"count": 2}
+para_attr = {"count": 2}
 
-Razorpay::Settlement.all(options)
+Razorpay::Settlement.all(para_attr)
 ```
 
 **Parameters:**
@@ -429,9 +429,9 @@ Razorpay::Settlement.create(param_attr)
 ### Fetch all on-demand settlements
 
 ```rb
-options = {"count":1}
+para_attr = {"count":1}
 
-Razorpay::Settlement.fetch_all_ondemand_settlement(options)
+Razorpay::Settlement.fetch_all_ondemand_settlement(para_attr)
 ```
 **Parameters:**
 
@@ -452,7 +452,11 @@ For all on-demand settlements response please click [here](https://razorpay.com/
 ```rb
 settlementId = "setl_DGlQ1Rj8os78Ec"
 
-Razorpay::Settlement.fetch(settlementId).fetch_ondemand_settlement_by_id;
+para_attr = {
+  "expand[]": "ondemand_payouts"
+}
+
+Razorpay::Settlement.fetch_ondemand_settlement_by_id(settlementId, para_attr);
 ```
 
 **Parameters:**
@@ -460,6 +464,7 @@ Razorpay::Settlement.fetch(settlementId).fetch_ondemand_settlement_by_id;
 | Name       | Type   | Description                       |
 |------------|--------|-----------------------------------|
 | settlementId* | string | Settlement Id of the On-demand settlement|
+|expand[] | string | Pass this if you want to fetch payout details as part of the response. Possible values is `ondemand_payouts`|
 
 **Response:**
 For on-demand settlement by ID response please click [here](https://razorpay.com/docs/api/settlements/#fetch-on-demand-settlements-by-id)

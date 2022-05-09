@@ -68,7 +68,7 @@ module Razorpay
 
     def test_fetch_ondemand_settle_by_id
       stub_get(%r{settlements/ondemand/#{@settlement_id}$}, 'fake_instant_settlement')  
-      settlement = Razorpay::Settlement.fetch(@settlement_id).fetch_ondemand_settlement_by_id
+      settlement = Razorpay::Settlement.fetch_ondemand_settlement_by_id(@settlement_id)
       assert_equal @settlement_ondemand_id, settlement.id, 'Settlement IDs do not match'
       refute settlement.settle_full_balance  
     end
