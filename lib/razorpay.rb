@@ -13,6 +13,7 @@ require 'razorpay/plan'
 require 'razorpay/subscription'
 require 'razorpay/addon'
 require 'razorpay/settlement'
+require 'razorpay/item'
 
 # Base Razorpay module
 module Razorpay
