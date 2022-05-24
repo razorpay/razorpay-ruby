@@ -573,7 +573,6 @@ Razorpay::Payment.otp_generate(paymentId, para_attr)
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| paymentId*    | integer | Unique identifier of the payment                                               |
 | paymentId*    | integer | Unique identifier of the payment  |
 | otp*    | string | The customer receives the OTP using their preferred notification medium - SMS or email |
 
