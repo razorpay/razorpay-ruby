@@ -17,7 +17,7 @@ para_attr = {
   }
 }
 
-Razorpay::FundAccound.create(data)
+Razorpay::FundAccount.create(data)
 ```
 
 **Parameters:**
@@ -53,7 +53,7 @@ Razorpay::FundAccound.create(data)
 para_attr = {
     "customer_id": "cust_I3FToKbnExwDLu"
 }
-Razorpay::FundAccound.all(para_attr)
+Razorpay::FundAccount.all(para_attr)
 ```
 
 **Parameters:**
