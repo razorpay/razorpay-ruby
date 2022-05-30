@@ -179,7 +179,7 @@ Razorpay::Order.create(para_attr)
 ### Direct transfers
 
 ```rb
-para_attr = 
+para_attr = {
   "account": accountId,
   "amount": 500,
   "currency": "INR"
@@ -224,31 +224,12 @@ Razorpay::Transfer.create(para_attr)
 ```rb
 paymentId = "pay_E8JR8E0XyjUSZd"
 
-para_attr = {
-   "transfers": [
-    {
-      "account": 'acc_HgzcrXeSLfNP9U',
-      "amount": 100,
-      "currency": "INR",
-      "notes": {
-        "name": "Gaurav Kumar",
-        "roll_no": "IEC2011025"
-      },
-      "linked_account_notes": [
-        "branch"
-      ],
-      "on_hold": 1,
-      "on_hold_until": 1671222870
-    }
-  ]
- }
-
-Razorpay::Payment.fetch(paymentId).transfer(para_attr)
+Razorpay::Payment.fetch_transfer(paymentId)
 ```
 
 **Parameters:**
 
-| Name          | Type        | Description                                 |
+| Name          | Type        | Description                                |
 |---------------|-------------|---------------------------------------------|
 | paymentId*   | string      | The id of the payment to be fetched  |
 
