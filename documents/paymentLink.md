@@ -50,8 +50,6 @@ para_attr = {
   "upi_link": true,
   "amount": 500,
   "currency": "INR",
-  "accept_partial": true,
-  "first_min_partial_amount": 100,
   "description": "For XYZ purpose",
   "customer": {
     "name": "Gaurav Kumar",
