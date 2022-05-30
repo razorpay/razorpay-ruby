@@ -30,10 +30,10 @@ module Razorpay
       assert_equal @fund_account_id, fund_account.id
     end
     
-    def test_fetch_all_refunds_accounts
+    def test_fetch_all_fund_accounts
       
       para_attr = {"customer_id": @customer_id}
-      stub_get(/fund_accounts/, 'refund_collection_for_payment', para_attr.to_json)
+      stub_get(/fund_accounts/, 'fund_collection', para_attr.to_json)
       fund_accounts = Razorpay::FundAccount.all(para_attr.to_json)
       assert_instance_of Razorpay::Collection, fund_accounts, 'FundAccounts should be an array'
       assert !fund_accounts.items.empty?, 'FundAccounts should be more than one'

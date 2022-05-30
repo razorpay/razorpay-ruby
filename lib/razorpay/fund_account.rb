@@ -2,8 +2,7 @@ require 'razorpay/request'
 require 'razorpay/entity'
 
 module Razorpay
-  # Order API allows you to associate
-  # Payments with an order entity
+  # FundAccount API allows you to create and fetch a fund account for a customer. 
   class FundAccount < Entity
     def self.request
       Razorpay::Request.new('fund_accounts')
