@@ -2,7 +2,8 @@ require 'razorpay/request'
 require 'razorpay/entity'
 
 module Razorpay
-  # PaymentLink API allows you to create and fetch customers on Razorpay
+  # Payment Links are URLs that you can send to your customers 
+  # through SMS and email to collect payments from them.
   class PaymentLink < Entity
     def self.request
       Razorpay::Request.new('payment_links')

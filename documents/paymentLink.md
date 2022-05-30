@@ -130,6 +130,9 @@ For fetch specific payment link response please click [here](https://razorpay.co
 ### Update payment link
 
 ```rb
+
+Razorpay.headers = {"Content-type" => "application/json"}
+
 paymentLinkId = "plink_ExjpAUN3gVHrPJ"
 
 para_attr = {
@@ -141,7 +144,7 @@ para_attr = {
     }
 }
 
-Razorpay::PaymentLink.edit(paymentLinkId, para_attr)
+Razorpay::PaymentLink.edit(paymentLinkId, para_attr.to_json)
 ```
 
 **Parameters:**

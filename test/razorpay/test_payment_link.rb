@@ -55,8 +55,9 @@ module Razorpay
       } 
 
       stub_patch(%r{payment_links/#{@payment_link_id}$}, 'fake_payment_link', para_attr.to_json)
-      payment_link = Razorpay::PaymentLink.fetch(@payment_link_id).edit(para_attr.to_json)
+      payment_link = Razorpay::PaymentLink.edit(@payment_link_id,para_attr.to_json)
       assert_instance_of Razorpay::Entity, payment_link
+      assert true, payment_link.accept_partial
     end
 
     def test_fetch_all_payment_link
@@ -75,9 +76,9 @@ module Razorpay
    def test_notify_by_id
       param_attr = {}
       stub_post(%r{payment_links/#{@payment_link_id}/notify_by/email$}, 'payment_link_response',{})  
-      payment_link = Razorpay::PaymentLink.notifyBy(@payment_link_id,"email")
+      payment_link = Razorpay::PaymentLink.notify_by(@payment_link_id,"email")
       assert_instance_of Razorpay::Entity, payment_link
-      assert_equal payment_link.id, @payment_link_id
+      assert true, payment_link.success
     end
   end
 end
