@@ -20,13 +20,9 @@ module Razorpay
     def self.all(options = {})
       request.all options
     end
-
+    
     def self.close(id)
-      request.patch id, status: 'closed'
-    end
-
-    def close
-      self.class.request.patch id, status: 'closed'
+       request.post "#{id}/close"
     end
 
     def close!

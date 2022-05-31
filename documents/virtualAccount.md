@@ -482,7 +482,7 @@ For add receiver to an existing virtual account response please click [here](htt
 virtualId = "va_Di5gbNptcWV8fQ"
 
 para_attr = {
-  "types": "bank_account",
+  "type": "bank_account",
   "bank_account": {
     "ifsc": "UTIB0000013",
     "account_number": 914010012345679
@@ -497,7 +497,7 @@ Razorpay::VirtualAccount.allowed_payer(virtualId, para_attr)
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
 | virtualId*  | string    | The id of the virtual to be updated  |
-| types*  | object | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
+| type*  | object | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
 | bank_account*    | object | Indicates the bank account details such as `ifsc` and `account_number` |
 
 **Response:**

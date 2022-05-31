@@ -84,9 +84,9 @@ module Razorpay
     def create_instance(res)
       response = res.parsed_response
 
-      if (response.is_a?(Array)==true||response.is_a?(Object)==true) && response.to_s.length == 0
-        response = {}
-      end
+      if response.is_a?(Array)==true || response.to_s.length == 0
+        return response
+      end 
 
       # if there was an error, throw it
       raise_error(response['error'], res.code) if response.nil? || response.key?('error')
