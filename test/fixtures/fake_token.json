@@ -1,0 +1,31 @@
+{
+    "id": "token_FHfn3rIiM1Z8nr",
+    "entity": "token",
+    "token": "AJ4E4jY9qRTCbV",
+    "bank": null,
+    "wallet": null,
+    "method": "upi",
+    "vpa": {
+      "username": "test",
+      "handle": "upi",
+      "name": null,
+      "status": "valid",
+      "received_at": 1646308935
+    },
+    "recurring": true,
+    "recurring_details": {
+      "status": "cancelled",
+      "failure_reason": null
+    },
+    "auth_type": null,
+    "mrn": null,
+    "used_at": 1632339010,
+    "created_at": 1630052826,
+    "start_time": 1630052799,
+    "notes": [
+  
+    ],
+    "dcc_enabled": false,
+    "max_amount": 200000,
+    "expired_at": 1945585599
+  }

@@ -87,7 +87,7 @@ module Razorpay
       if response.is_a?(Array)==true || response.to_s.length == 0
         return response
       end 
-
+      
       # if there was an error, throw it
       raise_error(response['error'], res.code) if response.nil? || response.key?('error')
 
