@@ -39,14 +39,10 @@ module Razorpay
       request :post, "/#{@entity_name}/#{url}", data
     end
 
-    def get(url)
-      request :get, "/#{@entity_name}/#{url}"
+    def get(url, data = {})
+      request :get, "/#{@entity_name}/#{url}", data
     end
     
-    def delete(url)
-      request :delete, "/#{@entity_name}/#{url}"
-    end
-
     def delete(url)
       request :delete, "/#{@entity_name}/#{url}"
     end
@@ -67,14 +63,14 @@ module Razorpay
       create_instance raw_request(method, url, data)
     end
 
-    def raw_request(method, url, data = {})
+    def raw_request(method, url, data = {}) 
       case method
       when :get
         @options[:query] = data
       when :post, :put, :patch
         @options[:body] = data
       end
-
+      
       self.class.send(method, url, @options)
     end
 
@@ -88,10 +84,10 @@ module Razorpay
     def create_instance(res)
       response = res.parsed_response
 
-      if response.is_a?(Array)==true && response.empty?
-        response = {}
-      end     
-
+      if response.is_a?(Array)==true || response.to_s.length == 0
+        return response
+      end 
+      
       # if there was an error, throw it
       raise_error(response['error'], res.code) if response.nil? || response.key?('error') && res.code !=200
       # There must be a top level entity

@@ -1,0 +1,46 @@
+{
+    "id": "va_4xbQrmEoA5WJ0G",
+    "name": "Gaurav Kumar",
+    "entity": "virtual_account",
+    "status": "active",
+    "description": null,
+    "amount_expected": null,
+    "notes": [
+        
+    ],
+    "amount_paid": 0,
+    "customer_id": "cust_IOyIY3JvbVny9o",
+    "receivers": [
+      {
+        "id": "ba_J0XikIKgezi6PC",
+        "entity": "bank_account",
+        "ifsc": "RAZR0000001",
+        "bank_name": null,
+        "name": "ankit",
+        "notes": [
+  
+        ],
+        "account_number": "1112220037770200"
+      },
+      {
+        "id": "vpa_J0Xl5aX1Np78Vk",
+        "entity": "vpa",
+        "username": "rzr.payto00000rahulkumar",
+        "handle": "icic",
+        "address": "rzr.payto00000rahulkumar@icic"
+      }
+    ],
+    "allowed_payers": [
+      {
+        "type": "bank_account",
+        "id": "ba_JCo2nGO9uS4mEI",
+        "bank_account": {
+          "ifsc": "RATN0VAAPIS",
+          "account_number": "2223330027558515"
+        }
+      }
+    ],
+    "close_by": null,
+    "closed_at": null,
+    "created_at": 1645857799
+}
