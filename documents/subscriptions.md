@@ -435,7 +435,7 @@ Razorpay::Subscription.fetch(subscriptionId).pending_update
 ```rb
 subscriptionId = "sub_00000000000001"
 
-Razorpay::Subscriptions.cancel_scheduled_changes(subscriptionId)
+Razorpay::Subscription.cancel_scheduled_changes(subscriptionId)
 ```
 
 **Parameters:**
@@ -486,7 +486,7 @@ subscriptionId = "sub_00000000000001"
 
 options = { "pause_at" : "now" }
 
-Razorpay::Subscriptions.pause(subscriptionId,options)
+Razorpay::Subscription.pause(subscriptionId,options)
 ```
 
 **Parameters:**
@@ -539,7 +539,7 @@ subscriptionId = "sub_00000000000001"
 
 options = {"resume_at": "now"}
 
-Razorpay::Subscriptions.resume(subscriptionId,options)
+Razorpay::Subscription.resume(subscriptionId,options)
 ```
 
 **Parameters:**
@@ -695,7 +695,7 @@ subscriptionId = "sub_I3GGEs7Xgmnozy"
 
 offerId = "offer_JCTD1XMlUmzF6Z"
 
-Razorpay::Subscriptions.delete_offer(subscriptionId, offerId)
+Razorpay::Subscription.delete_offer(subscriptionId, offerId)
 ```
 
 **Parameters:**
