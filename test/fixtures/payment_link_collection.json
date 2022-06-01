@@ -1,0 +1,43 @@
+{
+    "entity": "collection",
+    "count": 3,
+    "items": [
+      {
+        "accept_partial": false,
+        "entity": "payment_link",
+        "amount": 100,
+        "amount_paid": 0,
+        "cancelled_at": 0,
+        "created_at": 1602523443,
+        "currency": "INR",
+        "customer": {
+          "contact": "9999999999",
+          "email": "gaurav.kumar@razorpay.com",
+          "name": "Gaurav Kumar"
+        },
+        "description": "Payment for policy no #23456",
+        "expire_by": 0,
+        "expired_at": 0,
+        "first_min_partial_amount": 0,
+        "id": "plink_Fo4T7Ht271epg3",
+        "notes": {
+          "policy_name": "Jeevan Bima"
+        },
+        "notify": {
+          "email": false,
+          "sms": true
+        },
+        "payments": [],
+        "reference_id": "#41956",
+        "reminder_enable": true,
+        "reminders": {
+          "status": "in_progress"
+        },
+        "short_url": "https://rzp.io/i/LXnmFr3a",
+        "status": "created",
+        "updated_at": 1602523443,
+        "upi_link": true,
+        "user_id": ""
+      }
+    ]
+}
