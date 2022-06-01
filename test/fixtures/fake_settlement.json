@@ -1,0 +1,11 @@
+
+{
+    "id": "setl_DGlQ1Rj8os78Ec",
+    "entity": "settlement",
+    "amount": 9973635,
+    "status": "processed",
+    "fees": 471699,
+    "tax": 42070,
+    "utr": "1568176960vxp0rj",
+    "created_at": 1568176960
+}
