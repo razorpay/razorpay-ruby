@@ -47,10 +47,6 @@ module Razorpay
       request :delete, "/#{@entity_name}/#{url}"
     end
 
-    def delete(url)
-      request :delete, "/#{@entity_name}/#{url}"
-    end
-
     def put(id, data = {})
       request :put, "/#{@entity_name}/#{id}", data
     end
