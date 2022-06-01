@@ -1,0 +1,18 @@
+{
+    "id": "trf_JDEnyfvGu22ECp",
+    "entity": "transfer",
+    "source": "pay_EAeSM2Xul8xYRo",
+    "recipient": "acc_CMaomTz4o0FOFz",
+    "amount": 100,
+    "currency": "INR",
+    "amount_reversed": 0,
+    "notes": [],
+    "fees": 1,
+    "tax": 0,
+    "on_hold": true,
+    "on_hold_until": 1679691505,
+    "recipient_settlement_id": null,
+    "created_at": 1580459321,
+    "linked_account_notes": [],
+    "processed_at": 1580459321
+}

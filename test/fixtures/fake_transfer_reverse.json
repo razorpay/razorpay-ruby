@@ -1,0 +1,15 @@
+{
+    "id": "rvrsl_JDEqEA7iKI6SNO",
+    "entity": "reversal",
+    "transfer_id": "trf_JDEnyfvGu22ECp",
+    "amount": 100,
+    "fee": 0,
+    "tax": 0,
+    "currency": "INR",
+    "notes": [
+  
+    ],
+    "initiator_id": "Hn1ukn2d32Fqww",
+    "customer_refund_id": null,
+    "created_at": 1648629734
+}
