@@ -2,8 +2,7 @@ require 'test_helper'
 
 module Razorpay
   # Tests for Razorpay::Addon
-  class RazorpayAddonTest < Minitest::Test
-    class SubscriptionRegistration < Razorpay::Entity; end
+  class RazorpaySubscriptionRegistration < Minitest::Test
 
     def setup
       @invoice_id = 'inv_JA7OELdAoxbzk7'

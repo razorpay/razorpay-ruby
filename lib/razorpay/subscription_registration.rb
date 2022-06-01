@@ -2,8 +2,8 @@ require 'razorpay/request'
 require 'razorpay/entity'
 
 module Razorpay
-  # Addon API allows you to fetch and delete
-  # subscription-addons with Razorpay
+  # SubscriptionRegistration are an alternate way of 
+  # creating an authorization transaction
   class SubscriptionRegistration < Entity
     def self.request
       Razorpay::Request.new('subscription_registration/auth_links')
