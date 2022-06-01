@@ -5,6 +5,7 @@ module Razorpay
   class RazorpayVirtualAccountTest < Minitest::Test
     def setup
       @virtual_account_id = 'va_4xbQrmEoA5WJ0G'
+      @payment_id = 'pay_FFX5FdEYx8jPwA'
       @payer_id = "ba_J3gpYBXh92ZL5M"
 
       @virtual_account_create_array = {
@@ -72,9 +73,9 @@ module Razorpay
     end
 
     def test_fetch_payment_bank_transfer
-      stub_get(%r{payments/fake_payment_id$$}, 'fake_payment')
-      stub_get(%r{payments/fake_payment_id/bank_transfer$}, 'fake_payment_bank_transfer')
-      bank_transfer = Razorpay::Payment.fetch('fake_payment_id').bank_transfer
+      stub_get(%r{payments\/#{@payment_id}$}, 'fake_payment')  
+      stub_get(%r{payments/#{@payment_id}/bank_transfer$}, 'fake_payment_bank_transfer')
+      bank_transfer = Razorpay::Payment.fetch(@payment_id).bank_transfer
       assert_equal @virtual_account_id, bank_transfer.virtual_account_id
       assert_equal 'fake_payment_id', bank_transfer.payment_id
     end
