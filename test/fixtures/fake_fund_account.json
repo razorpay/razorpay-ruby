@@ -1,0 +1,18 @@
+{
+    "id": "fa_J8B38pGr1Tfv8k",
+    "entity": "fund_account",
+    "customer_id": "cust_J3oSNi1KgzqVEX",
+    "account_type": "bank_account",
+    "bank_account": {
+      "ifsc": "HDFC0000053",
+      "bank_name": "HDFC Bank",
+      "name": "Gaurav Kumar",
+      "notes": [
+  
+      ],
+      "account_number": "11214311215411"
+    },
+    "batch_id": null,
+    "active": true,
+    "created_at": 1647524681
+}
