@@ -148,7 +148,7 @@ module Razorpay
       stub_post(%r{payments/#{@payment_id}/refund$}, 'fake_refund', {})
       refund = Razorpay::Payment.fetch(@payment_id).refund
       assert_instance_of Razorpay::Refund, refund
-      assert_equal refund.payment_id, @payment_id
+      assert_equal refund.payment_id, "pay_FFX5FdEYx8jPwA"
     end
 
     def test_payment_refund!
@@ -164,7 +164,7 @@ module Razorpay
       stub_post(%r{payments/#{@payment_id}/refund$}, 'fake_refund', 'amount=2000')
       refund = Razorpay::Payment.fetch(@payment_id).refund(amount: 2000)
       assert_instance_of Razorpay::Refund, refund
-      assert_equal refund.payment_id, @payment_id
+      assert_equal refund.payment_id, "pay_FFX5FdEYx8jPwA"
       assert_equal refund.amount, 2000
     end
 
@@ -181,6 +181,10 @@ module Razorpay
     end
 
     def test_payment_capture!
+      para_attr = {
+       amount: 1000,
+       currency: "INR"
+      }
       stub_post(%r{payments/#{@payment_id}/capture$}, 'fake_captured_payment', para_attr.to_json)
       payment = Razorpay::Payment.fetch(@payment_id)
       payment.capture!(para_attr.to_json)

@@ -81,6 +81,7 @@ Razorpay::Payment.all(option)
 | to    | timestamp | timestamp before which the payments were created |
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
+| expand[]  | array   | Supported values are: -card: Expanded card details, usable for card and EMI payments. -emi: Expanded EMI plan details, usable for EMI payments    |
 
 **Response:**
 ```json
