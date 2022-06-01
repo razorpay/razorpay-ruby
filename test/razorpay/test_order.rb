@@ -5,7 +5,7 @@ module Razorpay
   class RazorpayOrderTest < Minitest::Test
     def setup
       @order_id = 'order_50sX9hGHZJvjjI'
-
+      @transfer_id = 'trf_DSkl2lXWbiADZG'
       # Any request that ends with orders/order_id
       stub_get(%r{orders/#{@order_id}$}, 'fake_order')
     end
@@ -44,5 +44,28 @@ module Razorpay
       assert !payments.items.empty?, 'payments should be more than one'
       assert_equal 'pay_50sbkZA9AcyE5a', payments.items[0]['id'], 'payment id should match'
     end
+
+    def test_edit_order
+      param_attr = {
+        "notes": {
+          "key1": "value3",
+          "key2": "value2"
+        }
+      }
+     
+      stub_patch(%r{orders/#{@order_id}$}, 'fake_order', param_attr.to_json)
+      order = Razorpay::Order.edit(@order_id, param_attr.to_json)
+      assert_instance_of Razorpay::Order, order, 'order not an instance of Razorpay::Order class'
+      assert_equal @order_id, order.id, 'order IDs do not match'
+   end
+
+   def test_fetch_order_transfers
+    stub_get("#{BASE_URI}orders/#{@order_id}/?expand[]=transfers&status", 'fake_order_transfers')
+    order = Razorpay::Order.fetch_transfer_order(@order_id)
+    assert_instance_of Razorpay::Order, order, 'order not an instance of Razorpay::Order class'
+    assert_equal @order_id, order.id, 'order IDs do not match'
+    refute_empty order.transfers["items"]
+    assert_equal @transfer_id, order.transfers["items"][0]["id"]
+   end 
   end
 end
