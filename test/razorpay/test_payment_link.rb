@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Razorpay
   # Tests for Razorpay::PaymentLink
-  class RazorpayCustomerTest < Minitest::Test
+  class RazorpayPaymentLinkTest < Minitest::Test
     def setup
       @payment_link_id = 'plink_J9feMU9xqHQVWX'
 
