@@ -41,7 +41,7 @@ module Razorpay
       transfer = Razorpay::Transfer.fetch(@transfer_id)
       assert_instance_of Razorpay::Transfer, transfer, 'Transfer not an instance of Transfer class'
       assert_equal transfer.id, @transfer_id , 'Transfer transfer_id is accessible'
-      refute transfer.on_hold
+      assert transfer.on_hold
     end
 
     def test_transfer_fetch_settlement_details

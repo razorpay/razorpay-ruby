@@ -5,7 +5,7 @@ module Razorpay
   class RazorpayVirtualAccountTest < Minitest::Test
     def setup
       @virtual_account_id = 'va_4xbQrmEoA5WJ0G'
-      @payment_id = 'pay_FFX5FdEYx8jPwA'
+      @payment_id = 'fake_payment_id'
       @payer_id = "ba_J3gpYBXh92ZL5M"
 
       @virtual_account_create_array = {

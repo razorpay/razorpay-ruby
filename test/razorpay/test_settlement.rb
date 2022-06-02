@@ -55,9 +55,9 @@ module Razorpay
 
         stub_post( %r{settlements/ondemand$},'fake_settlement_on_demand',para_attr.to_json)
         settlement = Razorpay::Settlement.create para_attr.to_json
-        assert_instance_of = Razorpay::Settlement, settlement, 'Settlement should be an array'
+        assert_instance_of Razorpay::Settlement, settlement, 'Settlement should be an array'
         assert_equal @settlement_id , settlement.id
-      end
+    end
     
     def test_fetch_all_instant_settlement
       stub_get(%r{settlements/ondemand$}, 'settlement_instant_collection')
