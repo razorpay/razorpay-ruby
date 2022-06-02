@@ -45,7 +45,7 @@ module Razorpay
       assert_equal 'pay_50sbkZA9AcyE5a', payments.items[0]['id'], 'payment id should match'
     end
 
-    def test_edit_order
+   def test_edit_order
       param_attr = {
         "notes": {
           "key1": "value3",

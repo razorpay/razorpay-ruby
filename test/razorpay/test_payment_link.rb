@@ -74,11 +74,10 @@ module Razorpay
     end
     
    def test_notify_by_id
-      param_attr = {}
       stub_post(%r{payment_links/#{@payment_link_id}/notify_by/email$}, 'payment_link_response',{})  
       payment_link = Razorpay::PaymentLink.notify_by(@payment_link_id,"email")
       assert_instance_of Razorpay::Entity, payment_link
       assert true, payment_link.success
-    end
+   end
   end
 end

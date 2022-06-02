@@ -95,9 +95,9 @@ module Razorpay
       }
 
       stub_post(%r{payments/#{@payment_id}/transfers$}, 'fake_transfer', param_attr.to_json)
-      payment = Razorpay::Payment.fetch(@payment_id).transfer(param_attr.to_json)
-      assert_instance_of Razorpay::Payment, payment, 'Payment not an instance of Razorpay::Payment class'
-      assert_equal 'captured', payment.status
+      transfer = Razorpay::Payment.fetch(@payment_id).transfer(param_attr.to_json)
+      assert_instance_of Razorpay::Transfer, transfer, 'Transfer not an instance of Razorpay::Transfer class'
+      assert transfer.on_hold
     end 
 
     def test_payments_fetch_refunds
