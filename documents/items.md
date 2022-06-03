@@ -161,8 +161,10 @@ Razorpay::Item.edit(itemId,para_attr)
 -------------------------------------------------------------------------------------------------------
 ### Delete item
 
-```js
-instance.items.delete(itemId)
+```rb
+itemId = "item_Jc7wDjjQ4x305A"
+
+Razorpay::Item.delete(itemId)
 ```
 **Parameters**
 

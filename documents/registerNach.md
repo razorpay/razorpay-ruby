@@ -408,8 +408,12 @@ Razorpay::Payment.createRecurringPayment(para_attr)
 
 ## Send/Resend notifications
 
-```js
-instance.invoices.notifyBy(invoiceId,medium)
+```rb
+invoiceId = "inv_JDdNb4xdf4gxQ7"
+
+medium = "email" 
+
+Razorpay::Invoice.notifyBy(invoiceId, medium)
 ```
 **Parameters:**
 
