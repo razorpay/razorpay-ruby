@@ -18,6 +18,7 @@ require 'razorpay/settlement'
 require 'razorpay/payment_link'
 require 'razorpay/fund_account'
 require 'razorpay/item'
+require 'razorpay/qr_code'
 
 # Base Razorpay module
 module Razorpay
