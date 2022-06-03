@@ -254,5 +254,6 @@ module Razorpay
       payment = Razorpay::Payment.create_json_payment payment_attr.to_json 
       assert_equal 'pay_FVmAstJWfsD3SO', payment.razorpay_payment_id
     end
+   end 
   end
 end

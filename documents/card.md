@@ -1,26 +1,27 @@
-## Register emandate and charge first payment together
+## Cards
 
 ```rb
 require "razorpay"
+
 Razorpay.setup('key_id', 'key_secret')
 ```
 
 ### Create customer
-
 ```rb
 para_attr = {
   "name": "Gaurav Kumar",
   "contact": 9123456780,
   "email": "gaurav.kumar@example.com",
   "fail_existing": 0,
-  "gstin": "29XAbbA4369J1PA",
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
     "notes_key_2": "Tea, Earl Grey… decaf."
   }
 }
+
 Razorpay::Customer.create(para_attr)
 ```
+
 **Parameters:**
 
 | Name          | Type        | Description                                 |
@@ -49,35 +50,26 @@ Razorpay::Customer.create(para_attr)
 ```
 -------------------------------------------------------------------------------------------------------
 
-### Create order
+### Create Order
 
 ```rb
-para_attr = {
-  "amount": 100,
-  "currency": "INR",
-  "method": "emandate",
-  "receipt": "Receipt No. 5",
-  "notes": {
-    "note_key 1": "Beam me up Scotty",
-    "note_key 2": "Engage"
-  },
-  "token": {
-    "first_payment_amount": 10000,
-    "auth_type": "netbanking",
-    "max_amount": 9999900,
-    "expire_at": 4102444799,
-    "notes": {
-      "note_key 1": "Tea, Earl Grey… decaf.",
-      "note_key 2": "Tea. Earl Gray. Hot."
-    },
-    "bank_account": {
-      "beneficiary_name": "Gaurav Kumar",
-      "account_number": 11214311215411,
-      "account_type": "savings",
-      "ifsc_code": "HDFC0001233"
-    }
-  }
+param_attr = {
+   "amount":100,
+   "currency": "INR",
+   "customer_id": "cust_4xbQrmEoA5WJ01",
+   "method": "card",
+   "token":{
+      "max_amount": 5000,
+      "expire_at": 2709971120,
+      "frequency": "monthly"
+   },
+   "receipt": "Receipt No. 1",
+   "notes":{
+      "notes_key_1": "Tea, Earl Grey, Hot",
+      "notes_key_2": "Tea, Earl Grey... decaf."
+   }
 }
+
 Razorpay::Order.create(para_attr)
 ```
 
@@ -88,71 +80,82 @@ Razorpay::Order.create(para_attr)
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | customerId*   | string      | The id of the customer to be fetched |
-| method*      | string  | Payment method used to make the registration transaction. Possible value is `emandate`.  |
 | receipt      | string  | Your system order reference id.  |
-| payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
-| token  | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#112-create-an-order) are supported |
+| method*      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
+| token  | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#112-create-an-order) are supported |
 | notes | object  | A key-value pair  |
 
 **Response:**
-For create order response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#112-create-an-order)
-
+```json
+{
+   "id":"order_1Aa00000000002",
+   "entity":"order",
+   "amount":100,
+   "amount_paid":0,
+   "amount_due":100,
+   "currency":"INR",
+   "receipt":"Receipt No. 1",
+   "method":"card",
+   "description":null,
+   "customer_id":"cust_4xbQrmEoA5WJ01",
+   "token":{
+      "max_amount":5000,
+      "expire_at":2709971120,
+      "frequency":"monthly"
+   },
+   "offer_id":null,
+   "status":"created",
+   "attempts":0,
+   "notes":{
+      "notes_key_1":"Tea, Earl Grey, Hot",
+      "notes_key_2":"Tea, Earl Grey… decaf."
+   },
+   "created_at":1565172642
+}
+```
 -------------------------------------------------------------------------------------------------------
-
-### Create an Authorization Payment
-
-Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#113-create-an-authorization-payment) for authorization payment
-
------------------------------------------------------------------------------------------------------
 
 ### Create registration link
 
 ```rb
 para_attr = {
-  "customer": {
+  "customer":{
     "name": "Gaurav Kumar",
     "email": "gaurav.kumar@example.com",
-    "contact": 9123456780
+    "contact": "9123456780"
   },
   "type": "link",
-  "amount": 100,
+  "amount": "100",
   "currency": "INR",
   "description": "Registration Link for Gaurav Kumar",
-  "subscription_registration": {
-    "first_payment_amount": 100,
-    "method": "emandate",
-    "auth_type": "netbanking",
-    "max_amount": 50000,
-    "expire_at": 1634215992,
-    "bank_account": {
-      "beneficiary_name": "Gaurav Kumar",
-      "account_number": 11214311215411,
-      "account_type": "savings",
-      "ifsc_code": "HDFC0001233"
-    }
+  "subscription_registration":{
+    "method": "card",
+    "max_amount": "500",
+    "expire_at": 1609423824
   },
-  "receipt": "Receipt No. 5",
-  "email_notify": 1,
-  "sms_notify": 1,
-  "expire_by": 1634215992,
-  "notes": {
+  "receipt": "Receipt No. 1",
+  "email_notify":1,
+  "sms_notify":1,
+  "expire_by":1580479824,
+  "notes":{
     "note_key 1": "Beam me up Scotty",
     "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
+
 Razorpay::SubscriptionRegistration.create(para_attr)
 ```
 
 **Parameters:**
 
-| Name            | Type    | Description                                                   |
-|-----------------|---------|---------------------------------------------------------------|
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
 | customer   | object      | Details of the customer to whom the registration link will be sent. |
-| type*  | object | the value is `link`. |
+| type*  | string | the value is `link`. |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | description*  | string      | A brief description of the payment.   |
-| subscription_registration   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#121-create-a-registration-link) are supported  |
+| subscription_registration   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#121-create-a-registration-link) are supported  |
 | receipt      | string  | Your system order reference id.  |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
@@ -160,21 +163,85 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 | notes | object  | A key-value pair  |
 
 **Response:**
-For create registration link response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#12-using-a-registration-link)
+```json
+{
+  "id": "inv_FHrXGIpd3N17DX",
+  "entity": "invoice",
+  "receipt": "Receipt No. 24",
+  "invoice_number": "Receipt No. 24",
+  "customer_id": "cust_BMB3EwbqnqZ2EI",
+  "customer_details": {
+    "id": "cust_BMB3EwbqnqZ2EI",
+    "name": "Gaurav Kumar",
+    "email": "gaurav.kumar@example.com",
+    "contact": "9123456780",
+    "gstin": null,
+    "billing_address": null,
+    "shipping_address": null,
+    "customer_name": "Gaurav Kumar",
+    "customer_email": "gaurav.kumar@example.com",
+    "customer_contact": "9123456780"
+  },
+  "order_id": "order_FHrXGJNngJyEAe",
+  "line_items": [],
+  "payment_id": null,
+  "status": "issued",
+  "expire_by": 4102444799,
+  "issued_at": 1595491014,
+  "paid_at": null,
+  "cancelled_at": null,
+  "expired_at": null,
+  "sms_status": "pending",
+  "email_status": "pending",
+  "date": 1595491014,
+  "terms": null,
+  "partial_payment": false,
+  "gross_amount": 100,
+  "tax_amount": 0,
+  "taxable_amount": 0,
+  "amount": 100,
+  "amount_paid": 0,
+  "amount_due": 100,
+  "currency": "INR",
+  "currency_symbol": "₹",
+  "description": "Registration Link for Gaurav Kumar",
+  "notes": {
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
+  },
+  "comment": null,
+  "short_url": "https://rzp.io/i/VSriCfn",
+  "view_less": true,
+  "billing_start": null,
+  "billing_end": null,
+  "type": "link",
+  "group_taxes_discounts": false,
+  "created_at": 1595491014,
+  "idempotency_key": null
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ## Create an order to charge the customer
 
 ```rb
-para_attr ={
-  "amount": "100",
+para_attr = {
+  "amount": 100,
   "currency": "INR",
+  "customer_id": "cust_4xbQrmEoA5WJ01",
+  "method": "card",
+  "token": {
+    "max_amount": 5000,
+    "expire_at": 2709971120,
+    "frequency": "monthly"
+  },
   "receipt": "Receipt No. 1",
   "notes": {
-    "key1": "value3",
-    "key2": "value2"
+    "notes_key_1": "Tea, Earl Grey, Hot",
+    "notes_key_2": "Tea, Earl Grey... decaf."
   }
 }
+
 Razorpay::Order.create(para_attr)
 ```
 **Parameters:**
@@ -183,20 +250,30 @@ Razorpay::Order.create(para_attr)
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
+| customerId*   | string      | The id of the customer to be fetched |
+| method*      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
 | receipt      | string  | Your system order reference id.  |
-| payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
-| notes | object  | A key-value pair  |
+| token  | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/subsequent-payments/#31-create-an-order-to-charge-the-customer) are supported |
+| notes | array  | A key-value pair  |
 
 **Response:**
 ```json
 {
    "id":"order_1Aa00000000002",
    "entity":"order",
-   "amount":1000,
+   "amount":100,
    "amount_paid":0,
-   "amount_due":1000,
+   "amount_due":100,
    "currency":"INR",
    "receipt":"Receipt No. 1",
+   "method":"card",
+   "description":null,
+   "customer_id":"cust_4xbQrmEoA5WJ01",
+   "token":{
+      "max_amount":5000,
+      "expire_at":2709971120,
+      "frequency":"monthly"
+   },
    "offer_id":null,
    "status":"created",
    "attempts":0,
@@ -204,7 +281,7 @@ Razorpay::Order.create(para_attr)
       "notes_key_1":"Tea, Earl Grey, Hot",
       "notes_key_2":"Tea, Earl Grey… decaf."
    },
-   "created_at":1579782776
+   "created_at":1565172642
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -214,14 +291,17 @@ Razorpay::Order.create(para_attr)
 ```rb
 para_attr = {
   "email": "gaurav.kumar@example.com",
-  "contact": 9123456789,
+  "contact": "9123456789",
   "amount": 1000,
   "currency": "INR",
-  "recurring": 1,
+  "order_id": "order_1Aa00000000002",
+  "customer_id": "cust_1Aa00000000001",
+  "token": "token_1Aa00000000001",
+  "recurring": "1",
   "description": "Creating recurring payment for Gaurav Kumar",
   "notes": {
-    "key1": "value3",
-    "key2": "value2"
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
 Razorpay::Payment.createRecurringPayment(para_attr)
@@ -251,6 +331,12 @@ Razorpay::Payment.createRecurringPayment(para_attr)
 ```
 -------------------------------------------------------------------------------------------------------
 
+### Create an Authorization Payment
+
+Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#113-create-an-authorization-payment) for authorization payment
+
+-------------------------------------------------------------------------------------------------------
+
 ## Send/Resend notifications
 
 ```rb
@@ -262,7 +348,7 @@ Razorpay::Invoice.notifyBy(invoiceId, medium)
 ```
 **Parameters:**
 
-| Name            | Type    |Description      |
+| Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
 | invoiceId*   | string      | The id of the invoice to be fetched |
 | medium*   | string      | Possible values are `sms` or `email` |
@@ -360,8 +446,46 @@ Razorpay::Payment.fetch(paymentId)
 | paymentId*   | string      | The id of the payment to be fetched |
 
 **Response:**
-For fetch token by payment id response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#21-fetch-token-by-payment-id)
-
+```json
+{
+  "id": "pay_FHfqtkRzWvxky4",
+  "entity": "payment",
+  "amount": 100,
+  "currency": "INR",
+  "status": "captured",
+  "order_id": "order_FHfnswDdfu96HQ",
+  "invoice_id": null,
+  "international": false,
+  "method": "card",
+  "amount_refunded": 0,
+  "refund_status": null,
+  "captured": true,
+  "description": null,
+  "card_id": "card_F0zoXUp4IPPGoI",
+  "bank": null,
+  "wallet": null,
+  "vpa": null,
+  "email": "gaurav.kumar@example.com",
+  "contact": "+919876543210",
+  "customer_id": "cust_DtHaBuooGHTuyZ",
+  "token_id": "token_FHfn3rIiM1Z8nr",
+  "notes": {
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
+  },
+  "fee": 0,
+  "tax": 0,
+  "error_code": null,
+  "error_description": null,
+  "error_source": null,
+  "error_step": null,
+  "error_reason": null,
+  "acquirer_data": {
+    "auth_code": "541898"
+  },
+  "created_at": 1595449871
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ## Fetch tokens by customer id
@@ -380,39 +504,81 @@ Razorpay::Customer.fetchTokens(customerId)
 **Response:**
 ```json
 {
-  "entity": "collection",
-  "count": 1,
-  "items": [
-    {
-      "id": "token_FHf94Uym9tdYFJ",
-      "entity": "token",
-      "token": "2wDPM7VAlXtjAR",
-      "bank": "HDFC",
-      "wallet": null,
-      "method": "emandate",
-      "vpa": null,
-      "recurring": true,
-      "recurring_details": {
-        "status": "confirmed",
-        "failure_reason": null
-      },
-      "auth_type": "netbanking",
-      "mrn": null,
-      "used_at": 1595447381,
-      "created_at": 1595447381,
-      "bank_details": {
-        "beneficiary_name": "Gaurav Kumar",
-        "account_number": "1121431121541121",
-        "ifsc": "HDFC0000001",
-        "account_type": "savings"
-      },
-      "max_amount": 9999900,
-      "expired_at": 1689971140,
-      "dcc_enabled": false
-    }
-  ]
+   "entity":"collection",
+   "count":1,
+   "items":[
+      {
+         "id":"token_HouA2OQR5Z2jTL",
+         "entity":"token",
+         "token":"2JPRk664pZHUWG",
+         "bank":null,
+         "wallet":null,
+         "method":"card",
+         "card":{
+            "entity":"card",
+            "name":"Gaurav Kumar",
+            "last4":"8950",
+            "network":"Visa",
+            "type":"credit",
+            "issuer":"STCB",
+            "international":false,
+            "emi":false,
+            "sub_type":"consumer",
+            "expiry_month":12,
+            "expiry_year":2021,
+            "flows":{
+               "otp":true,
+               "recurring":true
+            }
+         },
+         "recurring":true,
+         "recurring_details":{
+            "status":"confirmed",
+            "failure_reason":null
+         },
+         "auth_type":null,
+         "mrn":null,
+         "used_at":1629779657,
+         "created_at":1629779657,
+         "expired_at":1640975399,
+         "dcc_enabled":false,
+         "billing_address":null
+      }
+   ]
 }
 ```
+-------------------------------------------------------------------------------------------------------
+
+### Fetch card
+
+```rb
+cardId = ""
+
+Razorpay::Card.fetch(cardId)
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| cardId*          | string | card id to be fetched                                               |
+
+**Response:**
+```json
+{
+  "id": "card_JXPULjlKqC5j0i",
+  "entity": "card",
+  "name": "gaurav.kumar",
+  "last4": "4366",
+  "network": "Visa",
+  "type": "credit",
+  "issuer": "UTIB",
+  "international": false,
+  "emi": true,
+  "sub_type": "consumer",
+  "token_iin": null
+}
+
 -------------------------------------------------------------------------------------------------------
 
 ## Delete tokens
@@ -442,4 +608,4 @@ Razorpay::fetch(customerId).deleteToken(tokenId)
 **PN: * indicates mandatory fields**
 <br>
 <br>
-**For reference click [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/)**
+**For reference click [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/)**
