@@ -92,5 +92,17 @@ module Razorpay
     def bank_transfer
       self.class.request.get "#{id}/bank_transfer"
     end
+
+    def self.otp_generate(id)
+      request.post "#{id}/otp_generate"
+    end
+
+    def otp_submit(options)
+      self.class.request.post "#{id}/otp/submit", options
+    end
+
+    def otp_resend
+      self.class.request.post "#{id}/otp/resend"
+    end
   end
 end

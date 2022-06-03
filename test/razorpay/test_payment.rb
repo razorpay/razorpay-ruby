@@ -197,6 +197,27 @@ module Razorpay
       assert_equal 'captured', payment.status
     end
 
+    def test_otp_generate
+      payment_id = 'pay_FVmAstJWfsD3SO'
+      stub_post(%r{payments/#{payment_id}/otp_generate$}, 'fake_otp_generate', {})
+      payment = Razorpay::Payment.otp_generate(payment_id)
+      assert_equal payment_id, payment.razorpay_payment_id
+    end
+
+    def test_otp_submit
+      param_attr = {
+        otp: "123456"
+      }
+      stub_post(%r{payments/#{@payment_id}/otp/submit$}, 'fake_otp_submit', param_attr.to_json)
+      payment = Razorpay::Payment.fetch(@payment_id).otp_submit(param_attr.to_json)
+      assert_equal @payment_id, payment.razorpay_payment_id
+    end
+
+    def test_otp_resend
+      stub_post(%r{payments/#{@payment_id}/otp/resend$}, 'fake_otp_resend', {})
+      payment = Razorpay::Payment.fetch(@payment_id).otp_resend
+      assert_equal @payment_id, payment.razorpay_payment_id
+
     def test_payment_edit
 
       payment_attr = {
