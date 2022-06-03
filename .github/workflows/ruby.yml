@@ -9,9 +9,9 @@ name: Ruby
 
 on:
   push:
-    branches: [ master ]
+    branches: [ addon_update ]
   pull_request:
-    branches: [ master ]
+    branches: [ addon_update ]
 
 permissions:
   contents: read
