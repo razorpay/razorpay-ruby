@@ -1,0 +1,39 @@
+{
+    "id": "pay_IY4ljejpy9KUr9",
+    "entity": "payment",
+    "amount": 10600,
+    "currency": "INR",
+    "status": "captured",
+    "order_id": "order_IY4kmG44JyVo5i",
+    "invoice_id": "inv_IY4kmEQRf1HMNm",
+    "international": false,
+    "method": "upi",
+    "amount_refunded": 0,
+    "refund_status": null,
+    "captured": true,
+    "description": "Start Subscription",
+    "card_id": null,
+    "bank": null,
+    "wallet": null,
+    "vpa": "success@razorpay",
+    "email": "you@example.com",
+    "contact": "+917000569565",
+    "customer_id": "cust_I3FToKbnExwDLu",
+    "token_id": "token_IY4ljowVtuDmNz",
+    "notes": {
+      "notes_key_1": "Beam me up Scotty.",
+      "notes_key_2": "Engage"
+    },
+    "fee": 250,
+    "tax": 38,
+    "error_code": null,
+    "error_description": null,
+    "error_source": null,
+    "error_step": null,
+    "error_reason": null,
+    "acquirer_data": {
+      "rrn": "001000100002",
+      "upi_transaction_id": "npci_txn_id_for_IY4ljejpy9KUr9"
+    },
+    "created_at": 1639642319
+}

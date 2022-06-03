@@ -81,6 +81,8 @@ Razorpay::Payment.all(option)
 | to    | timestamp | timestamp before which the payments were created |
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
+| expand[]  | array   | Supported values are: -card: Expanded card details, usable for card and EMI payments. -emi: Expanded EMI plan details, usable for EMI payments    |
+
 
 **Response:**
 ```json
@@ -521,6 +523,7 @@ Razorpay::Payment.create_json_payment(para_attr)
 }
 ```
 -------------------------------------------------------------------------------------------------------
+
 ### OTP Generate
 
 ```rb
@@ -626,6 +629,8 @@ Doc reference [doc](https://razorpay.com/docs/payments/payment-methods/cards/aut
 ```
 
 -------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
+<br>
 <br>
 **For reference click [here](https://razorpay.com/docs/api/payments/)**

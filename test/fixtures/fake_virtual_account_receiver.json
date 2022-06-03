@@ -1,0 +1,46 @@
+{
+    "id": "va_4xbQrmEoA5WJ0G",
+    "name": "First Virtual Account",
+    "entity": "virtual_account",
+    "status": "active",
+    "description": "Virtual Account created for Raftar Soft",
+    "amount_expected": null,
+    "notes": {
+      "project_name": "Banking Software"
+    },
+    "amount_paid": 0,
+    "customer_id": "cust_HssUOFiOd2b1TJ",
+    "receivers": [
+      {
+        "id": "ba_J3gpY8kNQJ8mi8",
+        "entity": "bank_account",
+        "ifsc": "RAZR0000001",
+        "bank_name": null,
+        "name": "ankit",
+        "notes": [
+  
+        ],
+        "account_number": "1112220042107547"
+      },
+      {
+        "id": "vpa_JCnXjvMabKkpFY",
+        "entity": "vpa",
+        "username": "rzr.payto00000rahuqkumar",
+        "handle": "icic",
+        "address": "rzr.payto00000rahuqkumar@icic"
+      }
+    ],
+    "allowed_payers": [
+      {
+        "type": "bank_account",
+        "id": "ba_J3gpYBXh92ZL5M",
+        "bank_account": {
+          "ifsc": "RATN0VAAPIS",
+          "account_number": "2223330027558515"
+        }
+      }
+    ],
+    "close_by": null,
+    "closed_at": null,
+    "created_at": 1646544900
+}

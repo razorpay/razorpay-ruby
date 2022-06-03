@@ -1,0 +1,13 @@
+{
+    "razorpay_payment_id": "pay_FVmAstJWfsD3SO",
+    "next": [
+      {
+        "action": "redirect",
+        "url": "https://api.razorpay.com/v1/payments/FVmAtLUe9XZSGM/authorize"
+      },
+      {
+        "action": "otp_generate",
+        "url": "https://api.razorpay.com/v1/payments/pay_FVmAstJWfsD3SO/otp_generate?track_id=FVmAtLUe9XZSGM&key_id=<YOUR_KEY_ID>"
+      }
+    ]
+}

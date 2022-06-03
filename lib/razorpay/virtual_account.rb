@@ -20,13 +20,9 @@ module Razorpay
     def self.all(options = {})
       request.all options
     end
-
+    
     def self.close(id)
-      request.patch id, status: 'closed'
-    end
-
-    def close
-      self.class.request.patch id, status: 'closed'
+       request.post "#{id}/close"
     end
 
     def close!
@@ -36,6 +32,18 @@ module Razorpay
     def payments(options = {})
       r = self.class.request
       r.request :get, "/virtual_accounts/#{id}/payments", options
+    end
+
+    def self.add_receiver(id, options = {})
+      request.post "#{id}/receivers", options
+    end
+
+    def self.allowed_payer(id, options = {})
+      request.post "#{id}/allowed_payers", options
+    end
+
+    def self.delete_allowed_payer(id, payer_id)
+      request.delete "#{id}/allowed_payers/#{payer_id}"
     end
   end
 end

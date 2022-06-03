@@ -36,7 +36,21 @@ module Razorpay
       stub_post(/refunds$/, 'fake_refund', "payment_id=#{@payment_id}")
       refund = Razorpay::Refund.create(payment_id: @payment_id)
       assert_instance_of Razorpay::Refund, refund
-      assert_equal refund.payment_id, @payment_id
+      assert_equal refund.id, @refund_id
     end
-  end
+
+    def test_edit_refund
+      para_attr = {
+        "notes": {
+          "notes_key_1":"Beam me up Scotty.",
+          "notes_key_2":"Engage"
+        }
+      }
+      stub_patch(%r{/refunds/#{@refund_id}$}, 'fake_refund', para_attr.to_json)
+      refund = Razorpay::Refund.fetch(@refund_id).edit(para_attr.to_json)
+      assert_instance_of Razorpay::Refund, refund
+      assert_equal refund.id, @refund_id
+    end
+  end  
 end
+

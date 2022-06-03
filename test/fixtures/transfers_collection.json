@@ -1,0 +1,41 @@
+{
+    "entity": "collection",
+    "count": 1,
+    "items": [
+      {
+        "id": "trf_J0FrZYPql4riDx",
+        "entity": "transfer",
+        "status": "processed",
+        "source": "pay_I6i1edcUUytu9p",
+        "recipient": "acc_I0QRP7PpvaHhpB",
+        "amount": 100,
+        "currency": "INR",
+        "amount_reversed": 0,
+        "fees": 1,
+        "tax": 0,
+        "notes": {
+          "name": "Saurav Kumar",
+          "roll_no": "IEC2011026"
+        },
+        "linked_account_notes": [
+          "roll_no"
+        ],
+        "on_hold": true,
+        "on_hold_until": null,
+        "settlement_status": "on_hold",
+        "recipient_settlement_id": null,
+        "created_at": 1645794911,
+        "processed_at": 1645794911,
+        "error": {
+          "code": null,
+          "description": null,
+          "reason": null,
+          "field": null,
+          "step": null,
+          "id": "trf_J0FrZYPql4riDx",
+          "source": null,
+          "metadata": null
+        }
+      }
+    ]
+}

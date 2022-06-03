@@ -1,0 +1,30 @@
+{
+    "id":"sub_00000000000002",
+    "entity":"subscription",
+    "plan_id":"plan_00000000000002",
+    "customer_id":"cust_00000000000002",
+    "status":"active",
+    "current_start":null,
+    "current_end":null,
+    "ended_at":null,
+    "quantity":3,
+    "notes":{
+      "notes_key_1":"Tea, Earl Grey, Hot",
+      "notes_key_2":"Tea, Earl Grey… decaf."
+    },
+    "charge_at":1580453311,
+    "start_at":1580453311,
+    "end_at":1606588200,
+    "auth_attempts":0,
+    "total_count":6,
+    "paid_count":0,
+    "customer_notify":false,
+    "created_at":1580283807,
+    "expire_by":1580626111,
+    "short_url":"https://rzp.io/i/yeDkUKy",
+    "has_scheduled_changes":false,
+    "change_scheduled_at":null,
+    "source": "api",
+    "offer_id":"offer_JHD834hjbxzhd38d",
+    "remaining_count":6
+}
