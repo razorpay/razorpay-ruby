@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Requirements
 
-2.6.8 or later
+Ruby 2.6.8 or later
 ## Usage
 
 Remember to `require 'razorpay'` before anything else.
