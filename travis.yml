@@ -1,0 +1,22 @@
+language: ruby
+# List is from https://www.ruby-lang.org/en/downloads/branches/
+# Merged with whatever is the top of each branch at https://www.ruby-lang.org/en/downloads/releases/
+matrix:
+  include:
+    - rvm: "2.6.2"
+    - rvm: "2.5.5"
+    - rvm: "2.4.6"
+      env: LINT=rubocop
+  allow_failures:
+  # These are EOL versions of ruby
+    - rvm: "2.3.8"
+    - rvm: "2.1.10"
+    - rvm: "2.0.0"
+    - rvm: "1.9.3"
+before_install: gem update --system
+script:
+  - bundle exec rake test
+  - |
+    if [[ "$LINT" == "rubocop" ]] ; then
+      bundle exec rake rubocop
+    fi
