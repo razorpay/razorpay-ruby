@@ -275,7 +275,9 @@ Razorpay::QrCode.all(para_attr)
         "purpose": "Test UPI QR code notes"
       },
       "customer_id": "cust_HKsR5se84c5LTO",
-      "close_by": 1681615838
+      "close_by": 1681615838,
+      "closed_at" : null,
+      "close_reason": null
     }
   ]
 }
