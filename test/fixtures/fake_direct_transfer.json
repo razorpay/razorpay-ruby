@@ -1,0 +1,32 @@
+{
+"id":"trf_JDEnyfvGu22ECp",
+"entity":"transfer",
+"transfer_status":"pending",
+"settlement_status":null,
+"source":"acc_CJoeHMNpi0nC7k",
+"recipient":"acc_CPRsN1LkFccllA",
+"amount":100,
+"currency":"INR",
+"amount_reversed":0,
+"notes":[
+    
+],
+"fees":1,
+"tax":0,
+"on_hold":false,
+"on_hold_until":null,
+"recipient_settlement_id":null,
+"created_at":1580219046,
+"linked_account_notes":[
+    
+],
+"processed_at":null,
+"errors":{
+    "code":null,
+    "description":null,
+    "field":null,
+    "source":null,
+    "step":null,
+    "reason":null
+  }
+}

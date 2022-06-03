@@ -42,9 +42,9 @@ module Razorpay
         notes: { identifier: 'plan_monthly_1000' }
       }
 
-      stub_post(/plans$/, 'fake_plan', create_plan_stub_url_params)
+      stub_post(/plans$/, 'fake_plan', plan_attrs.to_json)
 
-      plan = Razorpay::Plan.create plan_attrs
+      plan = Razorpay::Plan.create plan_attrs.to_json
 
       assert_equal 1, plan.interval, 'Plan interval is accessible'
       assert_equal 'monthly', plan.period, 'Plan period is accessible'

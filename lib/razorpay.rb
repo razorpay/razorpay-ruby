@@ -12,6 +12,13 @@ require 'razorpay/virtual_account'
 require 'razorpay/plan'
 require 'razorpay/subscription'
 require 'razorpay/addon'
+require 'razorpay/transfer'
+require 'razorpay/subscription_registration'
+require 'razorpay/settlement'
+require 'razorpay/payment_link'
+require 'razorpay/fund_account'
+require 'razorpay/item'
+require 'razorpay/qr_code'
 
 # Base Razorpay module
 module Razorpay

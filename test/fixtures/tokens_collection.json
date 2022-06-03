@@ -1,0 +1,36 @@
+{
+    "entity": "collection",
+    "count": 1,
+    "items": [
+      {
+        "id": "token_Ip8u7q7FA77Q30",
+        "entity": "token",
+        "token": "BZpWWtYHnSJfoi",
+        "bank": "HDFC",
+        "wallet": null,
+        "method": "emandate",
+        "vpa": null,
+        "recurring": true,
+        "recurring_details": {
+          "status": "confirmed",
+          "failure_reason": null
+        },
+        "auth_type": "debitcard",
+        "mrn": null,
+        "used_at": 1647012394,
+        "created_at": 1643368664,
+        "bank_details": {
+          "beneficiary_name": "Gaurav Kumar",
+          "account_number": "11214311215411",
+          "ifsc": "HDFC0001233",
+          "account_type": "savings"
+        },
+        "max_amount": 50000,
+        "expired_at": 2147483647,
+        "notes": [
+  
+        ],
+        "dcc_enabled": false
+      }
+    ]
+  }

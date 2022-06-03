@@ -1,0 +1,21 @@
+{
+      "entity": "collection",
+      "count": 1,
+      "items": [
+        {
+          "id": "down_F7LroRQAAFuswd",
+          "entity": "payment.downtime",
+          "method": "card",
+          "begin": 1593196031,
+          "end": null,
+          "status": "started",
+          "scheduled": false,
+          "severity": "high",
+          "instrument": {
+            "issuer": "SBIN"
+          },
+          "created_at": 1593196089,
+          "updated_at": 1593196089
+        }
+      ]
+}

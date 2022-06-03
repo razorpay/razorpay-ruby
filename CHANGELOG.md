@@ -4,6 +4,25 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
+## [3.0.0] - 2022-06-03
+
+### Added
+
+- QR code end point API
+- Settlement end point API
+- Fund Account end point API
+- PaymentLinks end point API
+- Item end point API
+- New APIs for Invoices (Delete, Send/resend)
+- New API for Customers (Fetch Tokens, Delete Token)
+- New APIs for Subscriptions (Update, Pause, Resume, Pending update, Delete offer)
+- New API for Addons (Fetch all Addons)
+- New API for Refund (Update refund)
+- New APIs for Payments (Update, Create recurring, Create Json, Payment downtime details, refunds of a payment, Otp generate, Otp submit, Otp resend)
+- New APIs for Virtual Account (Add receiver, add an allowed payer account, delete an allowed payer account)
+- Updated Testcases
+- Updated Readme
+
 ## [2.4.1] - 2019-04-09
 
 ### Fixed
