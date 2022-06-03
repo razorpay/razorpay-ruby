@@ -4,9 +4,9 @@ module Razorpay
   # Tests for Razorpay::Refund
   class RazorpayRefundTest < Minitest::Test
     def setup
-      @payment_id = 'pay_FFX5FdEYx8jPwA'
+      @payment_id = 'fake_payment_id'
       stub_get(%r{payments/#{@payment_id}$}, 'fake_payment')
-      @refund_id = 'rfnd_FFX6AnnIN3puqW'
+      @refund_id = 'fake_refund_id'
       stub_get(%r{refunds/#{@refund_id}$}, 'fake_refund')
     end
 
@@ -36,7 +36,7 @@ module Razorpay
       stub_post(/refunds$/, 'fake_refund', "payment_id=#{@payment_id}")
       refund = Razorpay::Refund.create(payment_id: @payment_id)
       assert_instance_of Razorpay::Refund, refund
-      assert_equal refund.payment_id, @payment_id
+      assert_equal refund.id, @refund_id
     end
 
     def test_edit_refund

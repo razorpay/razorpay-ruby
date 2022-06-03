@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Razorpay
   # Tests for Razorpay::PaymentLink
-  class RazorpayCustomerTest < Minitest::Test
+  class RazorpayPaymentLinkTest < Minitest::Test
     def setup
       @payment_link_id = 'plink_J9feMU9xqHQVWX'
 
@@ -74,11 +74,10 @@ module Razorpay
     end
     
    def test_notify_by_id
-      param_attr = {}
       stub_post(%r{payment_links/#{@payment_link_id}/notify_by/email$}, 'payment_link_response',{})  
       payment_link = Razorpay::PaymentLink.notify_by(@payment_link_id,"email")
       assert_instance_of Razorpay::Entity, payment_link
       assert true, payment_link.success
-    end
+   end
   end
 end
