@@ -6,6 +6,8 @@ Changelog for Razorpay-Ruby SDK.
 
 ## [3.0.0] - 2022-06-03
 
+### Added
+
 - QR code end point API
 - Settlement end point API
 - Fund Account end point API
@@ -20,10 +22,6 @@ Changelog for Razorpay-Ruby SDK.
 - New APIs for Virtual Account (Add receiver, add an allowed payer account, delete an allowed payer account)
 - Updated Testcases
 - Updated Readme
-
-### Added
-
--
 
 ## [2.4.1] - 2019-04-09
 
