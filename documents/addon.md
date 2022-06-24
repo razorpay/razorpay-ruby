@@ -162,6 +162,30 @@ Razorpay::Addon.fetch(addonId)
 }
 ```
 -------------------------------------------------------------------------------------------------------
+### Delete an addon
+
+```rb
+addonId  = "ao_IrSY3UIqDRx7df"
+
+Razorpay::Addon.delete(addonId)
+
+**Parameters:**
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| addonId*          | string | addon id to be fetched    
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| addonId*          | string | addon id to be deleted |
+
+**Response:**
+```json
+[]
+```
+-------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**
 <br>
