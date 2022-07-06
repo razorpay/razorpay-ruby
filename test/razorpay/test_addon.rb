@@ -57,8 +57,6 @@ module Razorpay
       assert_addon_item_details(addon)
     end
 
-    private
-
     def assert_addon_item_details(addon)
       addon_item = Item.new(addon.item)
 
@@ -67,6 +65,12 @@ module Razorpay
       assert_equal 'fake_item_description', addon_item.description, 'Addon Item description is accessible'
       assert_equal 'INR', addon_item.currency, 'Addon Item currency is accessible'
       assert_equal 500, addon_item.amount, 'Addon Item amount is accessible'
+    end
+
+    def test_delete_addon
+      stub_delete(%r{addons/#{@addon_id}$}, 'empty')
+      addon = Razorpay::Addon.delete(@addon_id)
+      assert_instance_of Razorpay::Entity, addon
     end
   end
 end

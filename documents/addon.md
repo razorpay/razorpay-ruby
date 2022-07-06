@@ -28,7 +28,7 @@ Razorpay::Addon.create(subscriptionId,{
 |-------|-----------|--------------------------------------------------|
 | subscriptionId*  | boolean | The subscription ID to which the add-on is being added. |
 | items*  | object | Details of the add-on you want to create. |
-| quantity*  | integer | This specifies the number of units of the add-on to be charged to the customer. |
+| quantity  | integer | This specifies the number of units of the add-on to be charged to the customer. |
 
 **Response:**
 ```json
@@ -160,6 +160,29 @@ Razorpay::Addon.fetch(addonId)
   "subscription_id":"sub_00000000000001",
   "invoice_id":null
 }
+```
+----------------------------------------------------------------------------------------------------
+
+### Delete an addon
+
+```rb
+addonId  = "ao_IrSY3UIqDRx7df"
+Razorpay::Addon.delete(addonId)
+**Parameters:**
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| addonId*          | string | addon id to be fetched    
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| addonId*          | string | addon id to be deleted |
+
+**Response:**
+```json
+[]
 ```
 -------------------------------------------------------------------------------------------------------
 

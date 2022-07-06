@@ -24,5 +24,9 @@ module Razorpay
       # POST subscriptions/{sub_id}/addons
       r.request :post, "/subscriptions/#{subscription_id}/addons", options
     end
+
+    def self.delete(id)
+      request.delete id
+    end
   end
 end
