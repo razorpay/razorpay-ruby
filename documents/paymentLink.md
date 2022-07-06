@@ -76,12 +76,15 @@ Razorpay::PaymentLink.create(para_attr.to_json)
 |upi_link*          | boolean | boolean Must be set to true   //   to creating UPI Payment Link only                                     |
 |amount*        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
+|accept_partial        | boolean  | Indicates whether customers can make partial payments using the Payment Link. Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments. // UPI Payment Link is not supported partial payment  |
 |description           | string  | A brief description of the Payment Link                     |
-|reference_id           | string  | AReference number tagged to a Payment Link.                      |
-|customer           | object  | name, email, contact                 |
+|first_min_partial_amount           | integer  |Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment. // UPI Payment Link is not supported partial payment  |
+|reference_id           | string  | Reference number tagged to a Payment Link.                      |
+|customer           | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/payment-links/#sample-codes-for-standard-payment-links) are supported                 |
 |expire_by           | integer  | Timestamp, in Unix, at which the Payment Link will expire. By default, a Payment Link will be valid for six months from the date of creation.                     |
 |notify           | object  | sms or email (boolean)                     |
-|notes           | json object  | Key-value pair that can be used to store additional information about the entity. Maximum 15 key-value pairs, 256 characters (maximum) each. For example, "note_key": "Beam me up Scotty” |
+|notes           | json object  | Key-value pair that can be used to store additional information about the entity. Maximum 15 key-value pairs, 256 characters (maximum) each. For example, "note_key": "Beam me up Scotty”                     |
+
 
 **Response:**
 For create payment link response please click [here](https://razorpay.com/docs/api/payment-links/#create-payment-link)
@@ -208,14 +211,15 @@ Razorpay::PaymentLink.notify_by(paymentLinkId, medium)
 ```rb
 
 para_attr = {
-  "amount": 20000,
+  "amount": 1500,
   "currency": "INR",
   "accept_partial": false,
-  "description": "For XYZ purpose",
+  "reference_id": "#aasasw8",
+  "description": "Payment for policy no #23456",
   "customer": {
     "name": "Gaurav Kumar",
-    "email": "gaurav.kumar@example.com",
-    "contact": "+919999999999"
+    "contact": "+919999999999",
+    "email": "gaurav.kumar@example.com"
   },
   "notify": {
     "sms": true,
@@ -223,20 +227,34 @@ para_attr = {
   },
   "reminder_enable": true,
   "options": {
-    "order": [
-      {
-        "account": "acc_CNo3jSI8OkFJJJ",
-        "amount": 500,
-        "currency": "INR",
-        "notes": {
-          "branch": "Acme Corp Bangalore North",
-          "name": "Saurav Kumar",
+    "order": {
+      "transfers": [
+        {
+          "account": "acc_CPRsN1LkFccllA",
+          "amount": 500,
+          "currency": "INR",
+          "notes": {
+            "branch": "Acme Corp Bangalore North",
+            "name": "Bhairav Kumar"
+          },
+          "linked_account_notes": [
+            "branch"
+          ]
+        },
+        {
+          "account": "acc_CNo3jSI8OkFJJJ",
+          "amount": 500,
+          "currency": "INR",
+          "notes": {
+            "branch": "Acme Corp Bangalore South",
+            "name": "Saurav Kumar"
+          },
           "linked_account_notes": [
             "branch"
           ]
         }
-      }
-    ]
+      ]
+    }
   }
 }
 
