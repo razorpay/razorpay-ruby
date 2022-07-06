@@ -170,12 +170,7 @@ addonId  = "ao_IrSY3UIqDRx7df"
 
 Razorpay::Addon.delete(addonId)
 ```
-**Parameters:**
 
-| Name            | Type    | Description                                                                  |
-|-----------------|---------|------------------------------------------------------------------------------|
-| addonId*          | string | addon id to be fetched    
-```
 
 **Parameters:**
 
@@ -184,6 +179,7 @@ Razorpay::Addon.delete(addonId)
 | addonId*          | string | addon id to be deleted |
 
 **Response:**
+
 ```json
 []
 ```
