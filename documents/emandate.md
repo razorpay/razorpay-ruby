@@ -12,7 +12,6 @@ Razorpay::Customer.create({
   "contact": 9123456780,
   "email": "gaurav.kumar@example.com",
   "fail_existing": 0,
-  "gstin": "29XAbbA4369J1PA",
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
     "notes_key_2": "Tea, Earl Grey… decaf."
@@ -167,7 +166,7 @@ invoiceId = "inv_JDdNb4xdf4gxQ7"
 
 medium = "email" 
 
-Razorpay::Invoice.notifyBy(invoiceId, medium)
+Razorpay::Invoice.notify_by(invoiceId, medium)
 ```
 
 **Parameters:**
