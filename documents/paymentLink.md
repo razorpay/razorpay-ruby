@@ -869,7 +869,7 @@ Razorpay::PaymentLink.create(para_attr.to_json)
 |customer           | object  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | object  | Options to set contact and email as read-only fields on Checkout. Parent parameter under which the checkout and readonly child parameters must be passed.|
+|options*       | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/payment-links/v1/customise/read-only/#request-parameters) are supported  |
 
 **Response:**
 ```json
