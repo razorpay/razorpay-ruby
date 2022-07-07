@@ -53,28 +53,33 @@ Razorpay::Customer.create(para_attr)
 
 ```rb
 para_attr = {
-  "amount": 0,
+  "amount":0,
   "currency": "INR",
-  "method": "emandate",
+  "method": "nach",
   "customer_id": "cust_1Aa00000000001",
   "receipt": "Receipt No. 1",
   "notes": {
     "notes_key_1": "Beam me up Scotty",
     "notes_key_2": "Engage"
   },
-  "token": {
-    "auth_type": "netbanking",
-    "max_amount": 9999900,
-    "expire_at": 4102444799,
+  "token":{
+    "auth_type": "physical",
+    "max_amount": 10000000,
+    "expire_at": 2709971120,
     "notes": {
       "notes_key_1": "Tea, Earl Grey, Hot",
       "notes_key_2": "Tea, Earl Grey… decaf."
     },
-    "bank_account": {
+    "bank_account":{
+      "account_number": "11214311215411",
+      "ifsc_code": "HDFC0000001",
       "beneficiary_name": "Gaurav Kumar",
-      "account_number": 1121431121541121,
-      "account_type": "savings",
-      "ifsc_code": "HDFC0000001"
+      "account_type": "savings"
+    },
+    "nach":{
+      "form_reference1": "Recurring Payment for Gaurav Kumar",
+      "form_reference2": "Method Paper NACH",
+      "description": "Paper NACH Gaurav Kumar"
     }
   }
 }
@@ -638,6 +643,7 @@ Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
 para_attr{
   "amount": 1000,
   "currency": "INR",
+  "payment_capture": true,
   "receipt": "Receipt No. 1",
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
@@ -649,10 +655,12 @@ Razorpay::Order.create(para_attr)
 
 **Parameters:**
 
+
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| amount*          | integer | Amount of the order to be paid                                               |
+| amount*          | integer | Amount in currency subunits. For cards, the minimum value is `100` (₹1).                                              |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
+| payment_capture*  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | object  | A key-value pair                                                             |
 **Response:**
