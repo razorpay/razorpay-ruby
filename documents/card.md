@@ -303,7 +303,7 @@ para_attr = {
     "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
-Razorpay::Payment.createRecurringPayment(para_attr)
+Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 **Parameters:**
 
