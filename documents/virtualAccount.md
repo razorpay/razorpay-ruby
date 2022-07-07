@@ -342,7 +342,7 @@ Razorpay::VirtualAccount.fetch(virtualId).payments(options)
 ```rb
 paymend_id = "pay_Di5iqCqA1WEHq6"
 
-Razorpay::Razorpay::Payment.fetch(paymend_id).bank_transfer
+Razorpay::Payment.fetch(paymend_id).bank_transfer
 ```
 
 **Parameters:**
@@ -403,6 +403,8 @@ Razorpay::Razorpay::Payment.fetch(paymend_id).bank_transfer
 
 ### Refund payments made to a virtual account
 ```rb
+paymend_id = "pay_Di5iqCqA1WEHq6"
+
 options = {
   "amount": "100",
   "speed": "normal",
@@ -413,7 +415,7 @@ options = {
   "receipt": "Receipt No. 31"
 }
 
-Razorpay::Payment.fetch(@payment_id).refund(options)
+Razorpay::Payment.fetch(payment_id).refund(options)
 ```
 
 **Parameters:**
@@ -429,20 +431,22 @@ Razorpay::Payment.fetch(@payment_id).refund(options)
 **Response:**
 ```json
 {
-  "id": "rfnd_E6j36ZEKvsWsEn",
+  "id": "rfnd_FP8QHiV938haTz",
   "entity": "refund",
-  "amount": 100,
+  "amount": 500100,
+  "receipt": "Receipt No. 31",
   "currency": "INR",
-  "payment_id": "pay_E54n391WnEAV9H",
-  "notes": {
-    "key_1": "value1",
-    "key_2": "value2"
-  },
+  "payment_id": "pay_FCXKPFtYfPXJPy",
+  "notes": []
   "receipt": null,
   "acquirer_data": {
-    "rrn": null
+    "arn": null
   },
-  "created_at": 1579522301
+  "created_at": 1597078866,
+  "batch_id": null,
+  "status": "processed",
+  "speed_processed": "normal",
+  "speed_requested": "normal"
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -469,7 +473,7 @@ Razorpay::VirtualAccount.add_receiver(virtualId, para_attr)
 |-------|-----------|--------------------------------------------------|
 | virtualId*  | string    | The id of the virtual to be updated  |
 | types*  | object | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
-| vpa    | object | This is to be passed only when `vpa` is passed as the receiver types. |
+| vpa.descriptor    | string | Descriptor should be 10 characters only. |
 
 **Response:**
 For add receiver to an existing virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#add-receiver-to-an-existing-virtual-account)
@@ -560,7 +564,7 @@ Razorpay::VirtualAccount.delete_allowed_payer(virtualId,allowedPayersId)
 
 **Response:**
 ```json
-{}
+null
 ```
 -------------------------------------------------------------------------------------------------------
 ### Close virtual account
@@ -578,6 +582,7 @@ Razorpay::VirtualAccount.close(virtualId)
 
 **Response:**
 For close virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#close-a-virtual-account)
+
 -------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**
