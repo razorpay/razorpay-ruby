@@ -724,7 +724,7 @@ Razorpay::Payment.fetch(paymentId).transfer(para_attr)
 
 ### Modify settlement hold for transfers
 ```rb
-paymentId = "pay_EAeSM2Xul8xYRo"
+transferId = "trf_JhemwjNekar9Za"
 
 para_attr = {
   "on_hold": "1",
