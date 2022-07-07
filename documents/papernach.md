@@ -12,7 +12,6 @@ para_attr = {
   "contact": 9123456780,
   "email": "gaurav.kumar@example.com",
   "fail_existing": 0,
-  "gstin": "29XAbbA4369J1PA",
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
     "notes_key_2": "Tea, Earl Grey… decaf."
@@ -30,6 +29,7 @@ Razorpay::Customer.create(para_attr)
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
 | notes         | object      | A key-value pair                            |
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
 
 **Response:**
 ```json
@@ -315,7 +315,7 @@ invoiceId = "inv_JDdNb4xdf4gxQ7"
 
 medium = "email" 
 
-Razorpay::Invoice.notifyBy(invoiceId, medium)
+Razorpay::Invoice.notify_by(invoiceId, medium)
 ```
 
 **Parameters:**
@@ -556,7 +556,7 @@ Razorpay::Payment.fetch(paymentId)
 ```rb
 customerId = "cust_1Aa00000000004"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Customer.fetch(customerId).fetchTokens
 ```
 
 **Parameters:**
@@ -602,7 +602,7 @@ customerId = "cust_1Aa00000000004"
 
 tokenId = "token_Hxe0skTXLeg9pF"
 
-Razorpay::fetch(customerId).deleteToken(tokenId)
+Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
 ```
 
 **Parameters:**
@@ -683,7 +683,7 @@ para_attr = {
     "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
-Razorpay::Payment.createRecurringPayment(para_attr)
+Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 
 **Parameters:**
