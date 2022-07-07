@@ -212,17 +212,29 @@ para_attr = {
 
 Razorpay::SubscriptionRegistration.create(para_attr)
 ```
-
 **Parameters:**
-All parameters listed [here](https://razorpay.com/docs/api/recurring-payments/paper-nach/authorization-transaction/#121-create-a-registration-link) are supported
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| customer         | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/create-authorization-transaction/#121-create-a-registration-link) |
+| type*        | string  | In this case, the value is `link`.                      |
+| currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
+| amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
+| description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
+| subscription_registration | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/create-authorization-transaction/#121-create-a-registration-link) |
+| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
+| receipt      | string  | Your system order reference id.  |
+| notes           | object  | A key-value pair  |
 
 **Response:**
 ```json
 {
     "id": "inv_FHrZiAubEzDdaq",
     "entity": "invoice",
-    "receipt": "Receipt No. 1",
-    "invoice_number": "Receipt No. 1",
+    "receipt": "Receipt No. 27",
+    "invoice_number": "Receipt No. 27",
     "customer_id": "cust_BMB3EwbqnqZ2EI",
     "customer_details": {
         "id": "cust_BMB3EwbqnqZ2EI",
