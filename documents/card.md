@@ -587,7 +587,7 @@ customerId = "cust_1Aa00000000004"
 
 tokenId = "token_Hxe0skTXLeg9pF"
 
-Razorpay::fetch(customerId).deleteToken(tokenId)
+Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
 ```
 **Parameters:**
 
