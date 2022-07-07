@@ -28,6 +28,7 @@ Razorpay::Customer.create({
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
 | notes         | object      | A key-value pair                            |
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
 
 **Response:**
 ```json
@@ -50,9 +51,10 @@ Razorpay::Customer.create({
 ### Create order
 
 ```rb
-Razorpay::Customer.create({
+Razorpay::Order.create({
   "amount": 0,
   "currency": "INR",
+  "payment_capture": true,
   "method": "emandate",
   "customer_id": "cust_1Aa00000000001",
   "receipt": "Receipt No. 1",
@@ -70,7 +72,7 @@ Razorpay::Customer.create({
     },
     "bank_account": {
       "beneficiary_name": "Gaurav Kumar",
-      "account_number": 1121431121541121,
+      "account_number": "1121431121541121",
       "account_type": "savings",
       "ifsc_code": "HDFC0000001"
     }
@@ -86,9 +88,10 @@ Razorpay::Customer.create({
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | method*        | string  | The authorization method. In this case the value will be `emandate`                      |
 | receipt         | string  | Your system order reference id.                                              |
+| customer_id*         | string  | The `customer_id` for the customer you want to charge.|
 | payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
-| notes           | object  | A key-value pair   |
-| token           | object  | A key-value pair   |
+| notes           | object  | A key-value pair                                                             |
+| token  | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#112-create-an-order) are supported|
 
 **Response:**
 Create order response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/authorization-transaction/#112-create-an-order)
@@ -142,13 +145,16 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer          | object | Details of the customer to whom the registration link will be sent.           |
+| customer*          | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#121-create-a-registration-link) are supported  |
 | type*        | string  | In this case, the value is `link`.                      |
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
-| subscription_registration           | object  | Details of the authorization payment.                      |
-| notes           | object  | A key-value pair                                                             |
+| subscription_registration  | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#121-create-a-registration-link) are supported  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
+| receipt      | string  | Your system order reference id.  |
+| notes           | object  | A key-value pair  |
 
 **Response:**
 Create registration link response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/authorization-transaction/#121-create-a-registration-link)
@@ -313,7 +319,7 @@ Razorpay::Payment.fetch(paymentId)
 ```rb
 customerId = "cust_1Aa00000000004"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Customer.fetch(customerId).fetchTokens
 ```
 
 **Parameters:**
@@ -367,7 +373,7 @@ customerId = "cust_1Aa00000000004"
 
 tokenId = "token_Hxe0skTXLeg9pF"
 
-Razorpay::fetch(customerId).deleteToken(tokenId)
+Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
 ```
 
 **Parameters:**
@@ -409,6 +415,7 @@ Razorpay::Order.create(para_attr)
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | object  | A key-value pair                                                             |
+| payment_capture*  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 
 **Response:**
 ```json
@@ -450,7 +457,7 @@ para_attr = {
     "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
-Razorpay::Payment.createRecurringPayment(para_attr)
+Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 
 **Parameters:**
