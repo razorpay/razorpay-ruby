@@ -149,7 +149,7 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 | Name            | Type    | Description                                                   |
 |-----------------|---------|---------------------------------------------------------------|
-| customer   | object      | Details of the customer to whom the registration link will be sent. |
+| customer   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#12-using-a-registration-link) are supported  |
 | type*  | object | the value is `link`. |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
@@ -173,6 +173,7 @@ para_attr ={
   "amount": "100",
   "currency": "INR",
   "receipt": "Receipt No. 1",
+  "payment_capture": true,
   "notes": {
     "key1": "value3",
     "key2": "value2"
