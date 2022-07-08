@@ -318,9 +318,9 @@ Razorpay::Invoice.cancel(invoiceId)
 ### Fetch token by payment ID
 
 ```rb
-customerId = "cust_1Aa00000000004"
+paymentId = "pay_FHfAzEJ51k8NLj"
 
-Razorpay::Customer.fetch(customerId).fetchTokens
+Razorpay::Payment.fetch(paymentId)
 ```
 
 **Parameters:**
@@ -470,9 +470,8 @@ Razorpay::Order.create(para_attr)
 | amount*          | integer | Amount of the order to be paid                                               |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
-| receipt         | string  | Your system order reference id.                                              |
+| payment_capture*  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 | notes           | object  | A key-value pair                                                             |
-
 **Response:**
 ```json
 {
