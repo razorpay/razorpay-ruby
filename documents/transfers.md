@@ -208,6 +208,7 @@ Razorpay::Transfer.create(para_attr)
 | accountId*   | string      | The id of the account to be fetched  |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
+| notes | object | | A key-value pair   |
 
 **Response:**
 ```json
