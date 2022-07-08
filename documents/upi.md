@@ -378,7 +378,7 @@ Razorpay::Payment.fetch(paymentId)
 ```rb
 customerId = "cust_1Aa00000000004"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Customer.fetch(customerId).fetchTokens
 ```
 
 **Parameters:**
