@@ -73,34 +73,28 @@ Razorpay::Item.all(options)
 **Response:**
 ```json
 {
-  "entity": "collection",
-  "count": 3,
-  "items": [
-    {
-      "id": "item_7Oy8OMV6BdEAac",
-      "active": true,
-      "name": "Book / Ignited Minds",
-      "description": null,
-      "amount": 15000,
-      "currency": "INR"
-    },
-    {
-      "id": "item_7Oxp4hmm6T4SCn",
-      "active": true,
-      "name": "Book / English August",
-      "description": "An indian story, Booker prize winner.",
-      "amount": 20000,
-      "currency": "INR"
-    },
-    {
-      "id": "item_7OxoGnoxCuUKbo",
-      "active": true,
-      "name": "Book / English August",
-      "description": null,
-      "amount": 20000,
-      "currency": "INR"
-    }
-  ]
+    "entity": "collection",
+    "count": 1,
+    "items": [
+        {
+            "id": "item_JnjKnSWxjILdWu",
+            "active": true,
+            "name": "Book / English August",
+            "description": "An indian story, Booker prize winner.",
+            "amount": 20000,
+            "unit_amount": 20000,
+            "currency": "INR",
+            "type": "invoice",
+            "unit": null,
+            "tax_inclusive": false,
+            "hsn_code": null,
+            "sac_code": null,
+            "tax_rate": null,
+            "tax_id": null,
+            "tax_group_id": null,
+            "created_at": 1656597363
+        }
+    ]
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -120,12 +114,22 @@ Razorpay::Item.fetch(itemId)
 **Response:**
 ```json
 {
-  "id": "item_7Oxp4hmm6T4SCn",
-  "active": true,
-  "name": "Book / English August",
-  "description": "An indian story, Booker prize winner.",
-  "amount": 20000,
-  "currency": "INR"
+    "id": "item_JnjKnSWxjILdWu",
+    "active": true,
+    "name": "Book / English August",
+    "description": "An indian story, Booker prize winner.",
+    "amount": 20000,
+    "unit_amount": 20000,
+    "currency": "INR",
+    "type": "invoice",
+    "unit": null,
+    "tax_inclusive": false,
+    "hsn_code": null,
+    "sac_code": null,
+    "tax_rate": null,
+    "tax_id": null,
+    "tax_group_id": null,
+    "created_at": 1656597363
 }
 ```
 
