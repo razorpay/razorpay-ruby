@@ -13,7 +13,7 @@ paymentId = "pay_G8VQzjPLoAvm6D"
 
 para_attr = {
     "amount": 1000,
-    "currency" : "INR"
+    "currency": "INR"
 }
 Razorpay::Payment.capture(paymentId, para_attr)
 ```
