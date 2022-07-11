@@ -94,6 +94,7 @@ Razorpay::Order.create({
 
 **Response:**
 Create order response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/authorization-transaction/#112-create-an-order)
+
 -------------------------------------------------------------------------------------------------------
 
 ### Create an Authorization Payment
@@ -157,6 +158,7 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 **Response:**
 Create registration link response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/authorization-transaction/#121-create-a-registration-link)
+
 -------------------------------------------------------------------------------------------------------
 
 ### Send/Resend notifications

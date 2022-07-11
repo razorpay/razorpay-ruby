@@ -8,12 +8,12 @@ Razorpay.setup('key_id', 'key_secret')
 ### Create a fund account
 ```rb
 para_attr = {
-  "customer_id":"cust_Aa000000000001",
-  "account_type":"bank_account",
+  "customer_id": "cust_Aa000000000001",
+  "account_type": "bank_account",
   "bank_account":{
-    "name":"Gaurav Kumar",
-    "account_number":"11214311215411",
-    "ifsc":"HDFC0000053"
+    "name": "Gaurav Kumar",
+    "account_number": "11214311215411",
+    "ifsc": "HDFC0000053"
   }
 }
 

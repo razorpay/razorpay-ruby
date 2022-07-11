@@ -167,7 +167,7 @@ Razorpay::Item.edit(itemId,para_attr)
   "id": "item_JInaSLODeDUQiQ",
   "active": true,
   "name": "Book / Ignited Minds - Updated name!",
-  "description": "New descirption too. :).",
+  "description": "New descirption too.",
   "amount": 20000,
   "unit_amount": 20000,
   "currency": "INR",

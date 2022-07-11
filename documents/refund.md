@@ -31,7 +31,7 @@ Razorpay::Payment.fetch(paymentId).refund(para_attr)
 |  paymentId*   | string      | The id of the payment                       |
 |  amount       | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |                       |
 |  speed        | string      | Here, it must be normal                |
-|  notes        | array       | A key-value pair                |
+|  notes        | object       | A key-value pair                |
 |  receipt      | string      | A unique identifier provided by you for your internal reference. |
 
 **Response:**
@@ -292,7 +292,7 @@ Razorpay::Refund.fetch(refundId).edit(para_attr)
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
 | refundId*   | string    | The id of the refund to be fetched     |
-| notes* | array  | A key-value pair                                 |
+| notes* | object  | A key-value pair                                 |
 
 **Response:**
 ```json

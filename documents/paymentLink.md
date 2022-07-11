@@ -139,7 +139,7 @@ paymentLinkId = "plink_ExjpAUN3gVHrPJ"
 para_attr = {
     "reference_id": "TS35",
     "expire_by": 1653347540,
-    "reminder_enable":false,
+    "reminder_enable": false,
     "notes":{
       "policy_name": "Jeevan Saral"
     }

@@ -6,8 +6,7 @@ para_attr = {
   "name": "Gaurav Kumar",
   "contact": 9123456780,
   "email": "gaurav.kumar@example.com",
-  "fail_existing": 0,
-  "gstin": "29XAbbA4369J1PA",
+  "fail_existing": "0",
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
     "notes_key_2": "Tea, Earl Grey… decaf."
@@ -361,13 +360,17 @@ para_attr = {
   "contact": "9123456789",
   "amount": 1000,
   "currency": "INR",
+  "order_id": "order_1Aa00000000002",
+  "customer_id": "cust_1Aa00000000001",
+  "token": "token_1Aa00000000001",
   "recurring": "1",
   "description": "Creating recurring payment for Gaurav Kumar",
   "notes": {
-    "key1": "value3",
-    "key2": "value2"
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
+
 Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 **Parameters:**

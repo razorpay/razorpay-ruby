@@ -13,7 +13,7 @@ paymentId = "pay_G8VQzjPLoAvm6D"
 
 para_attr = {
     "amount": 1000,
-    "currency" : "INR"
+    "currency": "INR"
 }
 Razorpay::Payment.capture(paymentId, para_attr)
 ```
@@ -23,8 +23,7 @@ Razorpay::Payment.capture(paymentId, para_attr)
 | Name      | Type    | Description                                                                    |
 |-----------|---------|--------------------------------------------------------------------------------|
 | paymentId* | string  | Id of the payment to capture                                                   |
-| para_attr["amount"]*    | integer | The amount to be captured (should be equal to the authorized amount, in paise) |
-| para_attr["currency"]*   | string  | The currency of the payment (defaults to INR)                                  |
+| para_attr    | object | All parameters listed [here](https://razorpay.com/docs/api/payments/#capture-a-payment) are supported  |
 
 **Response:**
 ```json
@@ -383,10 +382,10 @@ para_attr = {
   "currency": "INR",
   "receipt": "rcptid_11",
   "payment": {
-    "capture ": "automatic",
-    "capture_options ": {
-      "automatic_expiry_period ": 12,
-      "manual_expiry_period ": 7200,
+    "capture": "automatic",
+    "capture_options": {
+      "automatic_expiry_period": 12,
+      "manual_expiry_period": 7200,
       "refund_speed": "optimum"
     }  
   }

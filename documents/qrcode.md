@@ -37,7 +37,7 @@ Razorpay::QrCode.create(para_attr)
 | customer_id          | string | Unique identifier of the customer the QR code is linked with |
 | description          | string | A brief description about the QR code. |
 | close_by          | integer | UNIX timestamp at which the QR code is scheduled to be automatically closed. The time must be at least 15 minutes after the current time.  |
-| notes          | array | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
+| notes          | object | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
 
 **Response:**
 ```json
@@ -105,8 +105,8 @@ Razorpay::QrCode.create(para_attr)
 | customer_id          | string | Unique identifier of the customer the QR code is linked with |
 | description          | string | A brief description about the QR code. |
 | close_by          | integer | UNIX timestamp at which the QR code is scheduled to be automatically closed. The time must be at least 15 minutes after the current time.  |
-| notes          | array | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
-| tax_invoice          | array | This block contains information about the invoices. If not provided, the transaction will default to non-GST compliant UPI flow. |
+| notes          | object  | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
+| tax_invoice          | object  | This block contains information about the invoices. If not provided, the transaction will default to non-GST compliant UPI flow. |
 
 **Response:**
 ```json

@@ -437,7 +437,7 @@ Razorpay::Payment.fetch(payment_id).refund(options)
   "receipt": "Receipt No. 31",
   "currency": "INR",
   "payment_id": "pay_FCXKPFtYfPXJPy",
-  "notes": []
+  "notes": [],
   "receipt": null,
   "acquirer_data": {
     "arn": null
