@@ -676,7 +676,7 @@ Razorpay::Payment.create_json_payment(param_attr)
 ### Create Payment UPI s2s / VPA token (Third party validation)
 
 ```rb
-param_attr = {
+para_attr = {
   "amount": 200,
   "currency": "INR",
   "order_id": "order_GAWRjlWkVcRh0V",
@@ -730,7 +730,7 @@ Razorpay::Payment.create_upi(para_attr)
 ### Create Payment UPI s2s / VPA token (Third party validation)
 
 ```rb
-param_attr = {
+para_attr = {
     "amount": 100,
     "currency": "INR",
     "order_id": "order_Ee0biRtLOqzRjP",
@@ -745,7 +745,7 @@ param_attr = {
       "purpose": "UPI test payment"
     },
     "upi": {
-      "flow" : "intent"
+      "flow": "intent"
     }
 }
 
@@ -782,7 +782,7 @@ Razorpay::Payment.create_upi(para_attr)
 ### Valid VPA (Third party validation)
 
 ```rb
-param_attr = {
+para_attr = {
   "vpa": "gauravkumar@exampleupi"
 }
 Razorpay::Payment.validate_vpa(para_attr)
