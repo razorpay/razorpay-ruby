@@ -65,6 +65,7 @@ para_attr = {
     "name": "Gaurav Kumar",
     "ifsc": "HDFC0000053"
   }
+}  
 
 Razorpay::Order.create(para_attr)
 ```
