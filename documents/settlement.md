@@ -441,6 +441,7 @@ Razorpay::Settlement.fetch_all_ondemand_settlement(para_attr)
 | to    | timestamp | timestamp before which the payments were created |
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
+| expand[] | string | Possible value is `ondemand_payouts`|
 
 **Response:**<br>
 For all on-demand settlements response please click [here](https://razorpay.com/docs/api/settlements/#fetch-all-on-demand-settlements)
