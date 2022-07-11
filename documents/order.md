@@ -55,7 +55,7 @@ Razorpay::Order.create(para_attr)
 ### Create order (Third party validation)
 
 ```rb
-param_attr = {
+para_attr = {
   "amount": 500,
   "method": "netbanking",
   "receipt": "BILL13375649",
@@ -65,7 +65,6 @@ param_attr = {
     "name": "Gaurav Kumar",
     "ifsc": "HDFC0000053"
   }
-)
 
 Razorpay::Order.create(para_attr)
 ```
