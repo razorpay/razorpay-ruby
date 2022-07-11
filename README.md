@@ -1,6 +1,6 @@
 # Razorpay Ruby bindings
 
-[![Build Status](https://travis-ci.org/razorpay/razorpay-ruby.svg?branch=master)](https://travis-ci.org/razorpay/razorpay-ruby) [![Gem Version](https://img.shields.io/badge/gem%20version-v3.0.0-dark%20green.svg)](http://badge.fury.io/rb/razorpay) [![Coverage Status](https://coveralls.io/repos/github/Razorpay/razorpay-ruby/badge.svg?branch=master)](https://coveralls.io/github/Razorpay/razorpay-ruby?branch=master) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Build Status](https://travis-ci.org/razorpay/razorpay-ruby.svg?branch=master)](https://travis-ci.org/razorpay/razorpay-ruby) [![Gem Version](https://img.shields.io/badge/gem%20version-v3.0.1-dark%20green.svg)](http://badge.fury.io/rb/razorpay) [![Coverage Status](https://coveralls.io/repos/github/Razorpay/razorpay-ruby/badge.svg?branch=master)](https://coveralls.io/github/Razorpay/razorpay-ruby?branch=master) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
 This is the base ruby gem for interacting with the Razorpay API. This is primarily meant for users who wish to perform interactions with the Razorpay API programatically.
 
