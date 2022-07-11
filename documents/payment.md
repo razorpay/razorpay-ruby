@@ -656,7 +656,7 @@ Razorpay::Payment.create_json_payment(param_attr)
 | email*        | string      | Email of the customer                       |
 | contact*      | string      | Contact number of the customer              |
 | method*      | string  | Possible value is `netbanking` |
-| bank      | string      | The customer's bank code.For example, `HDFC`.|
+| bank*      | string      | The customer's bank code.For example, `HDFC`.|
 
  please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/netbanking#step-3-create-a-payment) for params
 
