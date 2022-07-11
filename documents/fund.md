@@ -17,7 +17,7 @@ para_attr = {
   }
 }
 
-Razorpay::FundAccount.create(data)
+Razorpay::FundAccount.create(para_attr)
 ```
 
 **Parameters:**
@@ -31,18 +31,20 @@ Razorpay::FundAccount.create(data)
 **Response:**
 ```json
 {
-  "id":"fa_Aa00000000001",
-  "entity":"fund_account",
-  "customer_id":"cust_Aa000000000001",
-  "account_type":"bank_account",
-  "bank_account":{
-    "name":"Gaurav Kumar",
-    "account_number":"11214311215411",
-    "ifsc":"HDFC0000053",
-    "bank_name":"HDFC Bank"
+  "id": "fa_JcXaLomo4ck5IY",
+  "entity": "fund_account",
+  "customer_id": "cust_JZse2vlC5nK9AQ",
+  "account_type": "bank_account",
+  "bank_account": {
+      "ifsc": "HDFC0000053",
+      "bank_name": "HDFC Bank",
+      "name": "Gaurav Kumar",
+      "notes": [],
+      "account_number": "11214311215411"
   },
-  "active":true,
-  "created_at":1543650891
+  "batch_id": null,
+  "active": true,
+  "created_at": 1654154246
 }
 ```
 -------------------------------------------------------------------------------------------------------
