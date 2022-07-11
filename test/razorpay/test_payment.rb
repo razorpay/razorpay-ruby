@@ -217,6 +217,7 @@ module Razorpay
       stub_post(%r{payments/#{@payment_id}/otp/resend$}, 'fake_otp_resend', {})
       payment = Razorpay::Payment.fetch(@payment_id).otp_resend
       assert_equal @payment_id, payment.razorpay_payment_id
+    end 
 
     def test_payment_edit
 
@@ -253,7 +254,50 @@ module Razorpay
       stub_post(%r{payments/create/json$}, 'create_json_payment',payment_attr.to_json) 
       payment = Razorpay::Payment.create_json_payment payment_attr.to_json 
       assert_equal 'pay_FVmAstJWfsD3SO', payment.razorpay_payment_id
+     end
+     def test_create_upi
+
+      param_attr = {
+        "amount": 200,
+        "currency": "INR",
+        "order_id": "order_GAWRjlWkVcRh0V",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9123456789",
+        "method": "upi",
+        "customer_id": "cust_EIW4T2etiweBmG",
+        "save": 1,
+        "ip": "192.168.0.103",
+        "referer": "http",
+        "user_agent": "Mozilla/5.0",
+        "description": "Test flow",
+        "notes": {
+          "note_key": "value1"
+        },
+        "upi": {
+          "flow": "collect",
+          "vpa": "gauravkumar@exampleupi",
+          "expiry_time": 5
+        }
+      }
+
+      stub_post(%r{payments/create/upi$}, 'fake_create_upi_payment',param_attr.to_json) 
+      payment = Razorpay::Payment.create_upi param_attr.to_json 
+      assert_equal 'pay_FVmAstJWfsD3SO', payment.razorpay_payment_id
     end
-   end 
-  end
+
+    def test_payment_methods
+      stub_get(/methods$/, 'payment_methods_collection') 
+      methods = Razorpay::PaymentMethods.all
+      assert_equal 'methods', methods.entity
+    end
+    
+    def test_validate_vpa
+      param_attr = {
+        "vpa": "gauravkumar@exampleupi"
+      }
+      stub_post(%r{payments/validate/vpa$}, 'fake_validate_vpa',param_attr.to_json) 
+      payment = Razorpay::Payment.validate_vpa param_attr.to_json 
+      assert_equal param_attr[:vpa], payment.vpa
+    end  
+  end 
 end

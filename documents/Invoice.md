@@ -67,8 +67,16 @@ Razorpay::Invoice.create({
 |-----------------|---------|------------------------------------------------------------------------------|
 |type*          | string | entity type (here its invoice)                                               |
 |description        | string  | A brief description of the invoice.                      |
-|customer_id           | string  | customer id for which invoice need be raised                     |
-|customer           | object  | customer details in a object format                     |
+|customer_id           | string  | customer id for which invoice need be raised   |
+|draft           | string  |  Invoice is created in draft state when value is set to `1`   |
+| customer.name*          | object | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported  |
+| line_items  | object |  All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported  |
+
+|expire_by           | object  | Details of the line item that is billed in the invoice.  |
+|sms_notify           | object  | Details of the line item that is billed in the invoice.  |
+|email_notify           | object  | Details of the line item that is billed in the invoice.  |
+|partial_payment | boolean  | Indicates whether customers can make partial payments on the invoice . Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments. |
+| currency*   | string  | The currency of the payment (defaults to INR)  |
 
 **Response:**
 For create invoice response please click [here](https://razorpay.com/docs/api/invoices/#create-an-invoice)
@@ -507,7 +515,7 @@ invoiceId = "inv_E7q0tqkxBRzdau"
 
 medium = "email"
 
-Razorpay::Invoice.notifyBy(invoiceId,medium)
+Razorpay::Invoice.notify_by(invoiceId,medium)
 ```
 
 **Parameters:**

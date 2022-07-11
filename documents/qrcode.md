@@ -37,7 +37,7 @@ Razorpay::QrCode.create(para_attr)
 | customer_id          | string | Unique identifier of the customer the QR code is linked with |
 | description          | string | A brief description about the QR code. |
 | close_by          | integer | UNIX timestamp at which the QR code is scheduled to be automatically closed. The time must be at least 15 minutes after the current time.  |
-| notes          | array | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
+| notes          | object | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
 
 **Response:**
 ```json
@@ -105,8 +105,8 @@ Razorpay::QrCode.create(para_attr)
 | customer_id          | string | Unique identifier of the customer the QR code is linked with |
 | description          | string | A brief description about the QR code. |
 | close_by          | integer | UNIX timestamp at which the QR code is scheduled to be automatically closed. The time must be at least 15 minutes after the current time.  |
-| notes          | array | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
-| tax_invoice          | array | This block contains information about the invoices. If not provided, the transaction will default to non-GST compliant UPI flow. |
+| notes          | object  | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
+| tax_invoice          | object  | This block contains information about the invoices. If not provided, the transaction will default to non-GST compliant UPI flow. |
 
 **Response:**
 ```json
@@ -258,26 +258,24 @@ Razorpay::QrCode.all(para_attr)
   "count": 1,
   "items": [
     {
-      "id": "qr_HMsgvioW64f0vh",
+      "id": "qr_HMsqRoeVwKbwAF",
       "entity": "qr_code",
-      "created_at": 1623660959,
-      "name": "Store_1",
-      "usage": "single_use",
+      "created_at": 1623661499,
+      "name": "Fresh Groceries",
+      "usage": "multiple_use",
       "type": "upi_qr",
-      "image_url": "https://rzp.io/i/DTa2eQR",
-      "payment_amount": 300,
+      "image_url": "https://rzp.io/i/eI9XD54Q",
+      "payment_amount": null,
       "status": "active",
-      "description": "For Store 1",
-      "fixed_amount": true,
-      "payments_amount_received": 0,
-      "payments_count_received": 0,
-      "notes": {
-        "purpose": "Test UPI QR code notes"
-      },
+      "description": "Buy fresh groceries",
+      "fixed_amount": false,
+      "payments_amount_received": 1000,
+      "payments_count_received": 1,
+      "notes": [],
       "customer_id": "cust_HKsR5se84c5LTO",
-      "close_by": 1681615838,
-      "closed_at" : null,
-      "close_reason": null
+      "close_by": 1624472999,
+      "close_reason": "paid",
+      "tax_invoice": null
     }
   ]
 }

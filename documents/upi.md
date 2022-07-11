@@ -10,6 +10,7 @@ Razorpay.setup('key_id', 'key_secret')
 para_attr = {
   "name": "Razorpay User",
   "email": "customer@razorpay.com",
+  "fail_existing": 0,
   "contact": 9123456780,
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
@@ -52,23 +53,19 @@ Razorpay::Customer.create(para_attr)
 
 ```rb
 para_attr = {
-  "amount": 0,
+  "amount": 100,
   "currency": "INR",
+  "customer_id": "cust_4xbQrmEoA5WJ01",
   "method": "upi",
-  "customer_id": "cust_1Aa00000000001",
+  "token": {
+    "max_amount": 200000,
+    "expire_at": 2709971120,
+    "frequency": "monthly"
+  },
   "receipt": "Receipt No. 1",
   "notes": {
-    "notes_key_1": "Beam me up Scotty",
-    "notes_key_2": "Engage"
-  },
-  "token": {
-    "auth_type": "netbanking",
-    "max_amount": 9999900,
-    "expire_at": 4102444799,
-    "notes": {
-      "notes_key_1": "Tea, Earl Grey, Hot",
-      "notes_key_2": "Tea, Earl Grey… decaf."
-    }
+    "notes_key_1": "Tea, Earl Grey, Hot",
+    "notes_key_2": "Tea, Earl Grey… decaf."
   }
 }
 Razorpay.Order.create(para_attr)
@@ -83,7 +80,7 @@ Razorpay.Order.create(para_attr)
 | method*        | string  | The authorization method. In this case the value will be `emandate`                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | object  | A key-value pair                                                             |
-| token           | object  | A key-value pair                                                             |
+| token           | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction#112-create-an-order) are supported |
 
 **Response:**
 ```json
@@ -147,17 +144,16 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer          | object | Details of the customer to whom the registration link will be sent.           |
+| customer   | object      | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#121-create-a-registration-link) are supported |
 | type*        | string  | In this case, the value is `link`.                      |
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
-| subscription_registration           | object  | Details of the authorization payment.                      |
-|sms_notify           | array  | Details of the line item that is billed in the invoice.  |
-|email_notify           | array  | Details of the line item that is billed in the invoice.  |
-|expire_by           | array  | Details of the line item that is billed in the invoice.  |
-|receipt         | string  | Your system order reference id.  |
-|notes           | object  | A key-value pair                                                             |
+| subscription_registration      | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#121-create-a-registration-link) are supported |
+| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
+| notes | object  | A key-value pair  |
 
 
 **Response:**
@@ -227,7 +223,7 @@ invoiceId = "inv_JDdNb4xdf4gxQ7"
 
 medium = "email" 
 
-Razorpay::Invoice.notifyBy(invoiceId, medium)
+Razorpay::Invoice.notify_by(invoiceId, medium)
 ```
 
 **Parameters:**
@@ -322,9 +318,9 @@ Razorpay::Invoice.cancel(invoiceId)
 ### Fetch token by payment ID
 
 ```rb
-customerId = "cust_1Aa00000000004"
+paymentId = "pay_FHfAzEJ51k8NLj"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Payment.fetch(paymentId)
 ```
 
 **Parameters:**
@@ -382,7 +378,7 @@ Razorpay::Customer.fetchTokens(customerId)
 ```rb
 customerId = "cust_1Aa00000000004"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Customer.fetch(customerId).fetchTokens
 ```
 
 **Parameters:**
@@ -433,7 +429,7 @@ customerId = "cust_1Aa00000000004"
 
 tokenId = "token_Hxe0skTXLeg9pF"
 
-Razorpay::fetch(customerId).deleteToken(tokenId)
+Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
 ```
 
 **Parameters:**
@@ -458,6 +454,7 @@ para_attr{
   "amount": 1000,
   "currency": "INR",
   "receipt": "Receipt No. 1",
+  "payment_capture": true,
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
     "notes_key_2": "Tea, Earl Grey… decaf."
@@ -473,8 +470,8 @@ Razorpay::Order.create(para_attr)
 | amount*          | integer | Amount of the order to be paid                                               |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
+| payment_capture*  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 | notes           | object  | A key-value pair                                                             |
-
 **Response:**
 ```json
 {
@@ -512,7 +509,7 @@ para_attr = {
   "description": "Creating recurring payment for Gaurav Kumar"
 }
 
-Razorpay::Payment.createRecurringPayment(para_attr)
+Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 
 **Parameters:**

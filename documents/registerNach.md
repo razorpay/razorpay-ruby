@@ -6,8 +6,7 @@ para_attr = {
   "name": "Gaurav Kumar",
   "contact": 9123456780,
   "email": "gaurav.kumar@example.com",
-  "fail_existing": 0,
-  "gstin": "29XAbbA4369J1PA",
+  "fail_existing": "0",
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
     "notes_key_2": "Tea, Earl Grey… decaf."
@@ -48,30 +47,31 @@ Razorpay::Customer.create(para_attr)
 
 ```rb
 para_attr = {
-  "amount": 100,
+  "amount":0,
   "currency": "INR",
   "method": "nach",
-  "receipt": "Receipt No. 5",
+  "customer_id": "cust_1Aa00000000001",
+  "receipt": "Receipt No. 1",
   "notes": {
-    "note_key 1": "Beam me up Scotty",
-    "note_key 2": "Tea. Earl Gray. Hot."
+    "notes_key_1": "Beam me up Scotty",
+    "notes_key_2": "Engage"
   },
-  "token": {
+  "token":{
     "first_payment_amount": 10000,
     "auth_type": "physical",
-    "max_amount": 50000,
-    "expire_at": 1634215992,
+    "max_amount":10000000,
+    "expire_at":1580480689,
     "notes": {
-      "note_key 1": "Tea, Earl Grey… decaf.",
-      "note_key 2": "Tea. Earl Gray. Hot."
+      "notes_key_1": "Tea, Earl Grey, Hot",
+      "notes_key_2": "Tea, Earl Grey… decaf."
     },
-    "bank_account": {
+    "bank_account":{
+      "account_number": "11214311215411",
+      "ifsc_code": "HDFC0000001",
       "beneficiary_name": "Gaurav Kumar",
-      "account_number": 11214311215411,
-      "account_type": "savings",
-      "ifsc_code": "HDFC0001233"
+      "account_type": "savings"
     },
-    "nach": {
+    "nach":{
       "form_reference1": "Recurring Payment for Gaurav Kumar",
       "form_reference2": "Method Paper NACH",
       "description": "Paper NACH Gaurav Kumar"
@@ -85,22 +85,12 @@ Razorpay.Order.create(para_attr)
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| amount*   | integer      | Amount in currency subunits. For Paper NACH, the amount has to be `0` |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | customerId*   | string      | The id of the customer to be fetched |
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `nach`.  |
 | receipt      | string  | Your system order reference id.  |
-| token.auth_type*  | string  | Possible value is `physical`|
-| token.max_amount  | integer  | Use to set the maximum amount per debit request. The value can range from `500` - `1000000000` (1cr, default value)  |
-| token.expire_at  | integer | The timestamp, in Unix format, till when the  registration link should expire |
-| token.notes  | object  | A key-value pair  |
-| bank.account_number*  | string  | Customer's bank account number.  |
-| bank.ifsc_code*  | string  | Customer's bank IFSC  |
-| bank.beneficiary_name*  | string  |  Customer's name  |
-| bank.account_type*  | string  | Customer's bank account. Possible value is `saving`(default), `current`, `cc`, `nre`, `nro`  |
-| nach.form_reference1  | string  | A user-entered reference that appears on the NACH form  |
-| nach.form_reference2  | string  | A user-entered reference that appears on the NACH form  |
-| nach.description  | string  | All keys listed  |
+| token  | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/paper-nach/auto-debit/#112-create-an-order) are supported |
 | notes | object  | A key-value pair  |
 
 **Response:**
@@ -171,37 +161,36 @@ Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/paper-n
 
 ```rb
 para_attr = {
-  "customer": {
+  "customer":{
     "name": "Gaurav Kumar",
     "email": "gaurav.kumar@example.com",
-    "contact": 9123456780
+    "contact": "9123456780"
   },
-  "amount": 100,
-  "type": "link",
+  "amount":0,
   "currency": "INR",
-  "description": "Registration Link for Gaurav Kumar",
-  "subscription_registration": {
-    "first_payment_amount": 100,
+  "type": "link",
+  "description": "12 p.m. Meals",
+  "subscription_registration":{
     "method": "nach",
     "auth_type": "physical",
-    "max_amount": 50000,
-    "expire_at": 1634215992,
-    "bank_account": {
+    "bank_account":{
       "beneficiary_name": "Gaurav Kumar",
-      "account_number": 11214311215411,
+      "account_number": "11214311215411",
       "account_type": "savings",
       "ifsc_code": "HDFC0001233"
     },
-    "nach": {
+    "nach":{
       "form_reference1": "Recurring Payment for Gaurav Kumar",
       "form_reference2": "Method Paper NACH"
-    }
+    },
+    "expire_at":1947483647,
+    "max_amount":50000
   },
-  "receipt": "Receipt No. 5",
-  "email_notify": 1,
-  "sms_notify": 1,
-  "expire_by": 1634215992,
-  "notes": {
+  "receipt": "Receipt No. 1",
+  "sms_notify":1,
+  "email_notify":1,
+  "expire_by":1647483647,
+  "notes":{
     "note_key 1": "Beam me up Scotty",
     "note_key 2": "Tea. Earl Gray. Hot."
   }
@@ -213,8 +202,7 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 | Name            | Type    | Description                                                   |
 |-----------------|---------|---------------------------------------------------------------|
-| customer   | object      | Details of the customer to whom the registration link will be sent. |
-| type*  | object | the value is `link`. |
+| customer   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/paper-nach/auto-debit/#121-create-a-registration-link) are supported  |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | description*  | string      | A brief description of the payment.   |
@@ -340,7 +328,7 @@ Razorpay::Order.create(para_attr)
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | receipt      | string  | Your system order reference id.  |
 | notes | object  | A key-value pair  |
-| payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
+| payment_capture*  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 
 **Response:**
 ```json
@@ -372,14 +360,18 @@ para_attr = {
   "contact": "9123456789",
   "amount": 1000,
   "currency": "INR",
+  "order_id": "order_1Aa00000000002",
+  "customer_id": "cust_1Aa00000000001",
+  "token": "token_1Aa00000000001",
   "recurring": "1",
   "description": "Creating recurring payment for Gaurav Kumar",
   "notes": {
-    "key1": "value3",
-    "key2": "value2"
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
-Razorpay::Payment.createRecurringPayment(para_attr)
+
+Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 **Parameters:**
 
@@ -413,7 +405,7 @@ invoiceId = "inv_JDdNb4xdf4gxQ7"
 
 medium = "email" 
 
-Razorpay::Invoice.notifyBy(invoiceId, medium)
+Razorpay::Invoice.notify_by(invoiceId, medium)
 ```
 **Parameters:**
 
@@ -537,9 +529,9 @@ Razorpay::Invoice.cancel(invoiceId);
 ## Fetch token by payment id
 
 ```rb
-customerId = "cust_1Aa00000000004"
+paymentId = "pay_EnLNTjINiPkMEZ"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Payment.fetch(paymentId)
 ```
 **Parameters:**
 
@@ -593,7 +585,7 @@ Razorpay::Customer.fetchTokens(customerId)
 ```rb
 customerId = "cust_1Aa00000000004"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Customer.fetch(customerId).fetchTokens
 ```
 **Parameters:**
 
@@ -638,7 +630,7 @@ customerId = "cust_1Aa00000000004"
 
 tokenId = "token_Hxe0skTXLeg9pF"
 
-Razorpay::fetch(customerId).deleteToken(tokenId)
+Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
 ```
 **Parameters:**
 

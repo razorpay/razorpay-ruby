@@ -53,7 +53,7 @@ Razorpay::Customer.create(para_attr)
 ### Create Order
 
 ```rb
-param_attr = {
+para_attr = {
    "amount":100,
    "currency": "INR",
    "customer_id": "cust_4xbQrmEoA5WJ01",
@@ -150,8 +150,7 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer   | object      | Details of the customer to whom the registration link will be sent. |
-| type*  | string | the value is `link`. |
+| customer   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#121-create-a-registration-link) are supported  |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | description*  | string      | A brief description of the payment.   |
@@ -304,7 +303,7 @@ para_attr = {
     "note_key 2": "Tea. Earl Gray. Hot."
   }
 }
-Razorpay::Payment.createRecurringPayment(para_attr)
+Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 **Parameters:**
 
@@ -344,7 +343,7 @@ invoiceId = "inv_JDdNb4xdf4gxQ7"
 
 medium = "email" 
 
-Razorpay::Invoice.notifyBy(invoiceId, medium)
+Razorpay::Invoice.notify_by(invoiceId, medium)
 ```
 **Parameters:**
 
@@ -493,7 +492,7 @@ Razorpay::Payment.fetch(paymentId)
 ```rb
 customerId = "cust_1Aa00000000004"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Customer.fetch(customerId).fetchTokens
 ```
 **Parameters:**
 
@@ -549,10 +548,34 @@ Razorpay::Customer.fetchTokens(customerId)
 ```
 -------------------------------------------------------------------------------------------------------
 
+## Delete tokens
+
+```rb
+customerId = "cust_1Aa00000000004"
+
+tokenId = "token_Hxe0skTXLeg9pF"
+
+Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
+```
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| customerId*   | string      | The id of the customer to be fetched |
+| tokenId*   | string      | The id of the token to be fetched |
+
+**Response:**
+```json
+{
+    "deleted": true
+}
+```
+-------------------------------------------------------------------------------------------------------
+
 ### Fetch card
 
 ```rb
-cardId = ""
+cardId = "card_JXPULjlKqC5j0i"
 
 Razorpay::Card.fetch(cardId)
 ```
@@ -566,41 +589,17 @@ Razorpay::Card.fetch(cardId)
 **Response:**
 ```json
 {
-  "id": "card_JXPULjlKqC5j0i",
-  "entity": "card",
-  "name": "gaurav.kumar",
-  "last4": "4366",
-  "network": "Visa",
-  "type": "credit",
-  "issuer": "UTIB",
-  "international": false,
-  "emi": true,
-  "sub_type": "consumer",
-  "token_iin": null
-}
-
--------------------------------------------------------------------------------------------------------
-
-## Delete tokens
-
-```rb
-customerId = "cust_1Aa00000000004"
-
-tokenId = "token_Hxe0skTXLeg9pF"
-
-Razorpay::fetch(customerId).deleteToken(tokenId)
-```
-**Parameters:**
-
-| Name            | Type    | Description                                                                  |
-|-----------------|---------|------------------------------------------------------------------------------|
-| customerId*   | string      | The id of the customer to be fetched |
-| tokenId*   | string      | The id of the token to be fetched |
-
-**Response:**
-```json
-{
-    "deleted": true
+    "id": "card_JXPULjlKqC5j0i",
+    "entity": "card",
+    "name": "Gaurav",
+    "last4": "4366",
+    "network": "Visa",
+    "type": "credit",
+    "issuer": "UTIB",
+    "international": false,
+    "emi": true,
+    "sub_type": "consumer",
+    "token_iin": null
 }
 ```
 -------------------------------------------------------------------------------------------------------

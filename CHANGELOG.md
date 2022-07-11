@@ -4,6 +4,14 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
+## [3.0.1] - 2022-07-11
+
+### Added
+
+- Added Third party validation API for Payments (create_upi, validate_vpa)
+- New API for Payment Methods
+- Doc Updated
+
 ## [3.0.0] - 2022-06-03
 
 ### Added

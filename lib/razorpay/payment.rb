@@ -104,5 +104,13 @@ module Razorpay
     def otp_resend
       self.class.request.post "#{id}/otp/resend"
     end
+
+    def self.create_upi(data={})
+      request.post "create/upi" , data
+    end
+    
+    def self.validate_vpa(data={})
+      request.post "validate/vpa" , data
+    end
   end
 end

@@ -31,7 +31,7 @@ Razorpay::Payment.fetch(paymentId).refund(para_attr)
 |  paymentId*   | string      | The id of the payment                       |
 |  amount       | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |                       |
 |  speed        | string      | Here, it must be normal                |
-|  notes        | array       | A key-value pair                |
+|  notes        | object       | A key-value pair                |
 |  receipt      | string      | A unique identifier provided by you for your internal reference. |
 
 **Response:**
@@ -50,7 +50,8 @@ Razorpay::Payment.fetch(paymentId).refund(para_attr)
   "created_at": 1597078866,
   "batch_id": null,
   "status": "processed",
-  "speed_processed": "normal"
+  "speed_processed": "normal",
+  "speed_requested": "normal"
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -115,11 +116,11 @@ Razorpay::Payment.fetch_multiple_refund(paymentId,option)
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| paymentId*  | string      | The id of the payment                       |
-| from  | timestamp | timestamp after which the payments were created  |
-| to    | timestamp | timestamp before which the payments were created |
-| count | integer   | number of payments to fetch (default: 10)        |
-| skip  | integer   | number of payments to be skipped (default: 0)    |
+| paymentId*  | string   | The id of the payment  for which refund has been requested.  |
+| from  | timestamp |  UNIX timestamp at which the refunds were created.  |
+| to    | timestamp | UNIX timestamp till which the refunds were created. |
+| count | integer   | The number of refunds to fetch for the payment.    |
+| skip  | integer   | The number of refunds to be skipped for the payment. |
 
 **Refund:**
 ```json
@@ -164,8 +165,8 @@ Razorpay::Payment.fetch(paymentId).fetch_refund(refundId)
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-|  paymentId*   | string      | The id of the payment to be fetched        |
-|  refundId*   | string      | The id of the refund to be fetched           |
+|  paymentId*   | string      | Unique identifier of the payment for which the refund has been made.|
+|  refundId*   | string      | Unique identifier of the refund to be retrieved.  |
 
 **Response:**
 ```json
@@ -291,7 +292,7 @@ Razorpay::Refund.fetch(refundId).edit(para_attr)
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
 | refundId*   | string    | The id of the refund to be fetched     |
-| notes* | array  | A key-value pair                                 |
+| notes* | object  | A key-value pair                                 |
 
 **Response:**
 ```json
