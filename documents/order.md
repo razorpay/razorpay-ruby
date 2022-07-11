@@ -79,6 +79,7 @@ Razorpay::Order.create(para_attr)
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.       |
 | receipt         | string  | Your system order reference id.                                              |
 |bank_account | array  | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/#step-2-create-an-order) are supported |
+| notes           | object  | A key-value pair    |
 
 **Response:**
 
