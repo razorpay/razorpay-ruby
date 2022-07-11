@@ -44,6 +44,7 @@ Razorpay::Subscription.create(para_attr)
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 | addons    | object | Object that contains details of any upfront amount you want to collect as part of the authorization transaction. |
 | notes          | object | Notes you can enter for the contact for future reference.   |
+| offer_id   | string | The unique identifier of the offer that is linked to the subscription. |
 
 **Response:**
 ```json
@@ -123,6 +124,7 @@ Razorpay::Subscription.create(para_attr)
 | addons    | object | Object that contains details of any upfront amount you want to collect as part of the authorization transaction. |
 | notes          | object | Notes you can enter for the contact for future reference.   |
 | notify_info          | object | The customer's email and phone number to which notifications are to be sent. (PN: Use this object only if you have set the `customer_notify` parameter to 1. That is, Razorpay sends notifications to the customer.)  |
+| offer_id   | string | The unique identifier of the offer that is linked to the subscription. |
 
 **Response:**
 ```json
@@ -484,7 +486,7 @@ Razorpay::Subscription.cancel_scheduled_changes(subscriptionId)
 ```rb
 subscriptionId = "sub_00000000000001"
 
-options = { "pause_at" : "now" }
+options = {"pause_at": "now"}
 
 Razorpay::Subscription.pause(subscriptionId,options)
 ```
