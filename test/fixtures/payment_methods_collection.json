@@ -1,0 +1,149 @@
+{
+    "entity": "methods",
+    "card": true,
+    "debit_card": true,
+    "credit_card": true,
+    "prepaid_card": true,
+    "card_networks": {
+      "AMEX": 0,
+      "DICL": 0,
+      "MC": 1,
+      "MAES": 1,
+      "VISA": 1,
+      "JCB": 0,
+      "RUPAY": 1,
+      "BAJAJ": 0
+    },
+    "card_subtype": {
+      "consumer": 1,
+      "business": 1,
+      "premium": 0
+    },
+    "amex": false,
+    "netbanking": {
+      "AUBL": "AU Small Finance Bank",
+      "AIRP": "Airtel Payments Bank",
+      "ANDB": "Andhra Bank",
+      "UTIB": "Axis Bank",
+      "BARB_R": "Bank of Baroda - Retail Banking",
+      "VIJB": "Bank of Baroda - Retail Banking (Erstwhile Vijaya Bank)",
+      "MAHB": "Bank of Maharashtra",
+      "CNRB": "Canara Bank",
+      "CSBK": "Catholic Syrian Bank",
+      "CBIN": "Central Bank of India",
+      "DCBL": "DCB Bank",
+      "DEUT": "Deutsche Bank",
+      "DLXB": "Dhanlaxmi Bank",
+      "ESFB": "Equitas Small Finance Bank",
+      "FSFB": "Fincare Small Finance Bank",
+      "ICIC": "ICICI Bank",
+      "IBKL": "IDBI",
+      "IDFB": "IDFC FIRST Bank",
+      "IDIB": "Indian Bank",
+      "ALLA": "Indian Bank (Erstwhile Allahabad Bank)",
+      "IOBA": "Indian Overseas Bank",
+      "INDB": "Indusind Bank",
+      "JAKA": "Jammu and Kashmir Bank",
+      "JSFB": "Jana Small Finance Bank",
+      "KARB": "Karnataka Bank",
+      "KVBL": "Karur Vysya Bank",
+      "KKBK": "Kotak Mahindra Bank",
+      "LAVB_R": "Lakshmi Vilas Bank - Retail Banking",
+      "NSPB": "NSDL Payments Bank",
+      "ORBC": "PNB (Erstwhile-Oriental Bank of Commerce)",
+      "UTBI": "PNB (Erstwhile-United Bank of India)",
+      "PSIB": "Punjab & Sind Bank",
+      "PUNB_R": "Punjab National Bank - Retail Banking",
+      "RATN": "RBL Bank",
+      "SVCB": "SVC Co-Operative Bank Ltd.",
+      "SRCB": "Saraswat Co-operative Bank",
+      "SIBL": "South Indian Bank",
+      "SCBL": "Standard Chartered Bank",
+      "SBBJ": "State Bank of Bikaner and Jaipur",
+      "SBHY": "State Bank of Hyderabad",
+      "SBIN": "State Bank of India",
+      "SBMY": "State Bank of Mysore",
+      "STBP": "State Bank of Patiala",
+      "SBTR": "State Bank of Travancore",
+      "TMBL": "Tamilnad Mercantile Bank",
+      "UCBA": "UCO Bank",
+      "UBIN": "Union Bank of India",
+      "CORP": "Union Bank of India (Erstwhile Corporation Bank)",
+      "YESB": "Yes Bank"
+    },
+    "wallet": {
+      "mobikwik": true,
+      "payzapp": true,
+      "olamoney": true,
+      "airtelmoney": true,
+      "freecharge": true,
+      "jiomoney": true
+    },
+    "emi": false,
+    "upi": true,
+    "cardless_emi": [],
+    "paylater": {
+      "epaylater": true,
+      "getsimpl": true,
+      "icic": true,
+      "hdfc": true,
+      "kkbk": true,
+      "lazypay": true
+    },
+    "google_pay_cards": false,
+    "app": {
+      "cred": 0,
+      "twid": 0,
+      "trustly": 0,
+      "poli": 0,
+      "sofort": 0,
+      "giropay": 0
+    },
+    "gpay": false,
+    "emi_types": {
+      "credit": false,
+      "debit": false
+    },
+    "debit_emi_providers": {
+      "HDFC": 0
+    },
+    "nach": false,
+    "cod": false,
+    "offline": false,
+    "recurring": {
+      "card": {
+        "credit": [
+          "MasterCard",
+          "Visa"
+        ],
+        "prepaid": [
+          "MasterCard",
+          "Visa"
+        ],
+        "debit": {
+          "UTIB": "Axis Bank",
+          "BARB": "Bank of Baroda",
+          "MAHB": "Bank of Maharashtra",
+          "CITI": "CITI Bank",
+          "CNRB": "Canara Bank",
+          "CIUB": "City Union Bank",
+          "ESFB": "Equitas Small Finance Bank",
+          "FDRL": "Federal Bank",
+          "HDFC": "HDFC Bank",
+          "HSBC": "HSBC",
+          "ICIC": "ICICI Bank",
+          "IDIB": "Indian Bank",
+          "ALLA": "Indian Bank (Erstwhile Allahabad Bank)",
+          "IOBA": "Indian Overseas Bank",
+          "INDB": "Indusind Bank",
+          "KVBL": "Karur Vysya Bank",
+          "KKBK": "Kotak Mahindra Bank",
+          "RATN": "RBL Bank",
+          "SBIN": "State Bank of India"
+        }
+      },
+      "upi": true,
+      "nach": false
+    },
+    "upi_intent": true
+  }
