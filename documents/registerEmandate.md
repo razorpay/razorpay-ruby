@@ -53,31 +53,33 @@ Razorpay::Customer.create(para_attr)
 
 ```rb
 para_attr = {
-  "amount": 100,
+  "amount": 0,
   "currency": "INR",
   "method": "emandate",
-  "receipt": "Receipt No. 5",
+  "customer_id": "cust_1Aa00000000001",
+  "receipt": "Receipt No. 1",
   "notes": {
-    "note_key 1": "Beam me up Scotty",
-    "note_key 2": "Engage"
+    "notes_key_1": "Beam me up Scotty",
+    "notes_key_2": "Engage"
   },
   "token": {
-    "first_payment_amount": 10000,
+    "first_payment_amount": 100,
     "auth_type": "netbanking",
     "max_amount": 9999900,
     "expire_at": 4102444799,
     "notes": {
-      "note_key 1": "Tea, Earl Grey… decaf.",
-      "note_key 2": "Tea. Earl Gray. Hot."
+      "notes_key_1": "Tea, Earl Grey, Hot",
+      "notes_key_2": "Tea, Earl Grey… decaf."
     },
     "bank_account": {
       "beneficiary_name": "Gaurav Kumar",
-      "account_number": 11214311215411,
+      "account_number": "1121431121541121",
       "account_type": "savings",
-      "ifsc_code": "HDFC0001233"
+      "ifsc_code": "HDFC0000001"
     }
   }
 }
+
 Razorpay::Order.create(para_attr)
 ```
 
@@ -147,7 +149,7 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 | Name            | Type    | Description                                                   |
 |-----------------|---------|---------------------------------------------------------------|
-| customer   | object      | Details of the customer to whom the registration link will be sent. |
+| customer   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#12-using-a-registration-link) are supported  |
 | type*  | object | the value is `link`. |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
@@ -161,6 +163,7 @@ Razorpay::SubscriptionRegistration.create(para_attr)
 
 **Response:**
 For create registration link response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#12-using-a-registration-link)
+
 -------------------------------------------------------------------------------------------------------
 
 ## Create an order to charge the customer
@@ -170,6 +173,7 @@ para_attr ={
   "amount": "100",
   "currency": "INR",
   "receipt": "Receipt No. 1",
+  "payment_capture": true,
   "notes": {
     "key1": "value3",
     "key2": "value2"
@@ -224,7 +228,7 @@ para_attr = {
     "key2": "value2"
   }
 }
-Razorpay::Payment.createRecurringPayment(para_attr)
+Razorpay::Payment.create_recurring_payment(para_attr)
 ```
 **Parameters:**
 
@@ -258,7 +262,7 @@ invoiceId = "inv_JDdNb4xdf4gxQ7"
 
 medium = "email" 
 
-Razorpay::Invoice.notifyBy(invoiceId, medium)
+Razorpay::Invoice.notify_by(invoiceId, medium)
 ```
 **Parameters:**
 
@@ -369,7 +373,7 @@ For fetch token by payment id response please click [here](https://razorpay.com/
 ```rb
 customerId = "cust_1Aa00000000004"
 
-Razorpay::Customer.fetchTokens(customerId)
+Razorpay::Customer.fetch(customerId).fetchTokens
 ```
 **Parameters:**
 
@@ -422,7 +426,7 @@ customerId = "cust_1Aa00000000004"
 
 tokenId = "token_Hxe0skTXLeg9pF"
 
-Razorpay::fetch(customerId).deleteToken(tokenId)
+Razorpay::Customer.fetch(customerId).deleteToken(tokenId)
 ```
 **Parameters:**
 
