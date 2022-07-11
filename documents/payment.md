@@ -13,7 +13,7 @@ paymentId = "pay_G8VQzjPLoAvm6D"
 
 para_attr = {
     "amount": 1000,
-    "currency" : "INR"
+    "currency": "INR"
 }
 Razorpay::Payment.capture(paymentId, para_attr)
 ```
@@ -630,6 +630,196 @@ Doc reference [doc](https://razorpay.com/docs/payments/payment-methods/cards/aut
 ```
 
 -------------------------------------------------------------------------------------------------------
+
+### Create Payment Json (Third party validation)
+
+```rb
+param_attr = {
+  "amount": "100",
+  "currency": "INR",
+  "email": "gaurav.kumar@example.com",
+  "contact": "9123456789",
+  "order_id": "order_JkVtS9XJdk2u0B",
+  "method": "netbanking",
+  "bank": "HDFC"
+}
+
+Razorpay::Payment.create_json_payment(param_attr)
+
+```
+
+**Parameters:**
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| amount*          | integer | Amount of the order to be paid  |
+| currency*   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id*        | string  | The unique identifier of the order created. |
+| email*        | string      | Email of the customer                       |
+| contact*      | string      | Contact number of the customer              |
+| method*      | string  | Possible value is `netbanking` |
+| bank*      | string      | The customer's bank code.For example, `HDFC`.|
+
+ please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/netbanking#step-3-create-a-payment) for params
+
+**Response:** <br>
+```json
+{
+  "razorpay_payment_id": "pay_GAWOYqPlvrtPSi",
+  "next": [
+    {
+      "action": "redirect",
+      "url": "https://api.razorpay.com/v1/payments/pay_GAWOYqPlvrtPSi/authorize"
+    }
+  ]
+}
+```
+-------------------------------------------------------------------------------------------------------
+### Create Payment UPI s2s / VPA token (Third party validation)
+
+```rb
+para_attr = {
+  "amount": 200,
+  "currency": "INR",
+  "order_id": "order_GAWRjlWkVcRh0V",
+  "email": "gaurav.kumar@example.com",
+  "contact": "9123456789",
+  "method": "upi",
+  "customer_id": "cust_EIW4T2etiweBmG",
+  "save": 1,
+  "ip": "192.168.0.103",
+  "referer": "http",
+  "user_agent": "Mozilla/5.0",
+  "description": "Test flow",
+  "notes": {
+    "note_key": "value1"
+  },
+  "upi": {
+    "flow": "collect",
+    "vpa": "gauravkumar@exampleupi",
+    "expiry_time": 5
+  }
+}
+
+Razorpay::Payment.create_upi(para_attr)
+```
+
+**Parameters:**
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| amount*          | integer | Amount of the order to be paid  |
+| currency*   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id*        | string  | The unique identifier of the order created. |
+| email*        | string      | Email of the customer                       |
+| customer_id*   | string      | The id of the customer to be fetched |
+| contact*      | string      | Contact number of the customer              |
+| notes | array  | A key-value pair  |
+| description | string  | Descriptive text of the payment. |
+| save | boolean  |  Specifies if the VPA should be stored as tokens.Possible value is `0`, `1`  |
+| callback_url   | string      | URL where Razorpay will submit the final payment status. |
+| ip*   | string      | The client's browser IP address. For example `117.217.74.98` |
+| referer*   | string      | Value of `referer` header passed by the client's browser. For example, `https://example.com/` |
+| user_agent*   | string      | Value of `user_agent` header passed by the client's browser. For example, `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36` |
+| upi* (for Upi only)  | array      | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/collect#step-14-initiate-a-payment) are supported  |
+
+**Response:** <br>
+```json
+{
+  "razorpay_payment_id": "pay_EAm09NKReXi2e0"
+}
+```
+-------------------------------------------------------------------------------------------------------
+### Create Payment UPI s2s / VPA token (Third party validation)
+
+```rb
+para_attr = {
+    "amount": 100,
+    "currency": "INR",
+    "order_id": "order_Ee0biRtLOqzRjP",
+    "email": "gaurav.kumar@example.com",
+    "contact": "9090909090",
+    "method": "upi",
+    "ip": "192.168.0.103",
+    "referer": "http",
+    "user_agent": "Mozilla/5.0",
+    "description": "Test flow",
+    "notes": {
+      "purpose": "UPI test payment"
+    },
+    "upi": {
+      "flow": "intent"
+    }
+}
+
+Razorpay::Payment.create_upi(para_attr)
+```
+
+**Parameters:**
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| amount*          | integer | Amount of the order to be paid  |
+| currency*   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id*        | string  | The unique identifier of the order created. |
+| email*        | string      | Email of the customer                       |
+| customer_id*   | string      | The id of the customer to be fetched |
+| contact*      | string      | Contact number of the customer              |
+| notes | array  | A key-value pair  |
+| description | string  | Descriptive text of the payment. |
+| save | boolean  |  Specifies if the VPA should be stored as tokens.Possible value is `0`, `1`  |
+| callback_url   | string      | URL where Razorpay will submit the final payment status. |
+| ip*   | string      | The client's browser IP address. For example `117.217.74.98` |
+| referer*   | string      | Value of `referer` header passed by the client's browser. For example, `https://example.com/` |
+| user_agent*   | string      | Value of `user_agent` header passed by the client's browser. For example, `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36` |
+| upi* (for Upi only)  | array      | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/intent/#step-2-initiate-a-payment) are supported  |
+
+**Response:** <br>
+```json
+{
+  "razorpay_payment_id": "pay_CMeM6XvOPGFiF",
+  "link": "upi://pay?pa=success@razorpay&pn=xyz&tr=xxxxxxxxxxx&tn=gourav&am=1&cu=INR&mc=xyzw"
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+### Valid VPA (Third party validation)
+
+```rb
+para_attr = {
+  "vpa": "gauravkumar@exampleupi"
+}
+Razorpay::Payment.validate_vpa(para_attr)
+```
+
+**Parameters:**
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| vpa*          | string | The virtual payment address (VPA) you want to validate. For example,   `gauravkumar@exampleupi`  |
+
+ please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/collect#step-13-validate-the-vpa) for params
+
+**Response:** <br>
+```json
+{
+  "vpa": "gauravkumar@exampleupi",
+  "success": true,
+  "customer_name": "Gaurav Kumar"
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+### Fetch payment methods (Third party validation)
+
+```rb
+Razorpay.setup('key', '') # Use Only razorpay key
+
+Razorpay::PaymentMethods.all()
+```
+
+**Response:** <br>
+ please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/methods-api/#fetch-payment-methods) for response
+
+```
+-------------------------------------------------------------------------------------------------------
+
 
 **PN: * indicates mandatory fields**
 <br>
