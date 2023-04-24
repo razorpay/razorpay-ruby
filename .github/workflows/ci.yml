@@ -22,11 +22,6 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.0'
-    - name: Install dependencies
-      run: bundle install
-    - name: Run tests and collect coverage
-      run: bundle exec rake
-    - name: Upload coverage to Codecov
-      if: ${{ matrix.ruby-version == '3.0' }}
-      uses: codecov/codecov-action@v3
-      
+    - name: Install dependencies & run tests
+      run: bundle install && bundle exec rake rubocop
+
