@@ -13,7 +13,7 @@ jobs:
   runs-on: ubuntu-latest
   #strategy:
    #matrix:
-    #ruby-version: ['3.0']
+    #ruby-version: 3.1
     
   steps:
     - name: Checkout
@@ -21,7 +21,7 @@ jobs:
     - name: Set up Ruby latest
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.1'
+        ruby-version: 3.1
     - name: Install dependencies & run tests
       run: bundle install && bundle exec rake
 
