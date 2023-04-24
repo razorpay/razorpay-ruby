@@ -11,9 +11,9 @@ on:
 jobs:
  test:
   runs-on: ubuntu-latest
-  strategy:
-   matrix:
-    ruby-version: ['3.0']
+  #strategy:
+   #matrix:
+    #ruby-version: ['3.0']
     
   steps:
     - name: Checkout
@@ -21,7 +21,7 @@ jobs:
     - name: Set up Ruby latest
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 'head'
+        ruby-version: '3.0'
     - name: Install dependencies
       run: bundle install
     - name: Run tests and collect coverage
