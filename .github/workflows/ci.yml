@@ -16,13 +16,10 @@ jobs:
     #ruby-version: 3.1
     
   steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Set up Ruby latest
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.1
-        bundler-cache: true
-    - name: Install dependencies & run tests
+    - name: Install dependencies
+      run: bundle install
+    - name: Run tests and collect coverage
       run: bundle exec rake
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
 
