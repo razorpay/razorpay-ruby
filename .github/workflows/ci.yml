@@ -22,8 +22,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.1
+        bundler-cache: true
     - name: Install dependencies & run tests
-      run: |
-       bundle install && bundle exec rake
-       bundle list
+      run: bundle exec rake
 
