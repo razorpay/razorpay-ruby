@@ -11,9 +11,9 @@ on:
 jobs:
  test:
   runs-on: ubuntu-latest
-  #strategy:
-   #matrix:
-    #ruby-version: 3.1
+  strategy:
+   matrix:
+    ruby-version: ['2.6', '2.7', '3.0', '3.1']
     
   steps:
     - name: Checkout
@@ -27,6 +27,7 @@ jobs:
     - name: Run tests and collect coverage
       run: bundle exec rake
     - name: Upload coverage to Codecov
+      if: ${{ matrix.ruby-version == 3.1 }}
       uses: codecov/codecov-action@v3
       with:
         files: ${{ github.workspace }}/coverage/coverage.xml
