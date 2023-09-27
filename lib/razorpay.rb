@@ -20,6 +20,7 @@ require 'razorpay/fund_account'
 require 'razorpay/item'
 require 'razorpay/qr_code'
 require 'razorpay/payment_method'
+require 'razorpay/token'
 
 # Base Razorpay module
 module Razorpay
