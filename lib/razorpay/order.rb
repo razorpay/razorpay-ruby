@@ -23,7 +23,7 @@ module Razorpay
 
     def payments(options = {})
       r = self.class.request
-      r.request :get, "/orders/#{id}/payments", options
+      r.request :get, "/v1/orders/#{id}/payments", options
     end
     
     def self.edit(id, options = {})
