@@ -603,6 +603,51 @@ Razorpay::Card.fetch(cardId)
 }
 ```
 -------------------------------------------------------------------------------------------------------
+## Using Card Number/ Tokenised Card Number
+
+```rb
+Razorpay::Card.requestCardReference({"number":"4111111111111111"});
+```
+**Parameters:**
+
+| Name        | Type    | Description                                                                  |
+|-------------|---------|------------------------------------------------------------------------------|
+| number* | string | The card number whose PAR or network reference id should be retrieved. |
+| tokenised  | string | Determines if the card is saved as a token. Possible value is `true` or `false` |
+
+**Response:**
+```json
+{
+  "network": "Visa",
+  "payment_account_reference": "V0010013819231376539033235990",
+  "network_reference_id": null
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+## Using Razporpay token
+
+```rb
+Razorpay::Card.requestCardReference({"token":"token_4lsdksD31GaZ09"});
+```
+**Parameters:**
+
+| Name        | Type    | Description                                                                  |
+|-------------|---------|------------------------------------------------------------------------------|
+| token* | string | The token whose PAR or network reference id should be retrieved.|
+
+
+
+**Response:**
+```json
+{
+  "network": "Visa",
+  "payment_account_reference": "V0010013819231376539033235990",
+  "network_reference_id": null
+}
+```
+
+-------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**
 <br>
