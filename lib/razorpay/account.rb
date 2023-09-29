@@ -26,5 +26,14 @@ module Razorpay
     def self.delete(id)
       request.delete "#{id}", @@versions
     end
+
+    def self.uploadAccountDoc(id,options)
+      r = request
+      r.request :post, "/#{@@versions}/accounts/#{id}/documents", options
+    end
+    
+    def self.fetchAccountDoc(id)
+      request.fetch "#{id}/documents", @@versions
+    end
   end
 end
