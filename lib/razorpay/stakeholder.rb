@@ -26,5 +26,14 @@ module Razorpay
     def self.edit(account_id, id, options = {})
       request.patch "#{account_id}/stakeholders/#{id}", options, @@versions
     end
+
+    def self.uploadStakeholderDoc(account_id, id,options)
+      r = request
+      r.request :post, "/#{@@versions}/accounts/#{account_id}/stakeholders/#{id}/documents", options
+    end
+
+    def self.fetchStakeholderDoc(account_id, id)
+      request.fetch "#{account_id}/stakeholders/#{id}/documents", @@versions
+    end
   end
 end
