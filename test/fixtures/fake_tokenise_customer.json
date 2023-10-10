@@ -1,0 +1,40 @@
+{
+    "id": "token_00000000000001",
+    "entity": "token",
+    "customer_id": "cust_1Aa00000000001",
+    "method": "card",
+    "card": {
+      "last4": "1111",
+      "network": "Visa",
+      "type": "debit",
+      "issuer": "HDFC",
+      "international": false,
+      "emi": true,
+      "sub_type": "consumer",
+      "token_iin": "453335"
+    },
+    "compliant_with_tokenisation_guidelines": true,
+    "service_provider_tokens": [
+      {
+        "id": "spt_1234abcd",
+        "entity": "service_provider_token",
+        "provider_type": "network",
+        "provider_name": "Visa",
+        "interoperable": true,
+        "status": "active",
+        "status_reason": null,
+        "provider_data": {
+          "token_reference_number": "sas7wqaoidasdfssdjjk",
+          "payment_account_reference": "8324ssdas7wqaoidassdjjk",
+          "token_iin": "453335",
+          "token_expiry_month": 12,
+          "token_expiry_year": 2030
+        }
+      }
+    ],
+    "expired_at": 1748716199,
+    "status": "active",
+    "status_reason": null,
+    "notes": []
+  }
+
