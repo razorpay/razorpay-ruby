@@ -390,7 +390,7 @@ Razorpay::Account.fetch(accountId)
 ```rb
 account_id = "acc_0000000000001"
 
-Razorpay::Account.uploadAccountDoc(account_id,{
+Razorpay::Account.upload_account_doc(account_id,{
   "file": File.new("/Users/your_name/Downloads/sample_uploaded.jpeg"),
   "document_type": "business_proof_url"
 })
@@ -422,7 +422,7 @@ Razorpay::Account.uploadAccountDoc(account_id,{
 ```rb
 account_id = "acc_0000000000001"
 
-Razorpay::Account.fetchAccountDoc(account_id)
+Razorpay::Account.fetch_account_doc(account_id)
 ```
 
 **Parameters:**
