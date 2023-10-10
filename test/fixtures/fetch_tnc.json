@@ -1,0 +1,11 @@
+{
+    "entity": "tnc_map",
+    "product_name": "payments",
+    "id": "tnc_map_00000000000001",
+    "tnc": {
+        "terms": "https://razorpay.com/terms",
+        "privacy": "https://razorpay.com/privacy",
+        "agreement": "https://razorpay.com/agreement"
+    },
+    "last_published_at": 1640589653
+}
