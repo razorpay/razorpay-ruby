@@ -5,10 +5,10 @@
 
 accountId = "acc_GP4lfNA0iIMn5B"
 
-Razorpay::Product.requestProductConfiguration(accountId, {
-    "product_name" : "payment_gateway",
-    "tnc_accepted" : 1,
-    "ip" : "233.233.233.234"
+Razorpay::Product.request_product_configuration(accountId, {
+  "product_name": "payment_gateway",
+  "tnc_accepted": 1,
+  "ip": "233.233.233.234"
 })
 ```
 
@@ -412,7 +412,7 @@ Razorpay::Product.fetch(accountId, productId)
 
 productName = "payments"
 
-Razorpay::Product.fetchTnc(productName)
+Razorpay::Product.fetch_tnc(productName)
 ```
 
 **Parameters:**

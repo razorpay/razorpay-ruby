@@ -11,7 +11,7 @@ module Razorpay
       Razorpay::Request.new('accounts')
     end
 
-    def self.requestProductConfiguration(account_id, options)
+    def self.request_product_configuration(account_id, options)
       request.post "#{account_id}/products", options, @@versions
     end
 
@@ -23,7 +23,7 @@ module Razorpay
       request.patch "#{account_id}/products/#{id}", options, @@versions
     end
 
-    def self.fetchTnc(productName)
+    def self.fetch_tnc(productName)
       r = request
       r.request :get, "/#{@@versions}/products/#{productName}/tnc", {}
     end
