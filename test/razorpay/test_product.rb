@@ -30,7 +30,7 @@ module Razorpay
       payload = create_product_payload()
       stub_post(%r{accounts/#{@account_id}/products$}, 'fake_product', payload.to_json)
 
-      product = Razorpay::Product.requestProductConfiguration(@account_id, payload.to_json)
+      product = Razorpay::Product.request_product_configuration(@account_id, payload.to_json)
       assert_instance_of Razorpay::Entity, product, 'Product not an instance of Entity class'
       assert_equal @product_id, product.id, 'Product IDs do not match'
       assert_equal @product_name, product.product_name, 'product name is accessible'
@@ -51,7 +51,7 @@ module Razorpay
       product_name = "payments"  
 
       stub_get("#{BASE_URI}/v2/products/#{product_name}/tnc", 'fetch_tnc')  
-      product = Razorpay::Product.fetchTnc(product_name)
+      product = Razorpay::Product.fetch_tnc(product_name)
       assert_instance_of Razorpay::Entity, product, 'Product not an instance of Entity class'
       assert_equal @tnc_id, product.id, 'Product IDs do not match'
     end
