@@ -381,7 +381,7 @@ Razorpay::Token.delete({"id": "token_4lsdksD31GaZ09"});
 
 ### Process a Payment on another PA/PG with Token
 ```rb
-Razorpay::Token.processPaymentOnAlternatePAorPG({"id":"spt_4lsdksD31GaZ09"});
+Razorpay::Token.process_payment_on_alternate_pa_or_pg({"id":"spt_4lsdksD31GaZ09"});
 ```
 
 **Parameters:**

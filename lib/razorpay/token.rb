@@ -21,7 +21,7 @@ module Razorpay
       request.post "delete", options
     end
 
-    def self.processPaymentOnAlternatePAorPG(options)
+    def self.process_payment_on_alternate_pa_or_pg(options)
       request.post "service_provider_tokens/token_transactional_data", options
     end
   end
