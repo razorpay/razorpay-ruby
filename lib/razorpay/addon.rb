@@ -22,7 +22,7 @@ module Razorpay
       # POST /addons is not supported
       # Addon creation endpoint is:
       # POST subscriptions/{sub_id}/addons
-      r.request :post, "/subscriptions/#{subscription_id}/addons", options
+      r.request :post, "/v1/subscriptions/#{subscription_id}/addons", options
     end
 
     def self.delete(id)

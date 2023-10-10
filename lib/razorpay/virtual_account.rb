@@ -31,7 +31,7 @@ module Razorpay
 
     def payments(options = {})
       r = self.class.request
-      r.request :get, "/virtual_accounts/#{id}/payments", options
+      r.request :get, "/v1/virtual_accounts/#{id}/payments", options
     end
 
     def self.add_receiver(id, options = {})
