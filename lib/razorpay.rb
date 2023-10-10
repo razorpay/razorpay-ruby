@@ -21,6 +21,9 @@ require 'razorpay/item'
 require 'razorpay/qr_code'
 require 'razorpay/payment_method'
 require 'razorpay/token'
+require 'razorpay/product'
+require 'razorpay/stakeholder'
+require 'razorpay/account'
 
 # Base Razorpay module
 module Razorpay
