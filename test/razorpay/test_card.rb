@@ -19,5 +19,11 @@ module Razorpay
       assert_instance_of Razorpay::Card, card, 'card not an instance of Razorpay::Card class'
       assert_equal @card_id, card.id, 'card IDs do not match'
     end
+
+    def test_request_card_reference_should_be_fetched
+      stub_post(%r{cards/fingerprints$}, 'fake_card_reference', {"number": "4111111111111111"})
+      card = Razorpay::Card.request_card_reference({"number": "4111111111111111"})
+      assert_instance_of Razorpay::Entity, card, 'card not an instance of Razorpay::Card class'
+    end
   end
 end
