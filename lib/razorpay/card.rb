@@ -14,7 +14,7 @@ module Razorpay
       request.fetch id
     end
 
-    def self.requestCardReference(options)
+    def self.request_card_reference(options)
       request.post 'fingerprints', options
     end
   end

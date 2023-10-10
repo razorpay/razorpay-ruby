@@ -606,7 +606,7 @@ Razorpay::Card.fetch(cardId)
 ## Using Card Number/ Tokenised Card Number
 
 ```rb
-Razorpay::Card.requestCardReference({"number":"4111111111111111"});
+Razorpay::Card.request_card_reference({"number":"4111111111111111"});
 ```
 **Parameters:**
 
