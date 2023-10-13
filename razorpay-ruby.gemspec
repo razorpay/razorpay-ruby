@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'httparty', '~> 0.14'
 
-  spec.add_development_dependency 'coveralls', '~> 0.8'
+  spec.add_development_dependency 'coveralls_reborn', '~> 0.8'
   spec.add_development_dependency 'minitest', '~> 5.11'
   spec.add_development_dependency 'rake', '~> 12.0'
 
@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
     # rubocop is only run in the latest ruby build
     # so we use the latest version and don't switch to a
     # older version for 1.9.3
+    spec.add_development_dependency 'simplecov-cobertura'
     spec.add_development_dependency 'rubocop', '~> 0.49'
     spec.add_development_dependency 'webmock', '~> 3.0'
   else
