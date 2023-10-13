@@ -43,19 +43,19 @@ module Razorpay
       assert_equal "test@razorpay.com", customer.email 
     end
 
-    # def test_customer_fetch_tokens
-    #   stub_get(%r{customers/#{@customer_id}$}, 'fake_customer')
-    #   stub_get(%r{customers/cust_6vRXClWqnLhV14/tokens$}, 'tokens_collection')
-    #   tokens = Razorpay::Customer.fetch(@customer_id).fetchTokens
-    #   assert_instance_of Razorpay::Collection, tokens, 'Tokens should be an array'
-    #   refute_empty tokens.items, 'tokens should be more than one'
-    # end
+    def test_customer_fetch_tokens
+      stub_get(%r{customers/#{@customer_id}$}, 'fake_customer')
+      stub_get(%r{customers/cust_6vRXClWqnLhV14/tokens$}, 'tokens_collection')
+      tokens = Razorpay::Customer.fetch(@customer_id).fetchTokens
+      assert_instance_of Razorpay::Collection, tokens, 'Tokens should be an array'
+      refute_empty tokens.items, 'tokens should be more than one'
+    end
 
     def test_customer_fetch_token
       stub_get(%r{customers/#{@customer_id}$}, 'fake_customer')
       stub_get(%r{customers/cust_6vRXClWqnLhV14/tokens/token_FHfn3rIiM1Z8nr$}, 'fake_token')
       token = Razorpay::Customer.fetch(@customer_id).fetchToken("token_FHfn3rIiM1Z8nr")
-      assert_instance_of Razorpay::Entity, token, 'Token not an instance of Razorpay::Entity class'
+      assert_instance_of Razorpay::Token, token, 'Token not an instance of Razorpay::Entity class'
       assert_equal "token_FHfn3rIiM1Z8nr", token.id
     end
 

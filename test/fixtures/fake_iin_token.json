@@ -1,0 +1,23 @@
+{
+    "iin": "411111",
+    "entity": "iin",
+    "network": "Visa",
+    "type": "credit",
+    "sub_type": "consumer",
+    "card_iin": "null",
+    "issuer_code": "unknown",
+    "issuer_name": "unknown",
+    "international": true,
+    "tokenised": false,
+    "emi": {
+      "available": false
+    },
+    "recurring": {
+      "available": true
+    },
+    "authentication_types": [
+      {
+        "type": "3ds"
+      }
+    ]
+  }
