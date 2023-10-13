@@ -4,6 +4,19 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
+## [3.1.0] - 2023-10-13
+
+### Added
+
+feat: Added new API endpoints
+
+Added account onboarding API create, fetch, edit, delete
+Added stakeholders API create, fetch, all, edit
+Added product configuration API request_product_configuration, fetch, edit, fetch_tnc
+Added webhooks API create, fetch, all, edit, delete
+Added Documents API upload_account_doc, fetch_account_doc, upload_stakeholder_doc, fetch_stakeholder_doc
+Added token sharing API create, fetch, delete, process_payment_on_alternate_pa_or_pg
+
 ## [3.0.1] - 2022-07-11
 
 ### Added

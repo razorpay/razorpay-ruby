@@ -43,6 +43,7 @@ You can find your API keys at <https://dashboard.razorpay.com/#/app/keys>.
 If you are using rails, the right place to do this might be `config/initializers/razorpay.rb`.
 
 ## Supported Resources
+- [Account](documents/account.md)
 - [Customer](documents/customer.md)
 - [Token](documents/tokens.md)
 - [Order](documents/order.md)
@@ -56,7 +57,9 @@ If you are using rails, the right place to do this might be `config/initializers
 - [Subscriptions](documents/subscriptions.md)
 - [Add-on](documents/addon.md)
 - [Payment Links](documents/paymentLink.md)
+- [Product Configuration](documents/productConfiguration.md)
 - [Smart Collect](documents/virtualAccount.md)
+- [Stakeholder](documents/stakeholder.md)
 - [Transfer](documents/transfers.md)
 - [QR Code](documents/qrcode.md)
 - [Emandate](documents/emandate.md)
@@ -66,6 +69,7 @@ If you are using rails, the right place to do this might be `config/initializers
 - [Register Emandate and Charge First Payment Together](documents/registerEmandate.md)
 - [Register NACH and Charge First Payment Together](documents/registerNach.md)
 - [Payment Verification](documents/paymentVerification.md)
+- [Webhook](documents/webhook.md)
 ## Development
 
 - Everything is namespaced under the Razorpay module
