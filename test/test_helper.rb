@@ -3,8 +3,10 @@ require 'simplecov'
 require 'minitest/autorun'
 require 'webmock/minitest'
 require 'razorpay'
+require 'simplecov-cobertura'
 
 Coveralls.wear! if ENV['CI']
+SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 
 def fixture_file(filename)
   return '' if filename == ''
