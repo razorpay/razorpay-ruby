@@ -36,7 +36,7 @@ module Razorpay
         "year": 2022,
         "month":12
       }  
-      stub_get("#{BASE_URI}settlements/recon/combined?month=12&year=2022", 'settlement_report_collection')
+      stub_get("#{BASE_URI}/v1/settlements/recon/combined?month=12&year=2022", 'settlement_report_collection')
       settlement = Razorpay::Settlement.reports(para_attr)
       assert_instance_of Razorpay::Collection, settlement, 'Settlement not an instance of Settlement class'
       refute_empty settlement.items, 'Settlement should be more than one'

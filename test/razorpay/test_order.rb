@@ -60,7 +60,7 @@ module Razorpay
    end
 
    def test_fetch_order_transfers
-    stub_get("#{BASE_URI}orders/#{@order_id}/?expand[]=transfers&status", 'fake_order_transfers')
+    stub_get("#{BASE_URI}/v1/orders/#{@order_id}/?expand[]=transfers&status", 'fake_order_transfers')
     order = Razorpay::Order.fetch_transfer_order(@order_id)
     assert_instance_of Razorpay::Order, order, 'order not an instance of Razorpay::Order class'
     assert_equal @order_id, order.id, 'order IDs do not match'

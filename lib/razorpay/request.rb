@@ -27,36 +27,36 @@ module Razorpay
       }
     end
 
-    def fetch(id)
-      request :get, "/#{@entity_name}/#{id}"
+    def fetch(id, version="v1")
+      request :get, "/#{version}/#{@entity_name}/#{id}"
     end
 
-    def all(options)
-      request :get, "/#{@entity_name}", options
+    def all(options, version="v1")
+      request :get, "/#{version}/#{@entity_name}", options
     end
 
-    def post(url, data = {})
-      request :post, "/#{@entity_name}/#{url}", data
+    def post(url, data = {}, version="v1")
+      request :post, "/#{version}/#{@entity_name}/#{url}", data
     end
 
-    def get(url, data = {})
-      request :get, "/#{@entity_name}/#{url}", data
+    def get(url, data = {}, version="v1")
+      request :get, "/#{version}/#{@entity_name}/#{url}", data
     end
     
-    def delete(url)
-      request :delete, "/#{@entity_name}/#{url}"
+    def delete(url, version="v1")
+      request :delete, "/#{version}/#{@entity_name}/#{url}"
     end
 
-    def put(id, data = {})
-      request :put, "/#{@entity_name}/#{id}", data
+    def put(id, data = {}, version="v1")
+      request :put, "/#{version}/#{@entity_name}/#{id}", data
     end
 
-    def patch(id, data = {})
-      request :patch, "/#{@entity_name}/#{id}", data
+    def patch(id, data = {}, version="v1")
+      request :patch, "/#{version}/#{@entity_name}/#{id}", data
     end
 
-    def create(data)
-      request :post, "/#{@entity_name}", data
+    def create(data, version="v1")
+      request :post, "/#{version}/#{@entity_name}", data
     end
 
     def request(method, url, data = {})
