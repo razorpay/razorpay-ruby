@@ -10,8 +10,8 @@ Razorpay::Stakeholder.create(accountId, {
   "name": "Gaurav Kumar",
   "email": "gaurav.kumar@example.com",
   "relationship": {
-    "director": true,
-    "executive": false
+    "director": 1,
+    "executive": 0
   },
   "phone": {
     "primary": "7474747474",
@@ -93,8 +93,8 @@ Razorpay::Stakeholder.edit(accountId, stakeholderId, {
   "percentage_ownership": 20,
   "name": "Gauri Kumar",
   "relationship": {
-    "director": false,
-    "executive": true
+    "director": 0,
+    "executive": 1
   },
   "phone": {
     "primary": "9898989898",

@@ -12,6 +12,9 @@ module Razorpay
     end
 
     def self.request_product_configuration(account_id, options)
+      if(!options.is_a?(String) && options.key?(:tnc_accepted))
+        options[:tnc_accepted] = (options[:tnc_accepted] ? 1 : 0)
+      end
       request.post "#{account_id}/products", options, @@versions
     end
 
@@ -20,6 +23,9 @@ module Razorpay
     end 
 
     def self.edit(account_id, id, options = {})
+      if(!options.is_a?(String) && options.key?(:tnc_accepted))
+        options[:tnc_accepted] = (options[:tnc_accepted] ? 1 : 0)
+      end
       request.patch "#{account_id}/products/#{id}", options, @@versions
     end
 

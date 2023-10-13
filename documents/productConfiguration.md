@@ -7,7 +7,7 @@ accountId = "acc_GP4lfNA0iIMn5B"
 
 Razorpay::Product.request_product_configuration(accountId, {
   "product_name": "payment_gateway",
-  "tnc_accepted": 1,
+  "tnc_accepted": true,
   "ip": "233.233.233.234"
 })
 ```
