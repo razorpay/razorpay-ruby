@@ -13,7 +13,7 @@ module Razorpay
 
     def do(url="", method="Get", options={}, version="v1")
       r = self.request
-      r.entity_check(@entity)
+      r.doesEntityExist(@entity)
 
       case method
       when "Get"          

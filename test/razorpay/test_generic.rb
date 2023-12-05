@@ -8,6 +8,8 @@ module Razorpay
     def setup
       @order_id = 'order_50sX9hGHZJvjjI'
       @customer_id = 'cust_6vRXClWqnLhV14'
+      @invoice_id = 'inv_6vRZmJYFAG1mNq'
+      @addon_id = 'ao_IrSY3UIqDRx7df'
     end
 
     def test_generic_should_be_defined
@@ -19,6 +21,7 @@ module Razorpay
       stub_get(%r{orders/#{@order_id}$}, 'fake_order')
 
       client = Razorpay::Generic.new("orders")
+      
       order = client.do(@order_id)
 
       assert_equal 5000, order.amount
@@ -90,6 +93,20 @@ module Razorpay
        customer = client.do(@customer_id, "Put", para_attr.to_json)
        assert_equal 'test@razorpay.com', customer.email
        assert_equal '9876543210', customer.contact
-    end    
+    end
+    
+    def test_generic_delete_specific_invoice
+      stub_delete(%r{invoices/#{@invoice_id}$}, 'empty')
+      client = Razorpay::Generic.new("invoices")
+      invoice = client.do("#{@invoice_id}", "Delete")
+      refute_nil invoice
+    end
+
+    def test_generic_delete_addon
+      stub_delete(%r{addons/#{@addon_id}$}, 'empty')
+      client = Razorpay::Generic.new("addons")
+      addon = client.do("#{@addon_id}", "Delete")
+      refute_nil addon
+    end
   end
 end

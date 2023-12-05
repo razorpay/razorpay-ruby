@@ -116,16 +116,9 @@ module Razorpay
       raise Razorpay::Error.new, 'Unknown Error'
     end
 
-    def entity_check(entity)
-      child_classes = ObjectSpace.each_object(Class).select {|klass| klass < Razorpay::Entity }
-      # List all the child entities
-      child_classes.each do |child_class|
-        child =  child_class.name.split('::').last.downcase
-        pattern = /#{child}(s)?/
-    
-        if pattern.match?(entity)
-          warn("Warning: The entity already has a specific function. Consider using it instead.")
-        end  
+    def doesEntityExist(entity)
+      if (Razorpay::ENTITIES_LIST.include?(entity))
+        warn("Warning: The entity already has a specific function. Consider using it instead.")
       end
     end 
   end
