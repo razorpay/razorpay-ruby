@@ -115,5 +115,11 @@ module Razorpay
       # We got an unknown error, cast it to Error for now
       raise Razorpay::Error.new, 'Unknown Error'
     end
+
+    def doesEntityExist(entity)
+      if (Razorpay::ENTITIES_LIST.include?(entity))
+        warn("Warning: The entity already has a specific function. Consider using it instead.")
+      end
+    end 
   end
 end
