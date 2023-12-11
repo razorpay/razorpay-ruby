@@ -4,9 +4,9 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
-## [3.2.0] - 2023-11-06
+## [3.2.0] - 2023-12-11
 
-feat: Added Generic API
+feat: Added generic access point
 
 ## [3.1.0] - 2023-10-13
 
