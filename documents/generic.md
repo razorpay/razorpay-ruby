@@ -18,7 +18,7 @@ Razorpay::Generic.new(entity).do(url, method, payload, version)
 | url*          | string      | Add params or query or query (e.g., "/order_000000000000001" or "?count=1") |
 | method*       | string      | The HTTP method for the request (e.g., 'Get', 'Post', 'Put', 'Patch', 'Delete'). |
 | payload          | object      | The data to be sent with the request.|
-| version*         | string    | Add version (e.g., "v1" or "v2") |
+| version         | string    | Add version (e.g., "v1" or "v2") |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ payload = {
   },
 }
 
-Razorpay::Generic.new("contacts").do("/", "Post", payload, "v1")
+Razorpay::Generic.new("contacts").do("/", "Post", payload)
 ```
 
 **Response:**
@@ -67,7 +67,7 @@ Razorpay::Generic.new("contacts").do("/", "Post", payload, "v1")
 ### Fetch an order using GET
 
 ```rb
-Razorpay::Generic.new("orders").do("/order_00000000000001", "Get", {}, "v1")
+Razorpay::Generic.new("orders").do("/order_00000000000001", "Get", {})
 ```
 
 **Response:**
@@ -96,7 +96,7 @@ Razorpay::Generic.new("orders").do("/order_00000000000001", "Get", {}, "v1")
 ```rb
 Razorpay.headers = {"X-Razorpay-Account" => "acc_00000000000001"}
 
-Razorpay::Generic.new("payments").do("/pay_00000000000001", "Get", {}, "v1")
+Razorpay::Generic.new("payments").do("/pay_00000000000001", "Get", {})
 ```
 
 **Response:**
