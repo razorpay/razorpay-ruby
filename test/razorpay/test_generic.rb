@@ -17,7 +17,7 @@ module Razorpay
     end
    
     # Test fetch endpoint by order entity
-    def test_geneic_orders_should_be_fetch    
+    def test_generic_orders_should_be_fetch   
       stub_get(%r{orders/#{@order_id}$}, 'fake_order')
 
       client = Razorpay::Generic.new("orders")
@@ -30,7 +30,7 @@ module Razorpay
     end
 
     # Test post endpoint by order entity
-    def test_geneic_orders_should_be_create
+    def test_generic_orders_should_be_create
        para_attr = {
          "amount": 5000
        }
@@ -45,7 +45,7 @@ module Razorpay
     end
 
     # Test fetch endpoint by order entity
-    def test_geneic_orders_should_be_edit
+    def test_generic_orders_should_be_edit
         para_attr = {
           "notes": {
             "purpose": "Test UPI QR code notes uodate"
@@ -62,7 +62,7 @@ module Razorpay
      end
 
     # Test post endpoint by order entity 
-    def test_geneic_customer_should_be_create
+    def test_generic_customer_should_be_create
         para_attr = {
            "name": "Gaurav Kumar",
            "contact": 9123456780,
@@ -82,7 +82,7 @@ module Razorpay
     end
 
     # Test put endpoint by order entity 
-    def test_geneic_customer_should_be_edit
+    def test_generic_customer_should_be_edit
         para_attr = {
            "contact": 9123456780,
         }
