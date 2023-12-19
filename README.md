@@ -70,7 +70,6 @@ If you are using rails, the right place to do this might be `config/initializers
 - [Register NACH and Charge First Payment Together](documents/registerNach.md)
 - [Payment Verification](documents/paymentVerification.md)
 - [Webhook](documents/webhook.md)
-- [Generic](documents/generic.md)
 
 ## Development
 
