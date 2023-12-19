@@ -4,7 +4,7 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
-## [3.2.1] - 2023-12-18
+## [3.2.1] - 2023-12-19
 
 Rollback: Generic access point due to some performance concern
 
