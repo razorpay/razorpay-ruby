@@ -18,18 +18,22 @@ module Razorpay
       predefined_headers = {
         'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}; Ruby/#{RUBY_VERSION}"
       }
+
       # Order is important to give precedence to predefined headers
       headers = custom_headers.merge(predefined_headers)
-      if (Razorpay.auth_type == Razorpay::OAUTH)
-        headers["Authorization"] = "Bearer " + Razorpay.access_token
-      end
 
-      @options = {
-        timeout: 30,
-        headers: headers
-      }
-      if Razorpay.auth_type == Razorpay::PRIVATE_AUTH
-        @options["basic_auth"] = Razorpay.auth
+      if Razorpay.auth_type == Razorpay::OAUTH
+        @options = {
+          timeout: 30,
+          headers: headers
+        }
+        headers['Authorization'] = 'Bearer ' + Razorpay.access_token 
+      else 
+        @options = {
+          basic_auth: Razorpay.auth,
+          timeout: 30,
+          headers: headers
+        }
       end
     end
 
