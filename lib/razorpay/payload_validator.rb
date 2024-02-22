@@ -72,7 +72,7 @@ module Razorpay
 
       def validate_mode(payload, field)
         validate_non_null(payload, field)
-        unless ["test", "live"].include?(mode)
+        unless ["test", "live"].include?(payload[field])
           error_message = "Invalid value provided for field #{field}"
           raise Razorpay::Error.new, error_message
         end
