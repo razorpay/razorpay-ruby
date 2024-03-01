@@ -4,6 +4,7 @@ require 'razorpay/payload_validator'
 require 'razorpay/validation_config'
 
 module Razorpay
+  # OAuth APIs allow to you create and manage access tokens
   class OAuthToken < Entity
     def self.request
       Razorpay::Request.new('token', Razorpay::AUTH_HOST)

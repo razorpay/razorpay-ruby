@@ -9,6 +9,7 @@ module Razorpay
     token_grant: :token_grant
   }
 
+  # PayloadValidator allows to perform basic validations
   class PayloadValidator
     def self.validate(request, validation_configs)
       validation_configs.each do |config|
