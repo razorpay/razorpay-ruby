@@ -11,20 +11,30 @@ module Razorpay
 
     ssl_ca_file File.dirname(__FILE__) + '/../ca-bundle.crt'
 
-    def initialize(entity_name = nil)
-      self.class.base_uri(Razorpay::BASE_URI)
+    def initialize(entity_name = nil, host = Razorpay::API_HOST)
+      self.class.base_uri(get_base_url(host))
       @entity_name = entity_name
       custom_headers = Razorpay.custom_headers || {}
       predefined_headers = {
         'User-Agent' => "Razorpay-Ruby/#{Razorpay::VERSION}; Ruby/#{RUBY_VERSION}"
       }
+
       # Order is important to give precedence to predefined headers
       headers = custom_headers.merge(predefined_headers)
-      @options = {
-        basic_auth: Razorpay.auth,
-        timeout: 30,
-        headers: headers
-      }
+
+      if Razorpay.auth_type == Razorpay::OAUTH
+        @options = {
+          timeout: 30,
+          headers: headers
+        }
+        headers['Authorization'] = 'Bearer ' + Razorpay.access_token 
+      else 
+        @options = {
+          basic_auth: Razorpay.auth,
+          timeout: 30,
+          headers: headers
+        }
+      end
     end
 
     def fetch(id, version="v1")
@@ -72,6 +82,13 @@ module Razorpay
       end
       
       self.class.send(method, url, @options)
+    end
+
+    def get_base_url(host)
+      if host == Razorpay::AUTH_HOST
+        return Razorpay::AUTH_URL
+      end 
+      Razorpay::BASE_URI
     end
 
     # Since we need to change the base route

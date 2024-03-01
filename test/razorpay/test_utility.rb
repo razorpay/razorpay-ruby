@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'json'
 
 module Razorpay
   # Tests for Razorpay::Utility
@@ -79,6 +80,39 @@ module Razorpay
       assert_raises(SecurityError) do
         Razorpay::Utility.verify_webhook_signature(webhook_body, signature, secret)
       end
+    end
+
+    def test_generate_onboarding_signature
+      secret = "EnLs21M47BllR3X8PSFtjtbd"
+      timestamp = Time.now.to_i
+      body = {
+        submerchant_id: 'NSgKfYIR2f9v2y',
+        timestamp: timestamp
+      }
+      encryptedData = Razorpay::Utility.generate_onboarding_signature(body, secret)
+      json_data = decrypt(encryptedData, secret)
+      body = JSON.parse(json_data)
+      assert_equal 'NSgKfYIR2f9v2y', body['submerchant_id'], 'Submerchant IDs do not match'
+      assert_equal timestamp, body['timestamp'], 'Timestamps do not match'
+    end
+
+    def decrypt(data, secret)
+      combined_encrypted_data = [data].pack("H*")
+
+      iv = secret[0, 12]
+      key = secret[0, 16]
+      tag = combined_encrypted_data[-16..]
+
+      encrypted_data = combined_encrypted_data[0...-16]
+
+      cipher = OpenSSL::Cipher.new('aes-128-gcm')
+      cipher.decrypt
+      cipher.key = key
+      cipher.iv = iv
+      cipher.auth_tag = tag
+      cipher.auth_data = ""
+
+      cipher.update(encrypted_data) + cipher.final
     end
   end
 end

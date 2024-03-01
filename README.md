@@ -27,12 +27,26 @@ Ruby 2.6.8 or later
 
 Remember to `require 'razorpay'` before anything else.
 
-Next, you need to setup your key and secret using the following:
+Next, you need to setup your auth details. This setup can be done via two ways:
+
+### Using Private Auth
+
+you need to setup your key and secret using the following:
 
 ```rb
 Razorpay.setup('key_id', 'key_secret')
 ```
 
+You can set customer headers for your requests using the following:
+```rb
+Razorpay.headers = {"CUSTOM_APP_HEADER" => "CUSTOM_VALUE"}
+```
+
+### Using Access Token
+you need to setup your access token using the following
+```rb
+Razorpay.setup_with_oauth('access_token')
+```
 You can set customer headers for your requests using the following:
 ```rb
 Razorpay.headers = {"CUSTOM_APP_HEADER" => "CUSTOM_VALUE"}
@@ -70,6 +84,7 @@ If you are using rails, the right place to do this might be `config/initializers
 - [Register NACH and Charge First Payment Together](documents/registerNach.md)
 - [Payment Verification](documents/paymentVerification.md)
 - [Webhook](documents/webhook.md)
+- [OAuthToken](documents/oauth_token.md)
 
 ## Development
 

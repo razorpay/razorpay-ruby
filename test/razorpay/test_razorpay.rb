@@ -49,5 +49,22 @@ module Razorpay
                        headers: headers,
                        times: 1
     end
+
+    def test_oauth_setup
+      Razorpay.setup_with_oauth('access_token')
+      assert_equal 'access_token', Razorpay.access_token
+    end
+
+    # # We mock this request
+    def test_auth_header_and_user_agent_for_oauth
+      stub_get(/$/, 'hello_response')
+      Razorpay.setup_with_oauth('access_token')
+      Razorpay::Request.new('dummy').make_test_request
+      user_agent = "Razorpay-Ruby/#{Razorpay::VERSION}; Ruby/#{RUBY_VERSION}"
+      headers = { 'User-Agent' => user_agent, 'Authorization' => 'Bearer access_token' }
+      assert_requested :get, 'https://api.razorpay.com/',
+                       headers: headers,
+                       times: 1
+    end
   end
 end
