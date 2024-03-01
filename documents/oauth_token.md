@@ -23,6 +23,7 @@ authorize_url = Razorpay::OAuthToken.get_auth_url(options)
 ```
 
 **Parameters:**
+
 | Name                 | Type   | Description                                                                                                                                             |
 |----------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | client_id*           | string | Unique client identifier.                                                                                                                               |
@@ -51,6 +52,7 @@ oauth_token = Razorpay::OAuthToken.get_access_token(options)
 ```
 
 **Parameters:**
+
 | Name           | Type   | Description                                                                                                                  |
 |----------------|--------|------------------------------------------------------------------------------------------------------------------------------|
 | client_id*     | string | Unique client identifier.                                                                                                    |
