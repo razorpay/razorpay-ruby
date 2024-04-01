@@ -1,12 +1,4 @@
 module Razorpay
-  ValidationType = {
-    non_null: :non_null,
-    non_empty_string: :non_empty_string,
-    url: :url,
-    id: :id,
-    mode: :mode,
-    token_grant: :token_grant
-  }
 
   class ValidationConfig
     attr_reader :field_name, :validations
