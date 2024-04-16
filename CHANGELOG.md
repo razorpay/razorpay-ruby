@@ -4,7 +4,7 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
-## [3.2.2] - 2024-03-05
+## [3.2.2] - 2024-04-16
 
 feat: Added oauth APIs and support for access token based authentication mechanism
 * Added oauth APIs (getAuthURL, getAccessToken, refreshToken, revokeToken)
