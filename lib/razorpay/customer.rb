@@ -38,5 +38,21 @@ module Razorpay
     def deleteToken(tokenId)
       self.class.request.delete "#{id}/tokens/#{tokenId}" 
     end
+
+    def addBankAccount(options = {})
+      self.class.request.post "#{id}/bank_account", options
+    end
+
+    def deleteBankAccount(bankAccountId)
+      self.class.request.delete "#{id}/bank_account/#{bankAccountId}" 
+    end
+
+    def self.requestEligibilityCheck(options = {})
+       request.post "eligibility", options
+    end
+
+    def self.fetchEligibility(eligibilityId)
+      request.get "eligibility/#{eligibilityId}" 
+    end
   end
 end

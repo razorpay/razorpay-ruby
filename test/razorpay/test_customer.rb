@@ -6,6 +6,8 @@ module Razorpay
     def setup
       @customer_id = 'cust_6vRXClWqnLhV14'
       @token_id = "token_FHfn3rIiM1Z8nr"
+      @bank_id = "ba_Evg09Ll05SIPSD"
+      @eligibilityId = "elig_F1cxDoHWD4fkQt"
       # Any request that ends with customers/customer_id
       stub_get(%r{customers/#{@customer_id}$}, 'fake_customer')
     end
@@ -64,6 +66,57 @@ module Razorpay
       stub_delete(%r{customers/cust_6vRXClWqnLhV14/tokens/token_FHfn3rIiM1Z8nr$}, 'delete_token')
       token = Razorpay::Customer.fetch(@customer_id).deleteToken("token_FHfn3rIiM1Z8nr")
       assert token.deleted
+    end
+
+    def test_customer_add_bank_account
+      para_attr = {
+        "ifsc_code": "UTIB0000194",
+        "account_number": "916010082985661",
+        "beneficiary_name": "Pratheek",
+        "beneficiary_address1": "address 1",
+        "beneficiary_address2": "address 2",
+        "beneficiary_address3": "address 3",
+        "beneficiary_address4": "address 4",
+        "beneficiary_email": "random@email.com",
+        "beneficiary_mobile": "8762489310",
+        "beneficiary_city": "Bangalore",
+        "beneficiary_state": "KA",
+        "beneficiary_country": "IN"
+      }
+
+      stub_post(%r{customers/#{@customer_id}/bank_account$}, 'fake_bank_account', para_attr.to_json)
+      bankAccount = Razorpay::Customer.fetch(@customer_id).addBankAccount(para_attr.to_json)
+      assert bankAccount.bank_name
+    end
+
+    def test_customer_delete_bank_account
+      stub_delete(%r{customers/#{@customer_id}/bank_account/#{@bank_id}$}, 'success')
+      bankAccount = Razorpay::Customer.fetch(@customer_id).deleteBankAccount(@bank_id)
+      assert bankAccount.success
+    end
+
+    def test_customer_request_eligiblity_check
+      para_attr = {
+        "inquiry": "affordability",
+        "amount": 500000,
+        "currency": "INR",
+        "customer": {
+          "id": "cust_KhP5dO1dKmc0Rm",
+          "contact": "+918220276214",
+          "ip": "105.106.107.108",
+          "referrer": "https://merchansite.com/example/paybill",
+          "user_agent": "Mozilla/5.0"
+        }
+      }
+      stub_post(%r{customers/eligibility$}, 'fake_eligiblity', para_attr.to_json)
+      bankAccount = Razorpay::Customer.requestEligibilityCheck(para_attr.to_json)
+      assert bankAccount.amount
+    end
+
+    def test_customer_fetch_eligiblity
+      stub_get(%r{customers/eligibility/#{@eligibilityId}$}, 'fake_eligiblity')
+      bankAccount = Razorpay::Customer.fetchEligibility(@eligibilityId)
+      assert bankAccount.amount
     end
   end
 end
