@@ -1,0 +1,38 @@
+{
+    "id": "fake_payment_id",
+    "entity": "payment",
+    "amount": 200000,
+    "currency": "INR",
+    "status": "authorized",
+    "order_id": null,
+    "invoice_id": null,
+    "international": false,
+    "method": "emi",
+    "amount_refunded": 0,
+    "refund_status": null,
+    "captured": false,
+    "description": null,
+    "card_id": "card_DG4ZdUO3xABb20",
+    "bank": "ICIC",
+    "wallet": null,
+    "vpa": null,
+    "email": "gaurav@example.com",
+    "contact": "+919972000005",
+    "notes": [],
+    "fee": null,
+    "tax": null,
+    "error_code": null,
+    "error_description": null,
+    "error_source": null,
+    "error_step": null,
+    "error_reason": null,
+    "emi": {
+      "issuer": "ICIC",
+      "rate": 1300,
+      "duration": 6
+    },
+    "acquirer_data": {
+      "auth_code": "828553"
+    },
+    "created_at": 1568026077
+  }

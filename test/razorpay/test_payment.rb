@@ -298,6 +298,12 @@ module Razorpay
       stub_post(%r{payments/validate/vpa$}, 'fake_validate_vpa',param_attr.to_json) 
       payment = Razorpay::Payment.validate_vpa param_attr.to_json 
       assert_equal param_attr[:vpa], payment.vpa
+    end
+    
+    def test_expendDetails
+      stub_get("#{BASE_URI}/v1/payments/#{@payment_id}/?expand[]=emi", 'fake_payment_expended_details')
+      payment = Razorpay::Payment.fetch(@payment_id).expendDetails
+      assert_equal @payment_id, payment.id
     end  
   end 
 end
