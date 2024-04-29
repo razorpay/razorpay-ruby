@@ -26,6 +26,11 @@ module Razorpay
       verify_signature(body, signature, secret)
     end
 
+    def self.generate_onboarding_signature(body, secret)
+      json_data = body.to_json
+      encrypt(json_data, secret);
+    end
+
     class << self
       private
 
@@ -51,6 +56,25 @@ module Razorpay
         end
 
         r.zero?
+      end
+
+      def encrypt(data, secret)
+        iv = secret[0, 12]
+        key = secret[0, 16]
+
+        cipher = OpenSSL::Cipher.new('aes-128-gcm')
+        cipher.encrypt
+        cipher.key = key
+        cipher.iv = iv
+
+        cipher.auth_data = ""
+
+        encrypted = cipher.update(data) + cipher.final
+
+        tag = cipher.auth_tag
+        combined_encrypted_data = encrypted + tag
+
+        encrypted_data_hex = combined_encrypted_data.unpack1("H*")
       end
     end
   end
