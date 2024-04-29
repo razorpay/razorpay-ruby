@@ -11,5 +11,9 @@ module Razorpay
     def self.fetch(id)
       request.fetch id
     end
+
+    def self.all(options = {})
+      request.get "list", options
+    end
   end
 end
