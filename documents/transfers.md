@@ -775,6 +775,46 @@ Razorpay::Transfer.fetch(transferId).edit(para_attr)
 
 -------------------------------------------------------------------------------------------------------
 
+### Fetch Reversals for a Transfer
+```rb
+transferId = "trf_JhemwjNekar9Za"
+Razorpay::Transfer.fetch(transferId).reversals
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| transferId*   | string      | The id of the transfer to be fetched        |
+
+**Response:**
+```json
+{
+   "entity":"collection",
+   "count":1,
+   "items":[
+      {
+         "id":"rvrsl_Lt09xvyzskI7KZ",
+         "entity":"reversal",
+         "transfer_id":"trf_Lt048W7cgLdo1u",
+         "amount":50000,
+         "fee":0,
+         "tax":0,
+         "currency":"INR",
+         "notes":[
+            
+         ],
+         "initiator_id":"Ghri4beeOuMTAb",
+         "customer_refund_id":null,
+         "utr":null,
+         "created_at":1684822489
+      }
+   ]
+}
+```
+
+-------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
 <br>
 <br>
