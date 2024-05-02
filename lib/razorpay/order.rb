@@ -35,5 +35,13 @@ module Razorpay
       # Docs: https://razorpay.com/docs/api/payments/route/#fetch-transfer-for-an-order
       request.get "#{id}/?expand[]=transfers&status"
     end
+
+    def view_rto
+      self.class.request.post "#{id}/rto_review"
+    end
+    
+    def edit_fulfillment(options = {})
+      self.class.request.post "#{id}/fulfillment", options
+    end
   end
 end
