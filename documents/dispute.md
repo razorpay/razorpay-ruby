@@ -56,9 +56,9 @@ Razorpay::Dispute.fetch(disputeId)
 
 **Parameters:**
 
-| Name  | Type      | Description                                      |
-|-------|-----------|--------------------------------------------------|
-| disputeId*  | string | The unique identifier of the dispute.  |
+| Name        | Type   | Description                                      |
+|-------------|--------|--------------------------------------------------|
+| disputeId*  | string | The unique identifier of the dispute.            |
 
 **Response:**
 ```json
@@ -99,14 +99,14 @@ Razorpay::Dispute.fetch(disputeId)
 ```rb
 disputeId = "disp_0000000000000"
 
-Razorpay::Dispute.fetch(disputeId).accept()
+Razorpay::Dispute.accept(disputeId)
 ```
 
 **Parameters:**
 
-| Name  | Type      | Description                                      |
-|-------|-----------|--------------------------------------------------|
-| disputeId*  | string | The unique identifier of the dispute.  |
+| Name        | Type   | Description                                      |
+|-------------|--------|--------------------------------------------------|
+| disputeId*  | string | The unique identifier of the dispute.            |
 
 **Response:**
 ```json
@@ -141,14 +141,14 @@ Razorpay::Dispute.fetch(disputeId).accept()
 }
 ```
 -------------------------------------------------------------------------------------------------------
-### Contest a Dispute
+### Contest a Dispute (Draft)
 
 ```rb
 # Use this API sample code for draft
 
 disputeId = "disp_0000000000000"
 
-Razorpay::Dispute.fetch(disputeId).contest({
+Razorpay::Dispute.contest(disputeId,{
   "amount": 5000,
   "summary": "goods delivered",
   "shipping_proof": [
@@ -170,29 +170,17 @@ Razorpay::Dispute.fetch(disputeId).contest({
 
 **Parameters:**
 
-| Name  | Type      | Description                                      |
-|-------|-----------|--------------------------------------------------|
-| disputeId*  | string | The unique identifier of the dispute.  |
-| amount  | integer | The amount being contested. If the contest amount is not mentioned, we will assume it to be a full dispute contest.  |
-| summary  | string | The explanation provided by you for contesting the dispute. It can have a maximum length of 1000 characters. |
-| shipping_proof  | array | List of document ids which serves as proof that the product was shipped to the customer at their provided address. It should show their complete shipping address, if possible. |
-| others  | array | All keys listed [here](https://razorpay.com/docs/api/disputes/contest) are supported |
-
-```rb
-# Use this API sample code for submit
-
-Razorpay::Dispute.fetch(disputeId).contest({
-  "billing_proof": [
-    "doc_EFtmUsbwpXwBG9",
-    "doc_EFtmUsbwpXwBG8"
-  ],
-  "action": "submit"
-})
-```
+| Name            | Type    | Description                                                                                                                                                                     |
+|-----------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| disputeId*      | string  | The unique identifier of the dispute.                                                                                                                                           |
+| amount          | integer | The amount being contested. If the contest amount is not mentioned, we will assume it to be a full dispute contest.                                                             |
+| summary         | string  | The explanation provided by you for contesting the dispute. It can have a maximum length of 1000 characters.                                                                    |
+| shipping_proof  | array   | List of document ids which serves as proof that the product was shipped to the customer at their provided address. It should show their complete shipping address, if possible. |
+| others          | array   | All keys listed [here](https://razorpay.com/docs/api/disputes/contest) are supported                                                                                            |
+| action          | string  | Possible value is `draft` or `submit`                                                                                                                                           |
 
 **Response:**
 ```json
-// Draft
 {
   "id": "disp_AHfqOvkldwsbqt",
   "entity": "dispute",
@@ -233,8 +221,33 @@ Razorpay::Dispute.fetch(disputeId).contest({
     "submitted_at": null
   }
 }
+```
 
-//Submit 
+-------------------------------------------------------------------------------------------------------
+### Contest a Dispute (Submit)
+
+```rb
+# Use this API sample code for submit
+
+Razorpay::Dispute.fetch(disputeId).contest({
+  "billing_proof": [
+    "doc_EFtmUsbwpXwBG9",
+    "doc_EFtmUsbwpXwBG8"
+  ],
+  "action": "submit"
+})
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                          |
+|-----------------|---------|--------------------------------------------------------------------------------------|
+| disputeId*      | string  | The unique identifier of the dispute.                                                |
+| billing_proof   | integer | List of document ids which serves as proof of order confirmation, such as a receipt. |
+| action          | string  | Possible value is `draft` or `submit`                                                |
+
+**Response:**
+```json 
 {
   "id": "disp_AHfqOvkldwsbqt",
   "entity": "dispute",

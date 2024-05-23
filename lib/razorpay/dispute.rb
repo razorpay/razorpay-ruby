@@ -15,12 +15,12 @@ module Razorpay
        request.all options
     end
 
-    def accept(options={})
-       self.class.request.post "#{id}/accept", options
+    def self.accept(id, options={})
+       request.post "#{id}/accept", options
     end
 
-    def contest(options)
-       self.class.request.patch "#{id}/contest", options
+    def self.contest(id, options)
+       request.patch "#{id}/contest", options
     end
   end
 end
