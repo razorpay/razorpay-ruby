@@ -162,19 +162,19 @@ Razorpay::Customer.fetch(customerId)
 ```rb
 customerId = "cust_N5mywh91sXB69O"
 
-Razorpay::Customer.fetch(customerId).addBankAccount({
-    "ifsc_code" : "UTIB0000194",
-    "account_number"         :"916010082985661",
-    "beneficiary_name"      : "Pratheek",
-    "beneficiary_address1"  : "address 1",
-    "beneficiary_address2"  : "address 2",
-    "beneficiary_address3"  : "address 3",
-    "beneficiary_address4"  : "address 4",
-    "beneficiary_email"     : "random@email.com",
-    "beneficiary_mobile"    : "8762489310",
-    "beneficiary_city"      :"Bangalore",
-    "beneficiary_state"     : "KA",
-    "beneficiary_country"   : "IN"
+Razorpay::Customer.add_bank_account(customerId,{
+    "ifsc_code": "UTIB0000194",
+    "account_number": "916010082985661",
+    "beneficiary_name": "Pratheek",
+    "beneficiary_address1": "address 1",
+    "beneficiary_address2": "address 2",
+    "beneficiary_address3": "address 3",
+    "beneficiary_address4": "address 4",
+    "beneficiary_email": "random@email.com",
+    "beneficiary_mobile": "8762489310",
+    "beneficiary_city": "Bangalore",
+    "beneficiary_state": "KA",
+    "beneficiary_country": "IN"
 })
 ```
 
@@ -197,14 +197,13 @@ Razorpay::Customer.fetch(customerId).addBankAccount({
 **Response:**
 ```json
 {
-  "id" : "cust_1Aa00000000001",
-  "entity": "customer",
-  "name" : "Saurav Kumar",
-  "email" : "Saurav.kumar@example.com",
-  "contact" : "+919000000000",
-  "gstin":"29XAbbA4369J1PA",
-  "notes" : [],
-  "created_at ": 1234567890
+    "id": "ba_LSZht1Cm7xFTwF",
+    "entity": "bank_account",
+    "ifsc": "ICIC0001207",
+    "bank_name": "ICICI Bank",
+    "name": "Gaurav Kumar",
+    "notes": [],
+    "account_number": "XXXXXXXXXXXXXXX0434"
 }
 ```
 
@@ -217,15 +216,15 @@ customerId = "cust_N5mywh91sXB69O"
 
 bankAccountId = "ba_N6aM8uo64IzxHu"
 
-Razorpay::Customer.fetch(customerId).deleteBankAccount(bankAccountId)
+Razorpay::Customer.delete_bank_account(customerId, bankAccountId)
 ```
 
 **Parameters:**
 
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-| customerId*  | string      |  Customer id of the customer whose bank account is to be deleted.  |
-| bankAccountId  | string      | The bank_id that needs to be deleted.  |
+| Name          | Type      | Description                                                       |
+|---------------|-----------|-------------------------------------------------------------------|
+| customerId*   | string    |  Customer id of the customer whose bank account is to be deleted. |
+| bankAccountId | string    | The bank_id that needs to be deleted.                             |
 
 **Response:**
 ```json
@@ -260,13 +259,13 @@ Razorpay::Customer.requestEligibilityCheck({
 
 **Parameters:**
 
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-| inquiry  | string      | List of methods or instruments on which eligibility check is required. Possible value is `affordability`. |
-| amount*  | integer      | The amount for which the order was created, in currency subunits. For example, for an amount of ₹295, enter `29500`. The user makes a payment for this amount against the order; hence, eligibility is checked for the amount. |
-| currency*  | string      | A three-letter ISO code for the currency in which you want to accept the payment. Possible value is `INR`.  |
-| customer*  | object      | Customer details. [here](https://razorpay.com/docs/payments/payment-gateway/affordability/eligibility-check/#eligibility-check-api)  |
-| instruments  | object | Payment instruments on which an eligibility check is required. [here](https://razorpay.com/docs/payments/payment-gateway/affordability/eligibility-check/#eligibility-check-api)  |
+| Name        | Type    | Description                                                                                                                                                                                                                    |
+|-------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| inquiry     | string  | List of methods or instruments on which eligibility check is required. Possible value is `affordability`.                                                                                                                      |
+| amount*     | integer | The amount for which the order was created, in currency subunits. For example, for an amount of ₹295, enter `29500`. The user makes a payment for this amount against the order; hence, eligibility is checked for the amount. |
+| currency*   | string  | A three-letter ISO code for the currency in which you want to accept the payment. Possible value is `INR`.                                                                                                                     |
+| customer*   | object  | Customer details. [here](https://razorpay.com/docs/payments/payment-gateway/affordability/eligibility-check/#eligibility-check-api)                                                                                            |
+| instruments | object  | Payment instruments on which an eligibility check is required. [here](https://razorpay.com/docs/payments/payment-gateway/affordability/eligibility-check/#eligibility-check-api)                                               |
 
 
 **Response:**
@@ -363,9 +362,9 @@ Razorpay::Customer.fetchEligibility(eligibilityId)
 
 **Parameters:**
 
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-| eligibilityId  | string      | The unique identifier of the eligibility request to be retrieved.  |
+| Name          | Type        | Description                                                        |
+|---------------|-------------|--------------------------------------------------------------------|
+| eligibilityId | string      | The unique identifier of the eligibility request to be retrieved.  |
 
 **Response:**
 ```json

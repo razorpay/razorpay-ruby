@@ -85,14 +85,35 @@ module Razorpay
       }
 
       stub_post(%r{customers/#{@customer_id}/bank_account$}, 'fake_bank_account', para_attr.to_json)
-      bankAccount = Razorpay::Customer.fetch(@customer_id).addBankAccount(para_attr.to_json)
+      bankAccount = Razorpay::Customer.add_bank_account(@customer_id, para_attr.to_json)
       assert bankAccount.bank_name
+    end
+
+    def test_customer_add_bank_account_exception 
+      para_attr = {}
+      stub_delete(%r{customers/#{@customer_id}/bank_account$}, 'error_customer', para_attr.to_json)
+        assert_raises(Razorpay::Error) do
+        customer = Razorpay::Customer.add_bank_account(@customer_id, para_attr.to_json)
+        if customer.error
+            raise Razorpay::Error.new, customer.error['code']
+        end 
+      end
     end
 
     def test_customer_delete_bank_account
       stub_delete(%r{customers/#{@customer_id}/bank_account/#{@bank_id}$}, 'success')
-      bankAccount = Razorpay::Customer.fetch(@customer_id).deleteBankAccount(@bank_id)
+      bankAccount = Razorpay::Customer.delete_bank_account(@customer_id, @bank_id)
       assert bankAccount.success
+    end
+
+    def test_customer_delete_bank_account_exception 
+    stub_delete(%r{customers/#{@customer_id}/bank_account/#{@bank_id}$}, 'error_customer')
+      assert_raises(Razorpay::Error) do
+        customer = Razorpay::Customer.delete_bank_account(@customer_id,@bank_id)
+        if customer.error
+          raise Razorpay::Error.new, customer.error['code']
+        end 
+      end
     end
 
     def test_customer_request_eligiblity_check
@@ -109,14 +130,45 @@ module Razorpay
         }
       }
       stub_post(%r{customers/eligibility$}, 'fake_eligiblity', para_attr.to_json)
-      bankAccount = Razorpay::Customer.requestEligibilityCheck(para_attr.to_json)
+      bankAccount = Razorpay::Customer.request_eligibility_check(para_attr.to_json)
       assert bankAccount.amount
+    end
+
+    def test_customer_fetch_eligiblity_check_exception
+      para_attr = {
+        "inquiry": "affordability",
+        "currency": "INR",
+        "customer": {
+          "id": "cust_KhP5dO1dKmc0Rm",
+          "contact": "+918220276214",
+          "ip": "105.106.107.108",
+          "referrer": "https://merchansite.com/example/paybill",
+          "user_agent": "Mozilla/5.0"
+        }
+      }
+      stub_post(%r{customers/eligibility$}, 'error_eligibility_check', para_attr.to_json)     
+      assert_raises(Razorpay::Error) do
+        customer = Razorpay::Customer.request_eligibility_check(para_attr.to_json)      
+        if customer.error
+          raise Razorpay::Error.new, customer.error['code']
+        end  
+      end
     end
 
     def test_customer_fetch_eligiblity
       stub_get(%r{customers/eligibility/#{@eligibilityId}$}, 'fake_eligiblity')
-      bankAccount = Razorpay::Customer.fetchEligibility(@eligibilityId)
+      bankAccount = Razorpay::Customer.fetch_eligibility(@eligibilityId)
       assert bankAccount.amount
+    end
+
+    def test_customer_fetch_eligiblity_exception
+      stub_get(%r{customers/eligibility/#{@eligibilityId}$}, 'error_eligibility_check')
+      assert_raises(Razorpay::Error) do
+        customer = Razorpay::Customer.fetch_eligibility(@eligibilityId)      
+        if customer.error
+          raise Razorpay::Error.new, customer.error['code']
+        end  
+      end
     end
   end
 end
