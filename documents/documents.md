@@ -11,10 +11,10 @@ Razorpay::Document.create({
 
 **Parameters:**
 
-| Name  | Type      | Description                                      |
-|-------|-----------|--------------------------------------------------|
-| file*  | string | The URL generated once the business proof document is uploaded. |
-| purpose  | string  | Possible value is `dispute_evidence` |
+| Name    | Type      | Description                                                     |
+|---------|-----------|-----------------------------------------------------------------|
+| file*   | string    | The URL generated once the business proof document is uploaded. |
+| purpose | string    | Possible value is `dispute_evidence`                            |
 
 **Response:**
 ```json
@@ -40,9 +40,9 @@ Razorpay::Document.fetch(documentId)
 
 **Parameters:**
 
-| Name  | Type      | Description                                      |
-|-------|-----------|--------------------------------------------------|
-| documentId  | string | The unique identifier of the document.  |
+| Name        | Type      | Description                                      |
+|-------------|-----------|--------------------------------------------------|
+| documentId  | string    | The unique identifier of the document.           |
 
 **Response:**
 ```json
