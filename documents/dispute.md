@@ -94,7 +94,7 @@ Razorpay::Dispute.fetch(disputeId)
 ```
 -------------------------------------------------------------------------------------------------------
 
-### Fetch a Dispute
+### Fetch a dispute with id
 
 ```rb
 disputeId = "disp_0000000000000"
