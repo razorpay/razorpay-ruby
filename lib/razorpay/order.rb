@@ -36,12 +36,12 @@ module Razorpay
       request.get "#{id}/?expand[]=transfers&status"
     end
 
-    def view_rto
-      self.class.request.post "#{id}/rto_review"
+    def self.view_rto(id)
+      request.post "#{id}/rto_review"
     end
     
-    def edit_fulfillment(options = {})
-      self.class.request.post "#{id}/fulfillment", options
+    def self.edit_fulfillment(id, options = {})
+      request.post "#{id}/fulfillment", options
     end
   end
 end
