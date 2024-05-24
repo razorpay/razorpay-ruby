@@ -91,7 +91,7 @@ module Razorpay
 
     def test_customer_add_bank_account_exception 
       para_attr = {}
-      stub_delete(%r{customers/#{@customer_id}/bank_account$}, 'error_customer', para_attr.to_json)
+      stub_post(%r{customers/#{@customer_id}/bank_account$}, 'error_customer', para_attr.to_json)
         assert_raises(Razorpay::Error) do
         customer = Razorpay::Customer.add_bank_account(@customer_id, para_attr.to_json)
         if customer.error
