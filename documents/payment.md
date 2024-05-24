@@ -925,7 +925,7 @@ Razorpay::Payment.fetch("pay_XXXXXXXXXXXXXX").expendDetails({"expand[]": "emi"})
 ### Fetch a Payment (With Expanded Card Details)
 
 ```rb
-Razorpay::Payment.fetch("pay_XXXXXXXXXXXXXX").expendDetails({"expand[]": "card"})
+Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "card"})
 ```
 
 **Parameters:**
@@ -995,7 +995,7 @@ Razorpay::Payment.fetch("pay_XXXXXXXXXXXXXX").expendDetails({"expand[]": "card"}
 ### Fetch a Payment (With Expanded Offers Details)
 
 ```rb
-Razorpay::Payment.fetch("pay_XXXXXXXXXXXXXX").expendDetails({"expand[]": "offers"})
+Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "offers"})
 ```
 
 **Parameters:**
@@ -1003,48 +1003,54 @@ Razorpay::Payment.fetch("pay_XXXXXXXXXXXXXX").expendDetails({"expand[]": "offers
 | Name        | Type    | Description                                                    |
 |-------------|---------|----------------------------------------------------------------|
 | paymentId*  | integer | Unique identifier of the payment                               |
-| expand[]    | string  | Use to expand the emi details when the payment method is emi.  |
+| expand[]    | string  | Use to expand the offers applied to a payment.                 |
 
 **Response:** <br>
 
 ```json
 {
-  "id": "pay_DG4ZdRK8ZnXC3k",
+  "id": "pay_G8VaL2Z68LRtDs",
   "entity": "payment",
-  "amount": 200000,
+  "amount": 900,
   "currency": "INR",
-  "status": "authorized",
-  "order_id": null,
+  "status": "captured",
+  "order_id": "order_G8VXfKDWDEOHHd",
   "invoice_id": null,
   "international": false,
-  "method": "emi",
+  "method": "netbanking",
   "amount_refunded": 0,
   "refund_status": null,
-  "captured": false,
-  "description": null,
-  "card_id": "card_DG4ZdUO3xABb20",
-  "bank": "ICIC",
+  "captured": true,
+  "offers": {
+    "entity": "collection",
+    "count": 1,
+    "items": [
+      {
+        "id": "offer_G8VXOp0qNuEXzh"
+      }
+    ]
+  },
+  "description": "Purchase Shoes",
+  "card_id": null,
+  "bank": "KKBK",
   "wallet": null,
   "vpa": null,
-  "email": "gaurav@example.com",
-  "contact": "+919972000005",
+  "email": "gaurav.kumar@example.com",
+  "contact": "+919000090000",
+  "customer_id": "cust_DitrYCFtCIokBO",
   "notes": [],
-  "fee": null,
-  "tax": null,
+  "fee": 22,
+  "tax": 4,
   "error_code": null,
   "error_description": null,
   "error_source": null,
   "error_step": null,
   "error_reason": null,
-  "emi": {
-    "issuer": "ICIC",
-    "rate": 1300,
-    "duration": 6
-  },
   "acquirer_data": {
-    "auth_code": "828553"
+    "bank_transaction_id": "0125836177",
+    "authentication_reference_number": "100222021120200000000742753928"
   },
-  "created_at": 1568026077
+  "created_at": 1606985740
 }
 ```
 
@@ -1053,15 +1059,15 @@ Razorpay::Payment.fetch("pay_XXXXXXXXXXXXXX").expendDetails({"expand[]": "offers
 ### Fetch a Payment (With Expanded UPI Details)
 
 ```rb
-Razorpay::Payment.fetch("pay_XXXXXXXXXXXXXX").expendDetails({"expand[]": "upi"})
+Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "upi"})
 ```
 
 **Parameters:**
 
-| Name        | Type    | Description                                                  |
-|-------------|---------|--------------------------------------------------------------|
-| paymentId*  | integer | Unique identifier of the payment                             |
-| expand[]    | string | Use to expand the UPI details when the payment method is upi. |
+| Name        | Type    | Description                                                   |
+|-------------|---------|---------------------------------------------------------------|
+| paymentId*  | integer | Unique identifier of the payment                              |
+| expand[]    | string  | Use to expand the UPI details when the payment method is upi. |
 
 **Response:** <br>
 
