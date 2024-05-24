@@ -79,6 +79,16 @@ module Razorpay
       transfer = Razorpay::Transfer.fetch(@transfer_id).reversals
       assert_instance_of Razorpay::Collection, transfer , 'Transfer should be an array'
       refute_empty transfer.items , 'Transfer should be more than one'
-    end  
+    end
+
+    def test_fetch_reversals_exception 
+      stub_get(%r{/transfers/#{@transfer_id}/reversals$}, 'transfer_error')
+        assert_raises(Razorpay::Error) do
+        transfer = Razorpay::Transfer.fetch(@transfer_id).reversals
+        if transfer.error
+            raise Razorpay::Error.new, transfer.error['code']
+        end 
+      end
+    end
   end
 end
