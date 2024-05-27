@@ -4,6 +4,16 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
+## [3.2.3] - 2024-05-27
+
+feat: Added new API endpoints
+* Added support for `add_bank_account`, `delete_bank_account`, `request_eligibility_check` & `fetch_eligibility` on customer
+* Added support for `expand_details` on payment
+* Added support for fetch Reversals for a Transfer
+* Added support for Dispute
+* Added support for Document
+* Added support for `view_rto` & `edit_fulfillment` on order
+
 ## [3.2.2] - 2024-04-16
 
 feat: Added oauth APIs and support for access token based authentication mechanism
