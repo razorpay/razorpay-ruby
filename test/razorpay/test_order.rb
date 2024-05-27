@@ -66,6 +66,48 @@ module Razorpay
     assert_equal @order_id, order.id, 'order IDs do not match'
     refute_empty order.transfers["items"]
     assert_equal @transfer_id, order.transfers["items"][0]["id"]
-   end 
+   end
+
+   def test_view_rto
+    stub_post(%r{orders/#{@order_id}/rto_review$}, 'fake_rto', {})
+    order = Razorpay::Order.view_rto(@order_id)
+    assert !order.rto_reasons.empty?, 'orders should be more than one'
+   end
+
+   def test_view_rto_exception
+    stub_post(%r{orders/#{@order_id}/rto_review$}, 'order_error', {})
+    assert_raises(Razorpay::Error) do
+      order = Razorpay::Order.view_rto(@order_id)      
+       if order.error
+        raise Razorpay::Error.new, order.error['code']
+       end  
+     end
+   end
+
+   def test_fulfillment
+      param_attr = {
+        "payment_method": "upi",
+        "shipping": {
+          "waybill": "123456789",
+          "status": "rto",
+          "provider": "Bluedart"
+        }
+      }
+
+     stub_post(%r{orders/#{@order_id}/fulfillment$}, 'fake_fulfillment', param_attr.to_json)
+     order = Razorpay::Order.edit_fulfillment(@order_id, param_attr.to_json)
+     assert_equal "upi", order.payment_method, 'order payment method do not match'
+   end
+
+   def test_fulfillment_exception
+    para_attr = {}
+    stub_post(%r{orders/#{@order_id}/fulfillment$}, 'order_error', para_attr.to_json)
+    assert_raises(Razorpay::Error) do
+      order = Razorpay::Order.edit_fulfillment(@order_id, para_attr.to_json)
+       if order.error
+        raise Razorpay::Error.new, order.error['code']
+       end  
+     end
+   end
   end
 end
