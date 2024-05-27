@@ -243,7 +243,7 @@ Razorpay::Customer.delete_bank_account(customerId, bankAccountId)
 ### Eligibility Check API
 
 ```rb
-Razorpay::Customer.requestEligibilityCheck({
+Razorpay::Customer.request_eligibility_check({
     "inquiry": "affordability",
     "amount": 500,
     "currency": "INR",
@@ -357,7 +357,7 @@ Razorpay::Customer.requestEligibilityCheck({
 
 ```rb
 eligibilityId = "elig_F1cxDoHWD4fkQt"
-Razorpay::Customer.fetchEligibility(eligibilityId)
+Razorpay::Customer.fetch_eligibility(eligibilityId)
 ```
 
 **Parameters:**
