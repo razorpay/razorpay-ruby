@@ -778,7 +778,7 @@ Razorpay::Transfer.fetch(transferId).edit(para_attr)
 ### Fetch Reversals for a Transfer
 ```rb
 transferId = "trf_JhemwjNekar9Za"
-Razorpay::Transfer.fetch(transferId).reversals
+Razorpay::Transfer.reversals(transferId)
 ```
 
 **Parameters:**
