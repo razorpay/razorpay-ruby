@@ -925,7 +925,7 @@ Razorpay::Payment.expendDetails("pay_XXXXXXXXXXXXXX",{"expand[]": "emi"})
 ### Fetch a Payment (With Expanded Card Details)
 
 ```rb
-Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "card"})
+Razorpay::Payment.expand_details("pay_XXXXXXXXXXXXXX", {"expand[]": "card"})
 ```
 
 **Parameters:**
@@ -995,7 +995,7 @@ Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "card"})
 ### Fetch a Payment (With Expanded Offers Details)
 
 ```rb
-Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "offers"})
+Razorpay::Payment.expand_details("pay_XXXXXXXXXXXXXX", {"expand[]": "offers"})
 ```
 
 **Parameters:**
