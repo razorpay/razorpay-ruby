@@ -113,7 +113,7 @@ module Razorpay
       request.post "validate/vpa" , data
     end
 
-    def self.expend_details(id, options={})
+    def self.expand_details(id, options={})
       request.get "#{id}", options
     end
   end
