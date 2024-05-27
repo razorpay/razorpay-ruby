@@ -4,7 +4,7 @@
 
 ```rb
 Razorpay::Document.create({
-  "file": File.new("/Users/ankit.das/Downloads/sample_uploaded.jpeg"),
+  "file": File.new("/Users/your_name/Downloads/sample_uploaded.jpeg"),
   "purpose": "dispute_evidence"
 });
 ```
