@@ -1,0 +1,50 @@
+{
+    "id": "fake_payment_id",
+    "entity": "payment",
+    "amount": 100,
+    "currency": "INR",
+    "status": "failed",
+    "order_id": "order_H9o58N6qmLYQKC",
+    "invoice_id": null,
+    "terminal_id": "term_G5kJnYM9GhhLYT",
+    "international": false,
+    "method": "card",
+    "amount_refunded": 0,
+    "refund_status": null,
+    "captured": false,
+    "description": null,
+    "card_id": "card_H9oR0ocen1cmZq",
+    "card": {
+      "id": "card_H9oR0ocen1cmZq",
+      "entity": "card",
+      "name": "Gaurav",
+      "last4": "1213",
+      "network": "RuPay",
+      "type": "credit",
+      "issuer": "UTIB",
+      "international": false,
+      "emi": false,
+      "sub_type": "business"
+    },
+    "bank": null,
+    "wallet": null,
+    "vpa": null,
+    "email": "gaurav.kumar@example.com",
+    "contact": "+919000090000",
+    "notes": {
+      "email": "gaurav.kumar@example.com",
+      "phone": "09000090000"
+    },
+    "fee": null,
+    "tax": null,
+    "error_code": "BAD_REQUEST_ERROR",
+    "error_description": "Card issuer is invalid",
+    "error_source": "customer",
+    "error_step": "payment_authentication",
+    "error_reason": "incorrect_card_details",
+    "acquirer_data": {
+      "auth_code": null,
+      "authentication_reference_number": "100222021120200000000742753928"
+    },
+    "created_at": 1620807547
+  }
