@@ -229,7 +229,9 @@ Razorpay::Dispute.contest(disputeId,{
 ```rb
 # Use this API sample code for submit
 
-Razorpay::Dispute.fetch(disputeId).contest({
+disputeId = "disp_0000000000000"
+
+Razorpay::Dispute.contest(disputeId, {
   "billing_proof": [
     "doc_EFtmUsbwpXwBG9",
     "doc_EFtmUsbwpXwBG8"
