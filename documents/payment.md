@@ -1059,7 +1059,7 @@ Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "offers"})
 ### Fetch a Payment (With Expanded UPI Details)
 
 ```rb
-Razorpay::Payment.expend_details("pay_XXXXXXXXXXXXXX", {"expand[]": "upi"})
+Razorpay::Payment.expand_details("pay_XXXXXXXXXXXXXX", {"expand[]": "upi"})
 ```
 
 **Parameters:**
