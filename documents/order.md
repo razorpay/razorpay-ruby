@@ -280,7 +280,7 @@ Razorpay::Order.edit(orderId,para_attr)
 ```go
 orderId = "order_XXXXXXXXXXXXX1"
 
-Razorpay::Order.fetch(orderId).view_rto
+Razorpay::Order.view_rto(orderId)
 ```
 **Parameters**
 
@@ -311,6 +311,8 @@ Razorpay::Order.fetch(orderId).view_rto
 ### Update the Fulfillment Details
 
 ```rb
+order_id = "order_XXXXXXXXXXXXX1"
+
 para_attr = {
   "payment_method": "upi",
   "shipping": {
@@ -320,7 +322,7 @@ para_attr = {
   }
 }
 
-Razorpay::Order.fetch("order_XXXXXXXXXXXXX1").edit_fulfillment(para_attr)
+Razorpay::Order.edit_fulfillment(order_id, para_attr)
 ```
 **Parameters**
 
