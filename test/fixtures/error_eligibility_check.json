@@ -1,0 +1,10 @@
+{
+    "error": {
+        "code": "BAD_REQUEST_ERROR",
+        "description": "Amount is required.",
+        "source": "NA",
+        "step": "NA",
+        "reason": "NA",
+        "metadata": {}
+    }
+}
