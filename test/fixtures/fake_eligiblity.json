@@ -1,0 +1,79 @@
+{
+  "amount": "500000",
+  "customer": {
+    "id": "KkBhM9EC1Y0HTm",
+    "contact": "+918220722114"
+  },
+  "instruments": [
+    {
+      "method": "emi",
+      "issuer": "HDFC",
+      "type": "debit",
+      "eligibility_req_id": "elig_KkCNLzlNeMYQyZ",
+      "eligibility": {
+        "status": "eligible"
+      }
+    },
+    {
+      "method": "paylater",
+      "provider": "getsimpl",
+      "eligibility_req_id": "elig_KkCNLzlNeMYQyZ",
+      "eligibility": {
+        "status": "eligible"
+      }
+    },
+    {
+      "method": "paylater",
+      "provider": "icic",
+      "eligibility_req_id": "elig_KkCNLzlNeMYQyZ",
+      "eligibility": {
+        "status": "eligible"
+      }
+    },
+    {
+      "method": "cardless_emi",
+      "provider": "walnut369",
+      "eligibility_req_id": "elig_KkCNLzlNeMYQyZ",
+      "eligibility": {
+        "status": "ineligible",
+        "error": {
+          "code": "GATEWAY_ERROR",
+          "description": "The customer has not been approved by the partner.",
+          "source": "business",
+          "step": "inquiry",
+          "reason": "user_not_approved"
+        }
+      }
+    },
+    {
+      "method": "cardless_emi",
+      "provider": "zestmoney",
+      "eligibility_req_id": "elig_KkCNLzlNeMYQyZ",
+      "eligibility": {
+        "status": "ineligible",
+        "error": {
+          "code": "GATEWAY_ERROR",
+          "description": "The customer has exhausted their credit limit.",
+          "source": "business",
+          "step": "inquiry",
+          "reason": "credit_limit_exhausted"
+        }
+      }
+    },
+    {
+      "method": "paylater",
+      "provider": "lazypay",
+      "eligibility_req_id": "elig_KkCNLzlNeMYQyZ",
+      "eligibility": {
+        "status": "ineligible",
+        "error": {
+          "code": "GATEWAY_ERROR",
+          "description": "The order amount is less than the minimum transaction amount.",
+          "source": "business",
+          "step": "inquiry",
+          "reason": "min_amt_required"
+        }
+      }
+    }
+  ]
+}

@@ -27,6 +27,7 @@ require 'razorpay/product'
 require 'razorpay/stakeholder'
 require 'razorpay/account'
 require 'razorpay/document'
+require 'razorpay/dispute'
 require 'razorpay/oauth_token'
 
 # Base Razorpay module
