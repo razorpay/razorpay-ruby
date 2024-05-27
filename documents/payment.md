@@ -868,7 +868,7 @@ Razorpay::Iin.fetch(tokenIin);
 ### Fetch a Payment (With Expanded EMI Details)
 
 ```rb
-Razorpay::Payment.expendDetails("pay_XXXXXXXXXXXXXX",{"expand[]": "emi"})
+Razorpay::Payment.expand_details("pay_XXXXXXXXXXXXXX",{"expand[]": "emi"})
 ```
 
 **Parameters:**
