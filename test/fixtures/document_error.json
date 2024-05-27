@@ -1,0 +1,10 @@
+{
+    "error": {
+        "code": "BAD_REQUEST_ERROR",
+        "description": "Invalid file id provided or merchant is unauthorized to access the fileId(s) provided",
+        "source": "NA",
+        "step": "NA",
+        "reason": "NA",
+        "metadata": {}
+    }
+}

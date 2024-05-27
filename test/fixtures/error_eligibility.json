@@ -1,0 +1,10 @@
+{
+    "error": {
+        "code": "BAD_REQUEST_ERROR",
+        "description": "The eligibility  id does not exist.",
+        "source": "NA",
+        "step": "NA",
+        "reason": "NA",
+        "metadata": {}
+    }
+}

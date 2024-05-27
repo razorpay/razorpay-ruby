@@ -73,5 +73,22 @@ module Razorpay
        assert_equal transfer.id, @transfer_id , 'Transfer transfer_id is accessible'
        refute transfer.on_hold
     end
+
+    def test_fetch_reversals
+      stub_get(%r{/transfers/#{@transfer_id}/reversals$}, 'reversals_collection')
+      transfer = Razorpay::Transfer.reversals(@transfer_id)
+      assert_instance_of Razorpay::Collection, transfer , 'Transfer should be an array'
+      refute_empty transfer.items , 'Transfer should be more than one'
+    end
+
+    def test_fetch_reversals_exception 
+      stub_get(%r{/transfers/#{@transfer_id}/reversals$}, 'transfer_error')
+        assert_raises(Razorpay::Error) do
+        transfer = Razorpay::Transfer.reversals(@transfer_id)
+        if transfer.error
+            raise Razorpay::Error.new, transfer.error['code']
+        end 
+      end
+    end
   end
 end
