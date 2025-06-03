@@ -41,7 +41,7 @@ jobs:
     - name: Set up Ruby latest
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.1
+        ruby-version: 3.4
     - name: Install dependencies
       run: bundle install
     - name: Run tests and collect coverage
@@ -67,7 +67,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version:  3.1
+        ruby-version:  3.4
     - name: Publish gems to Rubygems
       run: |
        mkdir -p $HOME/.gem
