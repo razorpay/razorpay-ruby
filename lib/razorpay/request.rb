@@ -130,7 +130,9 @@ module Razorpay
       raise klass.new(*args), error['description']
     rescue NameError, LoadError
       # We got an unknown error, cast it to Error for now
-      raise Razorpay::Error.new, 'Unknown Error'
+      code = error['code'] rescue nil
+      description = error['description'] rescue 'Unknown Error'
+      raise Razorpay::Error.new(code, status), description || 'Unknown Error'
     end
   end
 end
