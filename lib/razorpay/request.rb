@@ -105,14 +105,20 @@ module Razorpay
         return response
       end
 
-    # Normalize OAuth string error format into Razorpay's standard hash format
-      if response.is_a?(Hash) && response['error'].is_a?(Hash)
-        response = {
-          'error' => {
-            'code' => 'BAD_REQUEST_ERROR',
-            'description' => response['error']['description']
+    # Normalize OAuth error responses into Razorpay's standard format.
+    # The auth host returns {"error": {"description": "..."}} without a code on 400,
+    # and {"error": "string", "error_description": "..."} on 401.
+      if response.is_a?(Hash)
+        if response['error'].is_a?(String)
+          response = {
+            'error' => {
+              'code' => 'BAD_REQUEST_ERROR',
+              'description' => response['error_description'] || response['error']
+            }
           }
-        }
+        elsif response['error'].is_a?(Hash) && !response['error'].key?('code')
+          response['error']['code'] = 'BAD_REQUEST_ERROR'
+        end
       end
 
       # if there was an error, throw it
@@ -131,8 +137,10 @@ module Razorpay
     end
 
     def raise_error(error, status)
+      unless error.is_a?(Hash) && error['code']
+        raise Razorpay::Error.new, error.is_a?(Hash) ? (error['description'] || 'Unknown Error') : error.to_s
+      end
 
-      # Get the error class name, require it and instantiate an error
       class_name = error['code'].split('_').map(&:capitalize).join('')
       args = [error['code'], status]
       args.push error['field'] if error.key?('field')
