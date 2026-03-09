@@ -54,5 +54,10 @@ module Razorpay
     def self.fetch_eligibility(eligibilityId)
       request.get "eligibility/#{eligibilityId}" 
     end
+
+    # Cancel a token
+    def self.cancelToken(customerId, tokenId)
+      request.put "#{customerId}/tokens/#{tokenId}/cancel"
+    end
   end
 end

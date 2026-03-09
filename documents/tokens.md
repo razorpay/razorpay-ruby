@@ -401,6 +401,32 @@ Razorpay::Token.process_payment_on_alternate_pa_or_pg({"id":"spt_4lsdksD31GaZ09"
 }
 ```
 -------------------------------------------------------------------------------------------------------
+
+### Cancel token
+
+```rb
+customerId = "cust_1Aa00000000004"
+
+tokenId = "token_Hxe0skTXLeg9pF"
+
+Razorpay::Customer.cancelToken(customerId, tokenId)
+```
+
+**Parameters:**
+
+| Name         | Type   | Description                                                                 |
+| ------------ | ------ | --------------------------------------------------------------------------- |
+| customerId*  | string | The unique identifier of the customer with whom the token is linked.        |
+| tokenId*     | string | The unique identifier of the token that is to be cancelled.                 |
+
+**Response:**
+```json
+{ 
+  "status": "cancellation_initiated"
+}
+```
+
+-------------------------------------------------------------------------------------------------------
 **PN: * indicates mandatory fields**
 <br>
 <br>
