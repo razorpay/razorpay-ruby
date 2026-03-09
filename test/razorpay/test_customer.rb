@@ -170,5 +170,12 @@ module Razorpay
         end  
       end
     end
+
+    def test_customer_cancel_token
+      stub_request(:put, %r{customers/#{@customer_id}/tokens/#{@token_id}/cancel$})
+        .to_return(stub_response(%r{customers/#{@customer_id}/tokens/#{@token_id}/cancel$}, 'fake_token_cancel'))
+      result = Razorpay::Customer.cancelToken(@customer_id, @token_id)
+      assert_equal 'cancellation_initiated', result.status
+    end
   end
 end
