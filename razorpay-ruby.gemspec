@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'coveralls_reborn', '~> 0.28'
   spec.add_development_dependency 'minitest', '~> 5.25'
+  spec.add_development_dependency 'ostruct'
   spec.add_development_dependency 'rake', '~> 13.2'
   spec.add_development_dependency 'simplecov-cobertura'
   spec.add_development_dependency 'rubocop', '~> 1.68'
