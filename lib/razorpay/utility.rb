@@ -59,8 +59,12 @@ module Razorpay
       end
 
       def encrypt(data, secret)
-        iv = secret[0, 12]
         key = secret[0, 16]
+
+        # Generate a fresh random 12-byte nonce per call (fixes AES-GCM nonce reuse).
+        # A static IV derived from the secret allows keystream recovery and tag forgery
+        # (NIST SP 800-38D §8.3 Forbidden Attack) using only two captured ciphertexts.
+        iv = OpenSSL::Random.random_bytes(12)
 
         cipher = OpenSSL::Cipher.new('aes-128-gcm')
         cipher.encrypt
@@ -72,9 +76,10 @@ module Razorpay
         encrypted = cipher.update(data) + cipher.final
 
         tag = cipher.auth_tag
-        combined_encrypted_data = encrypted + tag
 
-        encrypted_data_hex = combined_encrypted_data.unpack1("H*")
+        # Output format: iv (12 bytes) || ciphertext || tag (16 bytes), hex-encoded.
+        # Receiver must read the first 24 hex chars as the IV before decrypting.
+        (iv + encrypted + tag).unpack1("H*")
       end
     end
   end
