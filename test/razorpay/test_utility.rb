@@ -99,11 +99,11 @@ module Razorpay
     def decrypt(data, secret)
       combined_encrypted_data = [data].pack("H*")
 
-      iv = secret[0, 12]
+      iv = combined_encrypted_data[0, 12]
       key = secret[0, 16]
       tag = combined_encrypted_data[-16..]
 
-      encrypted_data = combined_encrypted_data[0...-16]
+      encrypted_data = combined_encrypted_data[12...-16]
 
       cipher = OpenSSL::Cipher.new('aes-128-gcm')
       cipher.decrypt
