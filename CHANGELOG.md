@@ -4,6 +4,12 @@ Changelog for Razorpay-Ruby SDK.
 
 ## Unreleased
 
+## [3.2.4] - 2026-06-08
+
+fix: Security fix for AES-GCM onboarding signature
+* Fixed nonce reuse vulnerability in `generate_onboarding_signature` by using a random nonce per call instead of a static IV derived from the secret key
+* New output format: `hex(iv[12] || ciphertext || tag[16])` — the receiver reads the first 24 hex chars as the IV before decrypting
+
 ## [3.2.3] - 2024-05-27
 
 feat: Added new API endpoints
