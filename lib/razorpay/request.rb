@@ -129,6 +129,9 @@ module Razorpay
       klass = Razorpay.const_get(class_name)
       raise klass.new(*args), error['description']
     rescue NameError, LoadError
+      if !error.nil? && error.key?('description')
+        raise Razorpay::Error.new, error['description']
+      end
       # We got an unknown error, cast it to Error for now
       raise Razorpay::Error.new, 'Unknown Error'
     end
