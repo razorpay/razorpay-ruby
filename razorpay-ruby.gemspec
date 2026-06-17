@@ -12,26 +12,20 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://razorpay.com/'
   spec.license       = 'MIT'
 
+  spec.required_ruby_version = '>= 3.2.0'
+
   spec.files         = `git ls-files`.split("\n")
   spec.executables   = spec.files.grep(/^bin/) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(/^(test|spec|features)/)
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'httparty', '~> 0.14'
+  spec.add_dependency 'httparty', '~> 0.22'
 
-  spec.add_development_dependency 'coveralls_reborn', '~> 0.8'
-  spec.add_development_dependency 'minitest', '~> 5.11'
-  spec.add_development_dependency 'rake', '~> 12.0'
-
-  if RUBY_VERSION >= '2.1.0'
-    # rubocop is only run in the latest ruby build
-    # so we use the latest version and don't switch to a
-    # older version for 1.9.3
-    spec.add_development_dependency 'simplecov-cobertura'
-    spec.add_development_dependency 'rubocop', '~> 0.49'
-    spec.add_development_dependency 'webmock', '~> 3.0'
-  else
-    # Webmock 3.0 does not support Ruby 1.9.3
-    spec.add_development_dependency 'webmock', '~> 2.3'
-  end
+  spec.add_development_dependency 'coveralls_reborn', '~> 0.28'
+  spec.add_development_dependency 'minitest', '~> 5.25'
+  spec.add_development_dependency 'ostruct'
+  spec.add_development_dependency 'rake', '~> 13.2'
+  spec.add_development_dependency 'simplecov-cobertura'
+  spec.add_development_dependency 'rubocop', '~> 1.68'
+  spec.add_development_dependency 'webmock', '~> 3.24'
 end
