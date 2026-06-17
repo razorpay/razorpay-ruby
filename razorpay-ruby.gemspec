@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'coveralls_reborn', '~> 0.8'
   spec.add_development_dependency 'minitest', '~> 5.11'
-  spec.add_development_dependency 'rake', '~> 12.0'
+  spec.add_development_dependency 'rake', '~> 13.0'
 
   if RUBY_VERSION >= '2.1.0'
     # rubocop is only run in the latest ruby build
