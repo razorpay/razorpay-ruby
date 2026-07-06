@@ -101,6 +101,19 @@ module Razorpay
     def create_instance(res)
       response = res.parsed_response
 
+      # Any non-2xx must raise a Razorpay error regardless of body shape.
+      # Guards against empty bodies and hash bodies without the expected `error` wrapper.
+      if res.code.to_i >= 400 && !(response.is_a?(Hash) && response.key?('error'))
+        description = if response.is_a?(Hash)
+                        response['description'] || response['message'] || response.to_json
+                      elsif response.to_s.strip.empty?
+                        "HTTP #{res.code}"
+                      else
+                        response.to_s[0, 500]
+                      end
+        raise_error({'code' => 'BAD_REQUEST_ERROR', 'description' => description}, res.code)
+      end
+
       if response.is_a?(Array)==true || response.to_s.length == 0
         return response
       end
