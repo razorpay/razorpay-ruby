@@ -30,8 +30,8 @@ jobs:
       uses: safedep/pmg@v1
       with:
         server-mode: true
-        api-key: ${{ secrets.SAFEDEP_API_KEY }}
-        tenant-id: ${{ secrets.SAFEDEP_TENANT_ID }}
+        api-key: ${{ secrets.PMG_PUBLIC_REPOS_TOKEN }}
+        tenant-id: ${{ secrets.PMG_TENANT_ID }}
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
