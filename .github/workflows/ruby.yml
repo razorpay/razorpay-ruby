@@ -26,7 +26,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Start PMG
+    - name: Setup PMG proxy
+      id: pmg-setup
       uses: safedep/pmg@v1
       with:
         server-mode: true
@@ -44,4 +45,9 @@ jobs:
       run: bundle exec rake
     - name: Enforce PMG policy
       if: always()
-      run: pmg proxy stop --fail-on-violation
+      run: |
+        if [ "${{ steps.pmg-setup.outcome }}" = "success" ]; then
+          pmg proxy stop --fail-on-violation
+        else
+          pmg proxy stop || true
+        fi
