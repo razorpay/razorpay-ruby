@@ -15,9 +15,18 @@ module Razorpay
     end
 
     def self.verify_payment_link_signature(attributes)
-      signature = attributes.delete(:razorpay_signature)
-      # element of each is the value. These are joined.
-      data = attributes.values.join('|')
+      signature = attributes[:razorpay_signature]
+
+      # The signed message is defined by the protocol as these four fields, in this
+      # exact order. Reading them by name keeps verification independent of the
+      # caller's Hash insertion order and of any unrelated fields sent alongside.
+      data = [
+        attributes[:payment_link_id],
+        attributes[:payment_link_reference_id],
+        attributes[:payment_link_status],
+        attributes[:razorpay_payment_id]
+      ].join('|')
+
       secret = Razorpay.auth[:password]
       verify_signature(data, signature, secret)
     end

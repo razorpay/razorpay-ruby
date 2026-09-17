@@ -54,6 +54,46 @@ module Razorpay
       assert(response)
     end
 
+    def test_payment_link_signature_verification_ignores_insertion_order
+      attributes = valid_payment_link_response
+      reordered = {
+        razorpay_signature: attributes[:razorpay_signature],
+        razorpay_payment_id: attributes[:razorpay_payment_id],
+        payment_link_status: attributes[:payment_link_status],
+        payment_link_reference_id: attributes[:payment_link_reference_id],
+        payment_link_id: attributes[:payment_link_id]
+      }
+
+      assert Razorpay::Utility.verify_payment_link_signature(reordered)
+    end
+
+    def test_payment_link_signature_verification_ignores_extra_attributes
+      attributes = valid_payment_link_response.merge(
+        unrelated_field: 'ignored',
+        another_unrelated_field: 'also ignored'
+      )
+
+      assert Razorpay::Utility.verify_payment_link_signature(attributes)
+    end
+
+    def test_payment_link_signature_verification_does_not_mutate_input
+      attributes = valid_payment_link_response
+
+      Razorpay::Utility.verify_payment_link_signature(attributes)
+
+      assert attributes.key?(:razorpay_signature)
+      assert_equal valid_payment_link_response, attributes
+    end
+
+    def test_payment_link_signature_verification_rejects_tampered_attribute
+      attributes = valid_payment_link_response
+      attributes[:payment_link_status] = 'expired'
+
+      assert_raises(SecurityError) do
+        Razorpay::Utility.verify_payment_link_signature(attributes)
+      end
+    end
+
     def test_subscription_signature_verification
       payment_response = {
         razorpay_payment_id: 'fake_payment_id',
@@ -94,6 +134,17 @@ module Razorpay
       body = JSON.parse(json_data)
       assert_equal 'NSgKfYIR2f9v2y', body['submerchant_id'], 'Submerchant IDs do not match'
       assert_equal timestamp, body['timestamp'], 'Timestamps do not match'
+    end
+
+    # Same fixture values and signature as the payment link tests above.
+    def valid_payment_link_response
+      {
+        payment_link_id: 'fake_razorpay_payment_link_id',
+        payment_link_reference_id: 'fake_reference_id',
+        payment_link_status: 'paid',
+        razorpay_payment_id: 'pay_IH3d0ara9bSsjQ',
+        razorpay_signature: 'b8a6acda585c9b74e9da393c7354c7e685e37e69d30ae654730f042e674e0283'
+      }
     end
 
     def decrypt(data, secret)
